@@ -10,7 +10,7 @@ const LandingPage = () => {
       />
       <Text style={styles.balance}>Balance</Text>
       <View style={styles.signupButton}>
-        <Button title="Sign Up" color="#FFFFFF" />
+        <Button title="Sign Up" color="#FFFFFF"/>
       </View>
       <View style={styles.loginButton}>
         <Button title="Login" color="#FFFFFF" />
@@ -25,10 +25,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  logo: {},
   balance: {
     fontSize: 30,
-    fontFamily: "poppins",
+    fontFamily: "Poppins-Regular",
     fontWeight: "400",
     marginTop: 15,
     marginBottom: 15,
