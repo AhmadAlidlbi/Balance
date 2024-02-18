@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, TextInput, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import InputField from "../components/InputField";
 
-const Auth = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleEmailChange = (text) => {
@@ -35,11 +35,10 @@ const Auth = () => {
       </View>
       <InputField
         placeholder={"Email"}
-        // name={"email"}
         value={email}
         onChange={handleEmailChange}
         type="email"
-        label={"Email"}
+        // label={"Email"}
       />
       <InputField
         placeholder={"Password"}
@@ -47,7 +46,7 @@ const Auth = () => {
         value={password}
         onChange={handlePasswordChange}
         type="password"
-        label={"Password"}
+        // label={"Password"}
         secureTextEntry={true}
       />
       <PrimaryButton title="Login" buttonColor={true} />
@@ -64,18 +63,12 @@ const styles = StyleSheet.create({
   logo: {
     width: 86,
     height: 92,
+    marginBottom: 20,
   },
   heading: {
     fontSize: 18,
-  },
-  input: {
-    width: 255,
-    height: 40,
-    borderRadius: 7,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    backgroundColor: "#E9E9E9",
+    marginBottom: 20,
   },
 });
 
-export default Auth;
+export default Login;

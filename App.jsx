@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import Main from "./src/screens/Main";
-import Auth from "./src/screens/Auth";
+import Login from "./src/screens/Login";
 
 export default function App() {
   return (
     <>
-      <Auth />
+      <Login />
     </>
   );
 }

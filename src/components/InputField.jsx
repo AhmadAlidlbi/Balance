@@ -11,7 +11,7 @@ const InputField = ({
 }) => {
   return (
     <View>
-      {label ? <Text>{label}</Text> : null}
+      {label ? <Text style={styles.label}>{label}</Text> : null}
       <TextInput
         style={styles.input}
         value={value}
@@ -29,10 +29,13 @@ const styles = StyleSheet.create({
     width: 255,
     height: 40,
     borderRadius: 7,
-    marginBottom: 10,
+    marginBottom: 15,
     paddingHorizontal: 10,
     backgroundColor: "#E9E9E9",
   },
+  label:{
+    marginBottom: 5,
+  }
 });
 
 export default InputField;
