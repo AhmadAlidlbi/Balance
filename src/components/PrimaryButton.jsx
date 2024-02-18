@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const PrimaryButtonBlue = ({ title, buttonColor, textColor }) => {
+const PrimaryButton = ({ title, buttonColor, textColor }) => {
   return (
     <View style={[styles.button, { backgroundColor: buttonColor ? "#3238FF" : "#000000" }]}>
       <Text style={styles.text}>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PrimaryButtonBlue;
+export default PrimaryButton;

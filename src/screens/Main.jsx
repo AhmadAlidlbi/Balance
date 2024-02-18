@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import PrimaryButtonBlue from "../components/PrimaryButtonBlue";
+import PrimaryButton from "../components/PrimaryButton";
 
 const Main = () => {
   return (
@@ -12,8 +12,8 @@ const Main = () => {
         <Text style={styles.heading}>Balance</Text>
       </View>
       <View>
-        <PrimaryButtonBlue title="Sign Up" buttonColor={false}/>
-        <PrimaryButtonBlue title="Login" buttonColor={true}/>
+        <PrimaryButton title="Sign Up" buttonColor={false} />
+        <PrimaryButton title="Login" buttonColor={true} />
       </View>
     </View>
   );
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  logo:{
+  logo: {
     marginBottom: 20,
   },
-  heading:{
+  heading: {
     fontSize: 30,
-  }
+  },
 });
 
 export default Main;
