@@ -1,10 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const PrimaryButtonBlue = () => {
+const PrimaryButtonBlue = ({ title, buttonColor, textColor }) => {
   return (
-    <View style={styles.button}>
-      <Text style={styles.login}>Login</Text>
+    <View style={[styles.button, { backgroundColor: buttonColor ? "#3238FF" : "#000000" }]}>
+      <Text style={styles.text}>
+        {title}
+      </Text>
     </View>
   );
 };
@@ -15,14 +17,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 42,
     width: 251,
-    backgroundColor: "#3238FF",
+    margin: 8,
   },
-  login: {
+  text: {
     fontSize: 16,
-    fontWeight: "500",
-    fontFamily: "Poppins-Medium",
     color: "#fff",
-    textAlign: "left",
   },
 });
 
