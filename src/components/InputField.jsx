@@ -14,14 +14,15 @@ const InputField = ({
   return (
     <View style={styles.container}>
       {/* <Feather name="user" size={20} color="black" style={styles.icon} /> */}
-      <Feather name={iconName} size={24} color="#BEBEBE" style={styles.icon} />
+      <Feather name={iconName} size={20} color="#BEBEBE" style={styles.icon} />
       {label ? <Text style={styles.label}>{label}</Text> : null}
       <TextInput
         value={value}
         onChangeText={onChange}
         placeholder={placeholder}
         keyboardType={type}
-        secureTextEntry={secureTextEntry ? secureTextEntry : false}
+        secureTextEntry={secureTextEntry}
+        style={styles.input}
       />
     </View>
   );
@@ -37,6 +38,9 @@ const styles = StyleSheet.create({
     width: 255,
     gap: 10,
     margin: 10,
+  },
+  input: {
+    width: "100%",
   },
   icon: {
     marginRight: 8,
