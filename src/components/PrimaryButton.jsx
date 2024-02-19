@@ -3,10 +3,13 @@ import { View, Text, StyleSheet } from "react-native";
 
 const PrimaryButton = ({ title, buttonColor, textColor }) => {
   return (
-    <View style={[styles.button, { backgroundColor: buttonColor ? "#3238FF" : "#000000" }]}>
-      <Text style={styles.text}>
-        {title}
-      </Text>
+    <View
+      style={[
+        styles.button,
+        { backgroundColor: buttonColor ? "#3238FF" : "#000000" },
+      ]}
+    >
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 };

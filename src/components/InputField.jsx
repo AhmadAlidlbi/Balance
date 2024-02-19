@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInput, StyleSheet, Text, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 const InputField = ({
   placeholder,
@@ -8,12 +9,14 @@ const InputField = ({
   type,
   label,
   secureTextEntry,
+  iconName,
 }) => {
   return (
-    <View>
+    <View style={styles.container}>
+      {/* <Feather name="user" size={20} color="black" style={styles.icon} /> */}
+      <Feather name={iconName} size={24} color="#BEBEBE" style={styles.icon} />
       {label ? <Text style={styles.label}>{label}</Text> : null}
       <TextInput
-        style={styles.input}
         value={value}
         onChangeText={onChange}
         placeholder={placeholder}
@@ -25,17 +28,22 @@ const InputField = ({
 };
 
 const styles = StyleSheet.create({
-  input: {
-    width: 255,
-    height: 40,
-    borderRadius: 7,
-    marginBottom: 15,
-    paddingHorizontal: 10,
+  container: {
+    flexDirection: "row",
     backgroundColor: "#E9E9E9",
+    borderRadius: 7,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    width: 255,
+    gap: 10,
+    margin: 10,
   },
-  label:{
+  icon: {
+    marginRight: 8,
+  },
+  label: {
     marginBottom: 5,
-  }
+  },
 });
 
 export default InputField;

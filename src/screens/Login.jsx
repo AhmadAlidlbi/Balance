@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import InputField from "../components/InputField";
+import { Feather } from "@expo/vector-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleEmailChange = (text) => {
     setEmail(text);
   };
@@ -13,13 +15,11 @@ const Login = () => {
   const handlePasswordChange = (text) => {
     setPassword(text);
   };
-  console.log(email, password);
+
+  // console.log(email, password);
+
   const handleLogin = () => {
     // TODO: login() function
-  };
-
-  const handleSignup = () => {
-    // Implement your signup logic here
   };
 
   return (
@@ -33,14 +33,18 @@ const Login = () => {
       <View>
         <Text style={styles.heading}>Login to your account</Text>
       </View>
+      <View>
+        <InputField
+          iconName={"user"}
+          placeholder={"Email"}
+          value={email}
+          onChange={handleEmailChange}
+          type="email"
+          // label={"Email"}
+        />
+      </View>
       <InputField
-        placeholder={"Email"}
-        value={email}
-        onChange={handleEmailChange}
-        type="email"
-        // label={"Email"}
-      />
-      <InputField
+        iconName={"lock"}
         placeholder={"Password"}
         name={"password"}
         value={password}
