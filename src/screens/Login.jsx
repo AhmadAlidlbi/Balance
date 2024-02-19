@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import InputField from "../components/InputField";
 import { Feather } from "@expo/vector-icons";
@@ -53,6 +53,9 @@ const Login = () => {
         // label={"Password"}
         secureTextEntry={true}
       />
+      <TouchableOpacity>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
       <PrimaryButton title="Login" buttonColor={true} />
     </View>
   );
@@ -71,6 +74,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 18,
+    marginBottom: 20,
+  },
+  forgotPassword: {
+    color: "#625F60",
+    fontSize: 12,
     marginBottom: 20,
   },
 });
