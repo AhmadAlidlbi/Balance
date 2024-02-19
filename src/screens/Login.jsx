@@ -75,11 +75,12 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 18,
     marginBottom: 20,
+    marginTop: 10,
   },
   forgotPassword: {
     color: "#625F60",
     fontSize: 12,
-    margin: 10,
+    margin: 12,
   },
 });
 
