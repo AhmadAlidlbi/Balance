@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 30,
+    marginBottom: 20,
   },
 });
 

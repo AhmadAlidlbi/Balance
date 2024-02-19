@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   forgotPassword: {
     color: "#625F60",
     fontSize: 12,
-    marginBottom: 20,
+    margin: 10,
   },
 });
 

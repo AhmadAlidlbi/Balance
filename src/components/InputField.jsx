@@ -1,6 +1,7 @@
-import React from "react";
-import { TextInput, StyleSheet, Text, View } from "react-native";
+import { React, useState } from "react";
+import { TextInput, StyleSheet, Text, View, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const InputField = ({
   placeholder,
@@ -10,7 +11,14 @@ const InputField = ({
   label,
   secureTextEntry,
   iconName,
+  SecondIconName,
 }) => {
+  const [password, setPassword] = useState("");
+  const [secureText, setSecureText] = useState(true);
+
+  const handlePress = () => {
+    console.log("press");
+  };
   return (
     <View style={styles.container}>
       <Feather name={iconName} size={20} color="#BEBEBE" />
@@ -19,9 +27,18 @@ const InputField = ({
         value={value}
         onChangeText={onChange}
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={type === "password" ? secureText : false}
         style={styles.input}
       />
+      {type === "password" && (
+        <Pressable onPress={() => setSecureText((prev) => !prev)}>
+          <MaterialCommunityIcons
+            name={secureText ? "eye-off" : "eye"}
+            size={20}
+            color="#BEBEBE"
+          />
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -31,15 +48,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#E9E9E9",
     borderRadius: 7,
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 12,
-    width: 255,
+    width: 300,
     gap: 10,
     margin: 10,
     height: 43,
   },
   input: {
-    width: "100%",
+    width: "75%",
   },
   label: {
     marginBottom: 5,
