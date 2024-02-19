@@ -1,7 +1,6 @@
 import { React, useState } from "react";
-import { TextInput, StyleSheet, Text, View, Pressable } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { TextInput, StyleSheet, View, Pressable } from "react-native";
+import { Feather, MaterialCommunityIcons} from "@expo/vector-icons";
 
 const InputField = ({
   placeholder,
@@ -9,20 +8,13 @@ const InputField = ({
   onChange,
   type,
   label,
-  secureTextEntry,
   iconName,
-  SecondIconName,
 }) => {
-  const [password, setPassword] = useState("");
   const [secureText, setSecureText] = useState(true);
 
-  const handlePress = () => {
-    console.log("press");
-  };
   return (
     <View style={styles.container}>
       <Feather name={iconName} size={20} color="#BEBEBE" />
-      {label ? <Text style={styles.label}>{label}</Text> : null}
       <TextInput
         value={value}
         onChangeText={onChange}
@@ -57,11 +49,6 @@ const styles = StyleSheet.create({
   input: {
     width: "82%",
     height: 45,
-    borderColor: "#ff0000",
-    borderWidth: 1,
-  },
-  label: {
-    marginBottom: 5,
   },
 });
 

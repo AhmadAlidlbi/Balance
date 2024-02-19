@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import InputField from "../components/InputField";
-import { Feather } from "@expo/vector-icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,7 +39,6 @@ const Login = () => {
           value={email}
           onChange={handleEmailChange}
           type="email"
-          // label={"Email"}
         />
       </View>
       <InputField
@@ -50,7 +48,6 @@ const Login = () => {
         value={password}
         onChange={handlePasswordChange}
         type="password"
-        // label={"Password"}
         secureTextEntry={true}
       />
       <TouchableOpacity>
