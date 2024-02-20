@@ -7,12 +7,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmailChange = (text) => {
-    setEmail(text);
+  const handleEmailChange = (Email) => {
+    setEmail(Email);
   };
 
-  const handlePasswordChange = (text) => {
-    setPassword(text);
+  const handlePasswordChange = (Password) => {
+    setPassword(Password);
   };
 
   // console.log(email, password);

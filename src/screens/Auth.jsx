@@ -7,12 +7,12 @@ const Auth = ({navigation}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const handleFirstNameChange = (text) => {
-    setFirstName(text);
+  const handleFirstNameChange = (FirstName) => {
+    setFirstName(FirstName);
   };
 
-  const handleLastNameChange = (text) => {
-    setLastName(text);
+  const handleLastNameChange = (LastName) => {
+    setLastName(LastName);
   };
 
 //   console.log(firstName, lastName);

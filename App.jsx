@@ -7,13 +7,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Auth from "./src/screens/Auth";
 import SecondAuth from "./src/screens/SecondAuth";
+import OnboardingTutorial from "./src/screens/OnboardingTutorial";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
-      <NavigationContainer>
+    <OnboardingTutorial />
+      {/* <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Main"
@@ -59,7 +61,7 @@ export default function App() {
             }}
           />
         </Stack.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
     </>
   );
 }

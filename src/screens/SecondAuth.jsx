@@ -8,16 +8,16 @@ const SecondAuth = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const handleEmailChange = (text) => {
-    setEmail(text);
+  const handleEmailChange = (Email) => {
+    setEmail(Email);
   };
 
-  const handlePasswordChange = (text) => {
-    setPassword(text);
+  const handlePasswordChange = (Password) => {
+    setPassword(Password);
   };
 
-  const handlePasswordConfirmationChange = (text) => {
-    setPasswordConfirmation(text);
+  const handlePasswordConfirmationChange = (PasswordConfirmation) => {
+    setPasswordConfirmation(PasswordConfirmation);
   };
 
   // console.log(email, password, passwordConfirmation);
