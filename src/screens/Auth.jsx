@@ -4,6 +4,7 @@ import InputField from "../components/InputField";
 import PrimaryButton from "../components/PrimaryButton";
 
 const Auth = ({navigation}) => {
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 

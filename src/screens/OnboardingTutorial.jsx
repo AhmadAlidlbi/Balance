@@ -4,6 +4,7 @@ import Slides from "../screens/Slides";
 import OnboardingItem from "../components/OnboardingItem";
 import Indicator from "../components/Indicator";
 import NextButton from "../components/NextButton";
+import PrimaryButton from "../components/PrimaryButton";
 
 const OnboardingTutorial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,9 +17,17 @@ const OnboardingTutorial = () => {
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
+  const scrollTo = () => {
+    if (currentIndex < Slides.length - 1) {
+      slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
+    } else {
+      console.log("Last slide");
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <View stylele={{ flex: 3 }}>
+      <View style={{ flex: 2 }}>
         <FlatList
           data={Slides}
           renderItem={({ item }) => <OnboardingItem item={item} />}
@@ -37,8 +46,8 @@ const OnboardingTutorial = () => {
           ref={slidesRef}
         />
       </View>
-
       <Indicator data={Slides} scrollX={scrollX} />
+      <NextButton scrollTo={scrollTo}/>
     </View>
   );
 };
@@ -49,9 +58,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
-    borderColor: "red",
-    borderWidth: 2,
-    marginBottom: 150,
+    // borderColor: "red",
+    // borderWidth: 2,
   },
 });
 

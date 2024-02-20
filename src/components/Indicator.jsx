@@ -40,6 +40,7 @@ export default Indicator;
 const styles = StyleSheet.create({
   indicator: {
     flexDirection: "row",
+    height: 90,
   },
   dot: {
     height: 10,
