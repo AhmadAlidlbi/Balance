@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import InputField from "../components/InputField";
 import PrimaryButton from "../components/PrimaryButton";
 
-const SecondAuth = () => {
+const SecondAuth = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -65,7 +65,7 @@ const SecondAuth = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <PrimaryButton title="Sign Up" buttonColor={true} />
+        <PrimaryButton onPress={() => navigation.navigate("OnboardingTutorial")} title="Sign Up" buttonColor={true} />
       </View>
     </View>
   );

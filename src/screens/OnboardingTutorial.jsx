@@ -2,6 +2,8 @@ import { React, useState, useRef } from "react";
 import { View, StyleSheet, FlatList, Animated } from "react-native";
 import Slides from "../screens/Slides";
 import OnboardingItem from "../components/OnboardingItem";
+import Indicator from "../components/Indicator";
+import NextButton from "../components/NextButton";
 
 const OnboardingTutorial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,25 +18,27 @@ const OnboardingTutorial = () => {
 
   return (
     <View style={styles.container}>
-      <View stylele={{flex:3}}>
-          <FlatList
-            data={Slides}
-            renderItem={({ item }) => <OnboardingItem item={item} />}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            pagingEnabled
-            bounces={false}
-            keyExtractor={(item) => item.id}
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-              { useNativeDriver: false }
-            )}
-            scrollEventThrottle={32}
-            onViewableItemsChanged={viewableItemsChanged}
-            viewabilityConfig={viewConfig}
-            ref={slidesRef}
-          />
+      <View stylele={{ flex: 3 }}>
+        <FlatList
+          data={Slides}
+          renderItem={({ item }) => <OnboardingItem item={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          pagingEnabled
+          bounces={false}
+          keyExtractor={(item) => item.id}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
+          scrollEventThrottle={32}
+          onViewableItemsChanged={viewableItemsChanged}
+          viewabilityConfig={viewConfig}
+          ref={slidesRef}
+        />
       </View>
+
+      <Indicator data={Slides} scrollX={scrollX} />
     </View>
   );
 };
@@ -44,6 +48,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#ffffff",
+    borderColor: "red",
+    borderWidth: 2,
+    marginBottom: 150,
   },
 });
 

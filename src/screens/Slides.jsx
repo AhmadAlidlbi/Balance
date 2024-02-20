@@ -21,7 +21,7 @@ const Slides = [
     id: "4",
     title: "Tasks & Habits Management",
     description: "Mastering Tasks & Habits Begins Today! Simplify To-Dos Today!",
-    image: require("../assets/images/TasksHabitsManagement.jpg"),
+    image: require("../assets/images/TasksHabitsManagement.png"),
   },
   {
     id: "5",

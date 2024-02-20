@@ -14,8 +14,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <>
-    <OnboardingTutorial />
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Main"
@@ -47,6 +46,16 @@ export default function App() {
             }}
           />
           <Stack.Screen
+            name="OnboardingTutorial"
+            component={OnboardingTutorial}
+            options={{
+              headerStyle: { backgroundColor: "#ffffffff" },
+              headerTitleStyle: { color: "#ffffff00" },
+              headerShadowVisible: false,
+              headerBackVisible : false,
+            }}
+          />
+          <Stack.Screen
             name="Login"
             component={Login}
             options={{
@@ -61,7 +70,7 @@ export default function App() {
             }}
           />
         </Stack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
     </>
   );
 }
