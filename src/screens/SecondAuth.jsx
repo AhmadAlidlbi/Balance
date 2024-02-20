@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import InputField from "../components/InputField";
 import PrimaryButton from "../components/PrimaryButton";
 
-const SecondAuth = ({navigation}) => {
+const SecondAuth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -56,7 +56,7 @@ const SecondAuth = ({navigation}) => {
       <View>
         <InputField
           iconName={"lock"}
-          placeholder={"Password Confirmation"}
+          placeholder={"Password confirmation"}
           name={"passwordConfirmation"}
           value={passwordConfirmation}
           onChange={handlePasswordConfirmationChange}
@@ -65,7 +65,7 @@ const SecondAuth = ({navigation}) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <PrimaryButton onPress={() => navigation.navigate("Login")} title="Sign Up" buttonColor={true} />
+        <PrimaryButton title="Sign Up" buttonColor={true} />
       </View>
     </View>
   );
