@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const NextButton = ({scrollTo}) => {
+const NextButton = ({ scrollTo }) => {
   return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={scrollTo} style={styles.buttonInnerContainer}>
-          <Text style={styles.text}>Continue</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={scrollTo} style={styles.buttonInnerContainer}>
+        <Text style={styles.text}>Continue</Text>
+      </TouchableOpacity>
     </View>
   );
 };

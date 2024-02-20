@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import { StatusBar } from "expo-status-bar";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Main from "./src/screens/Main";
 import Login from "./src/screens/Login";
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,46 +8,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Auth from "./src/screens/Auth";
 import SecondAuth from "./src/screens/SecondAuth";
 import OnboardingTutorial from "./src/screens/OnboardingTutorial";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const Loading = () => {
-  <View>
-    <ActivityIndicator size="large" />
-  </View>;
-};
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [viewedOnboarding, setViewedOnboarding] = useState(false);
-
-  const checkOnboarding = async () => {
-    try {
-      const value = await AsyncStorage.getItem("@viewedOnboarding");
-
-      if (value !== null) {
-        setViewedOnboarding(true);
-      }
-    } catch (err) {
-      console.log("Error @checkOnboarding: ", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    checkOnboarding();
-  }, []);
   return (
     <>
-      {Loading ? (
-        <Loading />
-      ) : viewedOnboarding ? (
-        <Main />
-      ) : (
-        <OnboardingTutorial />
-      )}
+      <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen

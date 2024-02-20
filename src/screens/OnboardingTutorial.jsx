@@ -4,8 +4,6 @@ import Slides from "../screens/Slides";
 import OnboardingItem from "../components/OnboardingItem";
 import Indicator from "../components/Indicator";
 import NextButton from "../components/NextButton";
-import PrimaryButton from "../components/PrimaryButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const OnboardingTutorial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,15 +16,9 @@ const OnboardingTutorial = () => {
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-  const scrollTo = async () => {
+  const scrollTo = () => {
     if (currentIndex < Slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
-    } else {
-      try{
-        await AsyncStorage.setItem("@viewedOnboarding", "true");
-      }catch(err){
-        console.log("Error @scrollTo: ", err);
-      }
     }
   };
 
@@ -52,7 +44,7 @@ const OnboardingTutorial = () => {
         />
       </View>
       <Indicator data={Slides} scrollX={scrollX} />
-      <NextButton scrollTo={scrollTo}/>
+      <NextButton scrollTo={scrollTo} />
     </View>
   );
 };

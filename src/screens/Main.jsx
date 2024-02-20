@@ -1,16 +1,8 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Main = ({ navigation }) => {
-  const clearOnboarding = async () => {
-    try {
-      await AsyncStorage.removeItem("@viewedOnboarding");
-    } catch (err) {
-      console.log("Error @clearOnboarding: ", err);
-    }
-  };
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -23,7 +15,6 @@ const Main = ({ navigation }) => {
         <PrimaryButton
           onPress={() => {
             navigation.navigate("Auth");
-            clearOnboarding();
           }}
           title="Sign Up"
           buttonColor={false}
