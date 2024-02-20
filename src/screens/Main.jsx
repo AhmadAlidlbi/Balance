@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
-const Main = () => {
+const Main = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -12,8 +12,16 @@ const Main = () => {
         <Text style={styles.heading}>Balance</Text>
       </View>
       <View>
-        <PrimaryButton title="Sign Up" buttonColor={false} />
-        <PrimaryButton title="Login" buttonColor={true} />
+        <PrimaryButton
+          onPress={() => navigation.navigate("Auth")}
+          title="Sign Up"
+          buttonColor={false}
+        />
+        <PrimaryButton
+          onPress={() => navigation.navigate("Login")}
+          title="Login"
+          buttonColor={true}
+        />
       </View>
     </View>
   );
@@ -24,6 +32,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#ffffff",
+    paddingBottom: 100,
   },
   logo: {
     marginBottom: 20,

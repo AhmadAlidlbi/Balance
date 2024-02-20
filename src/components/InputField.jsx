@@ -1,13 +1,12 @@
 import { React, useState } from "react";
 import { TextInput, StyleSheet, View, Pressable } from "react-native";
-import { Feather, MaterialCommunityIcons} from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const InputField = ({
   placeholder,
   value,
   onChange,
   type,
-  label,
   iconName,
 }) => {
   const [secureText, setSecureText] = useState(true);
