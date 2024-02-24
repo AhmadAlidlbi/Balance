@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, Alert } from "react-native";
 import InputField from "../components/InputField";
 import PrimaryButton from "../components/PrimaryButton";
 
-const SecondAuth = ({navigation}) => {
+const SecondAuth = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleEmailChange = (Email) => {
     setEmail(Email);
@@ -16,32 +16,52 @@ const SecondAuth = ({navigation}) => {
     setPassword(Password);
   };
 
-  const handlePasswordConfirmationChange = (PasswordConfirmation) => {
-    setPasswordConfirmation(PasswordConfirmation);
+  const handleConfirmPasswordChange = (ConfirmPassword) => {
+    setConfirmPassword(ConfirmPassword);
   };
 
-  // console.log(email, password, passwordConfirmation);
+  const handleSignUp = () => {
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match');
+      return;
+    }
+    navigation.navigate("OnboardingTutorial")
+
+    // Perform sign up logic here
+
+    // Reset password fields
+    setPassword('');
+    setConfirmPassword('');
+
+    // Show success message
+    Alert.alert('Success', 'Sign up successful');
+  };
 
   return (
     <View style={styles.container}>
+
       <View>
         <Image
           style={styles.logo}
           source={require("../assets/images/BalanceLogo.jpg")}
         />
       </View>
+
       <View>
-        <Text style={styles.heading}>Create Account</Text>
+        <Text style={styles.title}>Create Account</Text>
       </View>
+
       <View>
         <InputField
-        iconName={"user"}
+          iconName={"user"}
           placeholder={"Email"}
           value={email}
           onChange={handleEmailChange}
           type="email"
+          required={true}
         />
       </View>
+
       <View>
         <InputField
           iconName={"lock"}
@@ -51,22 +71,31 @@ const SecondAuth = ({navigation}) => {
           onChange={handlePasswordChange}
           type="password"
           secureTextEntry={true}
+          required={true}
         />
       </View>
+
       <View>
         <InputField
           iconName={"lock"}
           placeholder={"Password confirmation"}
           name={"passwordConfirmation"}
-          value={passwordConfirmation}
-          onChange={handlePasswordConfirmationChange}
+          value={confirmPassword}
+          onChange={handleConfirmPasswordChange}
           type="password"
           secureTextEntry={true}
+          required={true}
         />
       </View>
+
       <View style={styles.buttonContainer}>
-        <PrimaryButton onPress={() => navigation.navigate("OnboardingTutorial")} title="Sign Up" buttonColor={true} />
+        <PrimaryButton
+          onPress={handleSignUp}
+          title="Sign Up"
+          buttonColor={true}
+        />
       </View>
+
     </View>
   );
 };
@@ -85,8 +114,9 @@ const styles = StyleSheet.create({
     width: 86,
     height: 92,
     marginBottom: 20,
+    resizeMode: "contain",
   },
-  heading: {
+  title: {
     fontSize: 18,
     marginBottom: 10,
     marginTop: 10,

@@ -1,38 +1,32 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const NextButton = ({ scrollTo }) => {
+const NextButton = ({ buttonColor, title ,scrollTo }) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={scrollTo} style={styles.buttonInnerContainer}>
-        <Text style={styles.text}>Continue</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      style={[
+        styles.button,
+        { backgroundColor: buttonColor ? "#3238FF" : "#000000" },
+      ]}
+      onPress={scrollTo}
+    >
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    height: 42,
-    width: 364,
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 25,
-    elevation: 2,
-    marginBottom: 150,
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#3238FF",
-    overflow: "hidden",
+    width: 300,
   },
-  buttonInnerContainer: {
-    elevation: 2,
-    height: 42,
-    justifyContent: "center",
-    alignItems: "center",
-    width: 364,
-  },
-  text: {
+  buttonText: {
+    color: "#ffffffff",
     fontSize: 16,
-    color: "#ffffff",
+    fontWeight: "bold",
   },
 });
 

@@ -15,7 +15,9 @@ const Login = () => {
     setPassword(Password);
   };
 
-  // console.log(email, password);
+  const handleForgotPassword = () => {
+    // TODO: forget password logic here
+  };
 
   const handleLogin = () => {
     // TODO: login() function
@@ -30,7 +32,7 @@ const Login = () => {
         />
       </View>
       <View>
-        <Text style={styles.heading}>Login to your account</Text>
+        <Text style={styles.title}>Login to your account</Text>
       </View>
       <View>
         <InputField
@@ -50,10 +52,10 @@ const Login = () => {
         type="password"
         secureTextEntry={true}
       />
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleForgotPassword}>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
-      <PrimaryButton title="Login" buttonColor={true} />
+      <PrimaryButton title="Login" buttonColor={true} onPress={handleLogin}/>
     </View>
   );
 };
@@ -70,8 +72,9 @@ const styles = StyleSheet.create({
     width: 86,
     height: 92,
     marginBottom: 20,
+    resizeMode: "contain",
   },
-  heading: {
+  title: {
     fontSize: 18,
     marginBottom: 20,
     marginTop: 10,

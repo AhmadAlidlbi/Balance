@@ -16,7 +16,13 @@ const Auth = ({navigation}) => {
     setLastName(LastName);
   };
 
-//   console.log(firstName, lastName);
+  const handleNext = () => {
+    if (firstName === "" || lastName === "") {
+      alert("Please fill all fields");
+      return;
+    }
+    navigation.navigate("SecondAuth")
+  };
 
   return (
     <View style={styles.container}>
@@ -27,7 +33,7 @@ const Auth = ({navigation}) => {
         />
       </View>
       <View>
-        <Text style={styles.heading}>Create Account</Text>
+        <Text style={styles.title}>Create Account</Text>
       </View>
       <View>
         <InputField
@@ -35,6 +41,7 @@ const Auth = ({navigation}) => {
           value={firstName}
           onChange={handleFirstNameChange}
           type="firstName"
+          required={true}
         />
       </View>
       <View>
@@ -43,10 +50,11 @@ const Auth = ({navigation}) => {
           value={lastName}
           onChange={handleLastNameChange}
           type="lastName"
+          required={true}
         />
       </View>
       <View style={styles.buttonContainer}>
-        <PrimaryButton onPress={() => navigation.navigate("SecondAuth")} title="Next" buttonColor={true} />
+        <PrimaryButton onPress={handleNext} title="Next" buttonColor={true} />
       </View>
     </View>
   );
@@ -66,16 +74,12 @@ const styles = StyleSheet.create({
     width: 86,
     height: 92,
     marginBottom: 20,
+    resizeMode: "contain",
   },
-  heading: {
+  title: {
     fontSize: 18,
     marginBottom: 10,
     marginTop: 10,
-  },
-  forgotPassword: {
-    color: "#625F60",
-    fontSize: 12,
-    margin: 12,
   },
   buttonContainer:{
     marginTop: 10,

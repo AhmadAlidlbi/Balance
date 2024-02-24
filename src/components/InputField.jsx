@@ -2,13 +2,7 @@ import { React, useState } from "react";
 import { TextInput, StyleSheet, View, Pressable } from "react-native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const InputField = ({
-  placeholder,
-  value,
-  onChange,
-  type,
-  iconName,
-}) => {
+const InputField = ({ placeholder, value, onChange, type, iconName }) => {
   const [secureText, setSecureText] = useState(true);
 
   return (
@@ -24,6 +18,7 @@ const InputField = ({
       {type === "password" && (
         <Pressable onPress={() => setSecureText((prev) => !prev)}>
           <MaterialCommunityIcons
+            style={styles.eyeIcon}
             name={secureText ? "eye-off" : "eye"}
             size={20}
             color="#BEBEBE"
@@ -46,8 +41,11 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   input: {
-    width: "82%",
+    width: "79%",
     height: 45,
+  },
+  eyeIcon: {
+    padding: 10,
   },
 });
 

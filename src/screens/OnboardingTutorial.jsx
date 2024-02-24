@@ -22,9 +22,16 @@ const OnboardingTutorial = () => {
     }
   };
 
+  const handleTitle = () => {
+    if (currentIndex === Slides.length - 1) {
+      return "Get Started";
+    } else {
+      return "Next";
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <View style={{ flex: 2 }}>
         <FlatList
           data={Slides}
           renderItem={({ item }) => <OnboardingItem item={item} />}
@@ -42,9 +49,14 @@ const OnboardingTutorial = () => {
           viewabilityConfig={viewConfig}
           ref={slidesRef}
         />
+      <View style={styles.secondContainer}>
+        <Indicator data={Slides} scrollX={scrollX} />
+        <NextButton
+          buttonColor={true}
+          scrollTo={scrollTo}
+          title={handleTitle()}
+        />
       </View>
-      <Indicator data={Slides} scrollX={scrollX} />
-      <NextButton scrollTo={scrollTo} />
     </View>
   );
 };
@@ -57,6 +69,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     // borderColor: "red",
     // borderWidth: 2,
+  },
+  secondContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 20,
   },
 });
 

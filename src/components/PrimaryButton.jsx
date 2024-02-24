@@ -1,49 +1,32 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 const PrimaryButton = ({ title, buttonColor, onPress }) => {
   return (
-    <View
+    <TouchableOpacity
       style={[
-        styles.buttonOuterContainer,
+        styles.button,
         { backgroundColor: buttonColor ? "#3238FF" : "#000000" },
       ]}
+      onPress={onPress}
     >
-      <Pressable
-        style={({ pressed }) =>
-          pressed
-            ? [styles.buttonInnerContainer, styles.pressed]
-            : styles.buttonInnerContainer
-        }
-        onPress={onPress}
-      >
-        <Text style={styles.text}>{title}</Text>
-      </Pressable>
-    </View>
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonOuterContainer: {
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 25,
     alignItems: "center",
-    margin: 5,
-    overflow: "hidden",
-    width: 251,
+    width: 300,
   },
-  buttonInnerContainer: {
-    elevation: 2,
-    height: 42,
-    justifyContent: "center",
-    alignItems: "center",
-    width: 251,
-  },
-  text: {
+  buttonText: {
+    color: "#ffffffff",
     fontSize: 16,
-    color: "#fff",
-  },
-  pressed: {
-    opacity: 0.25,
+    fontWeight: "bold",
   },
 });
 
