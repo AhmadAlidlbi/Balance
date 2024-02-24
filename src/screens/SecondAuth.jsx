@@ -8,6 +8,8 @@ const SecondAuth = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  console.log(email, password, confirmPassword);
+
   const handleEmailChange = (Email) => {
     setEmail(Email);
   };
@@ -21,6 +23,10 @@ const SecondAuth = ({ navigation }) => {
   };
 
   const handleSignUp = () => {
+    if (email === "" || password === "" || confirmPassword === "") {
+      Alert.alert('Error', 'Please fill all fields');
+      return;
+    }
     if (password !== confirmPassword) {
       Alert.alert('Error', 'Passwords do not match');
       return;
@@ -108,7 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
-    paddingBottom: 100,
+    paddingBottom: 170,
   },
   logo: {
     width: 86,

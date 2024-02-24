@@ -14,23 +14,24 @@ const Main = ({ navigation }) => {
         <Text style={styles.title}>Balance</Text>
       </View>
 
-        <View style={{marginBottom:10}}>
-          <PrimaryButton
-            onPress={() => {
-              navigation.navigate("Auth");
-            }}
-            title="Sign Up"
-            buttonColor={false}
-          />
-        </View>
+      <View style={{ marginBottom: 10 }}>
+        <PrimaryButton
+          onPress={() => {
+            navigation.navigate("Auth");
+          }}
+          title="Sign Up"
+          buttonColor={false}
+        />
+      </View>
 
-        <View>
-          <PrimaryButton
-            onPress={() => navigation.navigate("Login")}
-            title="Login"
-            buttonColor={true}
-          />
-        </View>
+      <View>
+        <PrimaryButton
+          onPress={() => navigation.navigate("Login")}
+          title="Login"
+          buttonColor={true}
+        />
+      </View>
+      
     </View>
   );
 };

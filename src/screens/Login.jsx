@@ -20,7 +20,10 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    // TODO: login() function
+    if (email === "" || password === "") {
+      alert("Please fill all fields");
+      return;
+    }
   };
 
   return (
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
   forgotPassword: {
     color: "#625F60",
     fontSize: 12,
-    margin: 12,
+    margin: 15,
   },
 });
 
