@@ -30,8 +30,6 @@ const OnboardingTutorial = ({ navigation }) => {
     } else {
       return "Next";
     }
-    // navigation.navigate("Dashboard")
-    // console.log('hello');
   };
 
   return (
@@ -71,8 +69,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
-    // borderColor: "red",
-    // borderWidth: 2,
   },
   secondContainer: {
     flex: 1,

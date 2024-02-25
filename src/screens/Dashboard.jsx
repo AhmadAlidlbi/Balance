@@ -5,7 +5,6 @@ const Dashboard = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Dashboard</Text>
-      {/* Add your dashboard content here */}
     </View>
   );
 };

@@ -1,6 +1,5 @@
 import { React } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./src/navigation/MainStackNavigator";
 
@@ -14,5 +13,3 @@ export default function App() {
     </>
   );
 }
-
-const styles = StyleSheet.create({});
