@@ -6,7 +6,7 @@ import PrimaryButton from "../components/PrimaryButton";
 const SecondAuth = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleEmailChange = (Email) => {
     setEmail(Email);
@@ -22,28 +22,27 @@ const SecondAuth = ({ navigation }) => {
 
   const handleSignUp = () => {
     if (email === "" || password === "" || confirmPassword === "") {
-      Alert.alert('Error', 'Please fill all fields');
+      Alert.alert("Error", "Please fill all fields");
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Alert.alert("Error", "Passwords do not match");
       return;
     }
-    navigation.navigate("OnboardingTutorial")
+    navigation.navigate("OnboardingTutorial");
 
     // Perform sign up logic here
 
     // Reset password fields
-    setPassword('');
-    setConfirmPassword('');
+    setPassword("");
+    setConfirmPassword("");
 
     // Show success message
-    Alert.alert('Success', 'Sign up successful');
+    Alert.alert("Success", "Sign up successful");
   };
 
   return (
     <View style={styles.container}>
-
       <View>
         <Image
           style={styles.logo}
@@ -99,7 +98,6 @@ const SecondAuth = ({ navigation }) => {
           buttonColor={true}
         />
       </View>
-
     </View>
   );
 };

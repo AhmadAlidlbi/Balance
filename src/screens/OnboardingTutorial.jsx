@@ -5,7 +5,7 @@ import OnboardingItem from "../components/OnboardingItem";
 import Indicator from "../components/Indicator";
 import NextButton from "../components/NextButton";
 
-const OnboardingTutorial = () => {
+const OnboardingTutorial = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
@@ -19,6 +19,8 @@ const OnboardingTutorial = () => {
   const scrollTo = () => {
     if (currentIndex < Slides.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
+    } else if (currentIndex === Slides.length - 1) {
+      navigation.navigate("InAppStack");
     }
   };
 
@@ -28,27 +30,29 @@ const OnboardingTutorial = () => {
     } else {
       return "Next";
     }
+    // navigation.navigate("Dashboard")
+    // console.log('hello');
   };
 
   return (
     <View style={styles.container}>
-        <FlatList
-          data={Slides}
-          renderItem={({ item }) => <OnboardingItem item={item} />}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          pagingEnabled
-          bounces={false}
-          keyExtractor={(item) => item.id}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-            { useNativeDriver: false }
-          )}
-          scrollEventThrottle={32}
-          onViewableItemsChanged={viewableItemsChanged}
-          viewabilityConfig={viewConfig}
-          ref={slidesRef}
-        />
+      <FlatList
+        data={Slides}
+        renderItem={({ item }) => <OnboardingItem item={item} />}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        bounces={false}
+        keyExtractor={(item) => item.id}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: false }
+        )}
+        scrollEventThrottle={32}
+        onViewableItemsChanged={viewableItemsChanged}
+        viewabilityConfig={viewConfig}
+        ref={slidesRef}
+      />
       <View style={styles.secondContainer}>
         <Indicator data={Slides} scrollX={scrollX} />
         <NextButton

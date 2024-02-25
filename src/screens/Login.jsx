@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import InputField from "../components/InputField";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,6 +24,7 @@ const Login = () => {
       alert("Please fill all fields");
       return;
     }
+    navigation.navigate("InAppStack");
   };
 
   return (
@@ -58,7 +59,7 @@ const Login = () => {
       <TouchableOpacity onPress={handleForgotPassword}>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
-      <PrimaryButton title="Login" buttonColor={true} onPress={handleLogin}/>
+      <PrimaryButton title="Login" buttonColor={true} onPress={handleLogin} />
     </View>
   );
 };
