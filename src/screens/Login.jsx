@@ -20,10 +20,10 @@ const Login = ({ navigation }) => {
   };
 
   const handleLogin = () => {
-    if (email === "" || password === "") {
-      alert("Please fill all fields");
-      return;
-    }
+    // if (email === "" || password === "") {
+    //   alert("Please fill all fields");
+    //   return;
+    // }
     navigation.navigate("InAppStack");
   };
 
