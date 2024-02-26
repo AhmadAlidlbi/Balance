@@ -7,10 +7,10 @@ const Dashboard = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         {/* User's profile picture */}
-        <Image
-          source={require("../assets/images/profile2.jpg")}
-          style={styles.profileImage}
-        />
+          <Image
+            source={require("../assets/images/profile.jpg")}
+            style={styles.profileImage}
+          />
 
         {/* User's name */}
         <Text style={styles.profileName}>Hey, Ahmad!</Text>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   screenTimeWidgetContainer: {
-    backgroundColor: "#3238FF",
+    backgroundColor: "#3a3fd3",//3a3fd3
     borderRadius: 15,
     height: 170,
     marginHorizontal: 20,
@@ -87,6 +87,8 @@ const styles = StyleSheet.create({
     marginTop: 25,
     height: 420,
     marginHorizontal: 20,
+    backgroundColor: "#e9e9e9",
+    borderRadius: 15,
   },
   listName: {
     fontSize: 15,

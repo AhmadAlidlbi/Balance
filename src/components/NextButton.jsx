@@ -6,7 +6,7 @@ const NextButton = ({ buttonColor, title ,scrollTo }) => {
     <TouchableOpacity
       style={[
         styles.button,
-        { backgroundColor: buttonColor ? "#3238FF" : "#000000" },
+        { backgroundColor: buttonColor ? "#3a3fd3" : "#000000" },
       ]}
       onPress={scrollTo}
     >

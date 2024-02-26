@@ -14,7 +14,7 @@ const TabNavigator = () => {
       <Tab.Navigator
         screenOptions={{
           tabBarActiveTintColor: "#ffffff",
-          tabBarInactiveTintColor: "#949494",
+          tabBarInactiveTintColor: "#787878",
           tabBarShowLabel: false,
           tabBarStyle:
             styles.container,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "90%",
     left: "5%",
-    backgroundColor: "#3238FF",
+    backgroundColor: "#292929",//292929
     marginBottom: 30,
     shadowColor: "#000",
     shadowOffset: {
