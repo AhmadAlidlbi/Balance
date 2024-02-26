@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, Image, StyleSheet, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import InputField from "../components/InputField";
 
@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
       <View>
         <Image
           style={styles.logo}
@@ -47,20 +47,26 @@ const Login = ({ navigation }) => {
           type="email"
         />
       </View>
-      <InputField
-        iconName={"lock"}
-        placeholder={"Password"}
-        name={"password"}
-        value={password}
-        onChange={handlePasswordChange}
-        type="password"
-        secureTextEntry={true}
-      />
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <Text style={styles.forgotPassword}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <PrimaryButton title="Login" buttonColor={true} onPress={handleLogin} />
-    </View>
+      <View>
+        <InputField
+          iconName={"lock"}
+          placeholder={"Password"}
+          name={"password"}
+          value={password}
+          onChange={handlePasswordChange}
+          type="password"
+          secureTextEntry={true}
+        />
+      </View>
+      <View>
+        <TouchableOpacity onPress={handleForgotPassword}>
+          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <PrimaryButton title="Login" buttonColor={true} onPress={handleLogin} />
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -70,7 +76,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
-    paddingBottom: 100,
   },
   logo: {
     width: 86,
