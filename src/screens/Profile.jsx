@@ -1,26 +1,110 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import { Iconify } from "react-native-iconify";
 
 const Profile = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Profile Page</Text>
-      {/* Add your profile content here */}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headingContainer}>
+        <Text style={styles.heading}>My Profile</Text>
+      </View>
+
+      <Image
+        style={styles.profileImage}
+        source={require("../assets/images/profile.jpg")}
+      />
+
+      <Text style={styles.name}>Ahmad Alidlbi</Text>
+
+      <Text style={styles.profession}>Software Engineering Student</Text>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Iconify
+            icon="majesticons:user-box-line"
+            size={30}
+            color="#3a3fd3"
+          />
+          <Text style={styles.buttonText}>Personal Information</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Iconify
+            icon="majesticons:settings-cog-line"
+            size={30}
+            color="#3a3fd3"
+          />
+          <Text style={styles.buttonText}>Settings</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Iconify
+            icon="majesticons:logout-line"
+            size={30}
+            color="#9B0000"
+          />
+          <Text style={styles.buttonText}>Log out</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: "center",
+    backgroundColor: "#ffffff",
   },
-  title: {
+  headingContainer: {
+    marginTop: 20,
+  },
+  heading: {
     fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
+    fontWeight: "bold",
+    marginBottom: 30,
   },
-});
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 20,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  profession: {
+    fontSize: 16,
+    marginBottom: 30,
+  },
+  buttonContainer: {},
+  button: {
+    backgroundColor: "#E9E9E9",
+    height: 55,
+    borderRadius: 7,
+    marginBottom: 20,
+    width: 350,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    gap: 10,
+  },
+  buttonText: {
+    color: "#000000",
+    fontSize: 16,
+  },
+};
 
 export default Profile;

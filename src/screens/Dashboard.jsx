@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   listName: {
-    fontSize: 15,
+    fontSize: 18,
     margin: 15,
   },
 });
