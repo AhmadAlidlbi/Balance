@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "90%",
     left: "5%",
-    backgroundColor: "#292929",//292929
+    backgroundColor: "#292929",//292929 //3a3fd3
     marginBottom: 30,
     shadowColor: "#000",
     shadowOffset: {
