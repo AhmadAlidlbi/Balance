@@ -6,6 +6,8 @@ import Auth from "../screens/Auth";
 import SecondAuth from "../screens/SecondAuth";
 import OnboardingTutorial from "../screens/OnboardingTutorial";
 import TabNavigator from "../navigation/TabNavigator";
+import PInfo from "../screens/PInfo";
+import Settings from "../screens/Settings";
 
 const Stack = createStackNavigator();
 
@@ -70,6 +72,34 @@ const MainStackNavigator = () => {
         }}
         name="InAppStack"
         component={TabNavigator}
+      />
+      <Stack.Screen
+        name="PInfo"
+        component={PInfo}
+        options={{
+          headerStyle: {
+            backgroundColor: "#ffffffff",
+          },
+          headerTitleStyle: {
+            color: "#ffffff00",
+          },
+          headerShadowVisible: false,
+          headerBackTitle: "Back",
+        }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerStyle: {
+            backgroundColor: "#ffffffff",
+          },
+          headerTitleStyle: {
+            color: "#ffffff00",
+          },
+          headerShadowVisible: false,
+          headerBackTitle: "Back",
+        }}
       />
     </Stack.Navigator>
   );

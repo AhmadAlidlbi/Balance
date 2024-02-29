@@ -21,14 +21,14 @@ const SecondAuth = ({ navigation }) => {
   };
 
   const handleSignUp = () => {
-    if (email === "" || password === "" || confirmPassword === "") {
-      Alert.alert("Error", "Please fill all fields");
-      return;
-    }
-    if (password !== confirmPassword) {
-      Alert.alert("Error", "Passwords do not match");
-      return;
-    }
+    // if (email === "" || password === "" || confirmPassword === "") {
+    //   Alert.alert("Error", "Please fill all fields");
+    //   return;
+    // }
+    // if (password !== confirmPassword) {
+    //   Alert.alert("Error", "Passwords do not match");
+    //   return;
+    // }
     navigation.navigate("OnboardingTutorial");
 
     // Perform sign up logic here

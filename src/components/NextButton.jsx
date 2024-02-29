@@ -17,11 +17,11 @@ const NextButton = ({ buttonColor, title ,scrollTo }) => {
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: 12,
+    paddingVertical: 13,
     paddingHorizontal: 24,
     borderRadius: 25,
     alignItems: "center",
-    width: 300,
+    width: 350,
   },
   buttonText: {
     color: "#ffffffff",

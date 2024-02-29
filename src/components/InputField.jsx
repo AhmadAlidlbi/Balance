@@ -36,13 +36,13 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     alignItems: "center",
     paddingHorizontal: 10,
-    width: 300,
+    width: 350,
     gap: 5,
     margin: 10,
   },
   input: {
-    width: "79%",
-    height: 45,
+    width: "81%",
+    height: 50,
   },
   eyeIcon: {
     padding: 10,

@@ -11,7 +11,7 @@ import { Iconify } from "react-native-iconify";
 
 const Profile = ({ navigation }) => {
   const handlePersonal = () => {
-    navigation.navigate("PersonalInformation");
+    navigation.navigate("PInfo");
   };
 
   const handleSettings = () => {

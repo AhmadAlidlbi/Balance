@@ -17,10 +17,10 @@ const Auth = ({navigation}) => {
   };
 
   const handleNext = () => {
-    if (firstName === "" || lastName === "") {
-      alert("Please fill all fields");
-      return;
-    }
+    // if (firstName === "" || lastName === "") {
+    //   alert("Please fill all fields");
+    //   return;
+    // }
     navigation.navigate("SecondAuth")
   };
 
