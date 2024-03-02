@@ -40,45 +40,49 @@ const Profile = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headingContainer}>
-        <Text style={styles.heading}>My Profile</Text>
-      </View>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.headingContainer}>
+          <Text style={styles.heading}>My Profile</Text>
+        </View>
 
-      <Image
-        style={styles.profileImage}
-        source={require("../assets/images/profile.jpg")}
-      />
+        <Image
+          style={styles.profileImage}
+          source={require("../assets/images/profile.jpg")}
+        />
 
-      <Text style={styles.name}>Ahmad Alidlbi</Text>
+        <Text style={styles.name}>Ahmad Alidlbi</Text>
 
-      <Text style={styles.profession}>Software Engineering Student</Text>
+        <Text style={styles.profession}>Software Engineering Student</Text>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handlePersonal}>
-          <Iconify icon="majesticons:user-box-line" size={30} color="#3a3fd3" />
-          <Text style={styles.buttonText}>Personal Information</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={handlePersonal}>
+            <Iconify
+              icon="majesticons:user-box-line"
+              size={30}
+              color="#3a3fd3"
+            />
+            <Text style={styles.buttonText}>Personal Information</Text>
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleSettings}>
-          <Iconify
-            icon="majesticons:settings-cog-line"
-            size={30}
-            color="#3a3fd3"
-          />
-          <Text style={styles.buttonText}>Settings</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={handleSettings}>
+            <Iconify
+              icon="majesticons:settings-cog-line"
+              size={30}
+              color="#3a3fd3"
+            />
+            <Text style={styles.buttonText}>Settings</Text>
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleLogout}>
-          <Iconify icon="majesticons:logout-line" size={30} color="#9B0000" />
-          <Text style={styles.buttonText}>Log out</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={handleLogout}>
+            <Iconify icon="majesticons:logout-line" size={30} color="#9B0000" />
+            <Text style={styles.buttonText}>Log out</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
   );
 };
 

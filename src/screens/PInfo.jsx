@@ -3,17 +3,44 @@ import {
   View,
   Text,
   Image,
-  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableOpacity,
+  Button,
 } from "react-native";
 import InputField from "../components/InputField";
 import SecondaryButton from "../components/SecondaryButton";
+import { Iconify } from "react-native-iconify";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const PInfo = () => {
-  const [dateOfBirth, setDateOfBirth] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profession, setProfession] = useState("");
+
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  const handleImageSelection = () => {
+    // Handle image selection
+  };
 
   const handleFirstNameChange = (FirstName) => {
     setFirstName(FirstName);
@@ -36,15 +63,33 @@ const PInfo = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <Text style={styles.heading}>Personal Information</Text>
 
-      <View style={styles.imageContainer}>
+      <TouchableOpacity
+        onPress={handleImageSelection}
+        style={styles.imageContainer}
+      >
         <Image
           source={require("../assets/images/profile.jpg")}
           style={styles.profileImage}
         />
-      </View>
+        <View
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            backgroundColor: "#ffffff",
+            padding: 5,
+            borderRadius: 20,
+          }}
+        >
+          <Iconify icon="majesticons:camera" color="#555555" size={24} />
+        </View>
+      </TouchableOpacity>
 
       <View style={styles.fieldsContainer}>
         <Text style={styles.label}>First Name</Text>
@@ -78,7 +123,7 @@ const PInfo = () => {
           required={true}
         />
       </View>
-
+      {/* must be changed to date picker */}
       <View style={styles.fieldsContainer}>
         <Text style={styles.label}>Email</Text>
         <InputField
@@ -89,19 +134,37 @@ const PInfo = () => {
         />
       </View>
 
-      <View style={styles.SaveButtonContainer}>
+      {/* <View>
+        <TouchableOpacity
+          style={styles.DatePickerContainer}
+          onPress={showDatepicker}
+        >
+          <Text>{date.toLocaleDateString()}</Text>
+        </TouchableOpacity>
+        {show && (
+            <DateTimePicker
+              testID="dateTimePicker"
+              value={date}
+              mode={mode}
+              onChange={onChange}
+              display="spinner"
+            />
+          )}
+      </View> */}
+
+      <View style={{bottom: 20,}}>
         <SecondaryButton title="Save" onPress={handleSave} />
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = {
   container: {
-    flex: 1,
     alignItems: "center",
-    padding: 20,
+    justifyContent: "center",
     backgroundColor: "#ffffff",
+    flex: 1,
   },
   heading: {
     fontSize: 24,
@@ -109,27 +172,29 @@ const styles = {
     marginBottom: 20,
   },
   imageContainer: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    backgroundColor: "#ccc",
-    marginBottom: 20,
-    alignItems: "center",
-    justifyContent: "center",
+    marginBottom: 180,
   },
   profileImage: {
     width: 140,
     height: 140,
     borderRadius: 70,
   },
-  fieldsContainer: {
-    marginBottom: 15,
-  },
   label: {
-    paddingHorizontal: 15,
+    paddingHorizontal: 13,
   },
-  SaveButtonContainer: {
-    marginTop: 100,
+  fieldsContainer: {
+    bottom: 150,
+  },
+  DatePickerContainer: {
+    flexDirection: "row",
+    backgroundColor: "#E9E9E9",
+    borderRadius: 7,
+    alignItems: "center",
+    paddingHorizontal: 10,
+    width: 350,
+    justifyContent: "space-between",
+    margin: 10,
+    height: 50,
   },
 };
 
