@@ -34,7 +34,6 @@ const TabNavigator = () => {
         />
         <Tab.Screen
           options={{
-            headerShown: false,
             tabBarIcon: ({ color }) => (
               <Iconify
                 icon="majesticons:checkbox-list-line"
@@ -43,12 +42,11 @@ const TabNavigator = () => {
               />
             ),
           }}
-          name="Task Management"
+          name="Tasks"
           component={TaskManagement}
         />
         <Tab.Screen
           options={{
-            headerShown: false,
             tabBarIcon: ({ color }) => (
               <Iconify
                 icon="majesticons:note-text-line"
@@ -57,7 +55,7 @@ const TabNavigator = () => {
               />
             ),
           }}
-          name="Note Management"
+          name="Notes"
           component={NoteManagement}
         />
         <Tab.Screen

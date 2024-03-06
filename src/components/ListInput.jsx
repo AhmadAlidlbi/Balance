@@ -5,7 +5,6 @@ import {
   Button,
   StyleSheet,
   Modal,
-  Image,
 } from 'react-native';
 
 function ListItem(props) {
@@ -16,17 +15,13 @@ function ListItem(props) {
   }
 
   function addListHandler() {
-    props.onAddGoal(enteredListText);
+    props.onAddList(enteredListText);
     setEnteredListText('');
   }
 
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
-        {/* <Image
-          style={styles.image}
-          source={require('../assets/images/goal.png')}
-        /> */}
         <TextInput
           style={styles.textInput}
           placeholder="new list name"
@@ -39,7 +34,7 @@ function ListItem(props) {
             <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
           </View>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addListHandler} color="#b180f0" />
+            <Button title="Add List" onPress={addListHandler} color="#3238FF" />
           </View>
         </View>
       </View>

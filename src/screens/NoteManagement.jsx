@@ -1,51 +1,81 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import SecondaryButton from "../components/SecondaryButton";
 
-const NoteManagement = () => {
-    const [note, setNote] = useState('');
+import ListItem from "../components/ListItem";
+import ListInput from "../components/ListInput";
 
-    const handleNoteChange = (text) => {
-        setNote(text);
-    };
+export default function TaskManagement() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [list, setNewList] = useState([]);
 
-    const handleSaveNote = () => {
-        // Implement your save note logic here
-        console.log('Note saved:', note);
-    };
+  function startAddListHandler() {
+    setModalIsVisible(true);
+  }
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Add Note</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter your note"
-                value={note}
-                onChangeText={handleNoteChange}
-            />
-            <Button title="Save Note" onPress={handleSaveNote} />
+  function endAddListHandler() {
+    setModalIsVisible(false);
+  }
+
+  function addListHandler(enteredListText) {
+    setNewList((currentList) => [
+      ...currentList,
+      { text: enteredListText, id: Math.random().toString() },
+    ]);
+    endAddListHandler();
+  }
+
+  function deleteListHandler(id) {
+    setNewList((currentList) => {
+      return currentList.filter((list) => list.id !== id);
+    });
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ListInput
+        visible={modalIsVisible}
+        onAddList={addListHandler}
+        onCancel={endAddListHandler}
+      />
+        <View style={styles.listContainer}>
+          <FlatList
+            data={list}
+            renderItem={(itemData) => {
+              return (
+                <ListItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteItem={deleteListHandler}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
         </View>
-    );
-};
+      <View style={{marginTop: 20}}>
+        <SecondaryButton title="New List" onPress={startAddListHandler} />
+      </View>
+    </SafeAreaView>
+  );
+}
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    input: {
-        width: '80%',
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 10,
-        paddingHorizontal: 10,
-    },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#fffffffc",
+  },
+  listContainer: {
+    height: "81%",
+  },
 });
-
-export default NoteManagement;

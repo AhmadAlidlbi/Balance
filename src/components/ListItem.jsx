@@ -18,19 +18,18 @@ export default ListItem;
 
 const styles = StyleSheet.create({
   listItem: {
-    margin: 10,
+    margin: 7,
     borderRadius: 7,
     justifyContent: 'center',
     width: 350,
-    gap: 5,
     backgroundColor: '#E9E9E9',
     height: 50,
+    paddingHorizontal: 15,
   },
   pressedItem: {
     opacity: 0.5,
   },
   listText: {
     color: '#000000',
-    padding: 8,
   },
 });

@@ -13,47 +13,46 @@ import ListInput from "../components/ListInput";
 
 export default function TaskManagement() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [courseGoals, setCourseGoals] = useState([]);
+  const [list, setNewList] = useState([]);
 
-  function startAddGoalHandler() {
+  function startAddListHandler() {
     setModalIsVisible(true);
   }
 
-  function endAddGoalHandler() {
+  function endAddListHandler() {
     setModalIsVisible(false);
   }
 
-  function addGoalHandler(enteredGoalText) {
-    setCourseGoals((currentCourseGoals) => [
-      ...currentCourseGoals,
-      { text: enteredGoalText, id: Math.random().toString() },
+  function addListHandler(enteredListText) {
+    setNewList((currentList) => [
+      ...currentList,
+      { text: enteredListText, id: Math.random().toString() },
     ]);
-    endAddGoalHandler();
+    endAddListHandler();
   }
 
-  function deleteGoalHandler(id) {
-    setCourseGoals((currentCourseGoals) => {
-      return currentCourseGoals.filter((goal) => goal.id !== id);
+  function deleteListHandler(id) {
+    setNewList((currentList) => {
+      return currentList.filter((list) => list.id !== id);
     });
   }
 
   return (
-    <SafeAreaView style={styles.appContainer}>
+    <SafeAreaView style={styles.container}>
       <ListInput
         visible={modalIsVisible}
-        onAddGoal={addGoalHandler}
-        onCancel={endAddGoalHandler}
+        onAddList={addListHandler}
+        onCancel={endAddListHandler}
       />
-      {/* <ScrollView> */}
-        <View style={styles.goalsContainer}>
+        <View style={styles.listContainer}>
           <FlatList
-            data={courseGoals}
+            data={list}
             renderItem={(itemData) => {
               return (
                 <ListItem
                   text={itemData.item.text}
                   id={itemData.item.id}
-                  onDeleteItem={deleteGoalHandler}
+                  onDeleteItem={deleteListHandler}
                 />
               );
             }}
@@ -63,24 +62,20 @@ export default function TaskManagement() {
             alwaysBounceVertical={false}
           />
         </View>
-      {/* </ScrollView> */}
-      <View style={{ bottom: 90 }}>
-        <SecondaryButton title="Add New Goal" onPress={startAddGoalHandler} />
+      <View style={{marginTop: 20}}>
+        <SecondaryButton title="New List" onPress={startAddListHandler} />
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  appContainer: {
+  container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#fffffffc",
   },
-  goalsContainer: {
-    borderColor: "#000000",
-    borderWidth: 1,
-    flex: 5,
+  listContainer: {
+    height: "81%",
   },
 });
