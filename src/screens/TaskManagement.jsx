@@ -1,49 +1,86 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { useState } from "react";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import SecondaryButton from "../components/SecondaryButton";
 
-const TaskManagement = () => {
-  const [tasks, setTasks] = useState([]);
+import ListItem from "../components/ListItem";
+import ListInput from "../components/ListInput";
 
-  const renderTaskItem = ({ item }) => {
-    return (
-      <View style={styles.taskItem}>
-        <Text>{item.title}</Text>
-      </View>
-    );
-  };
+export default function TaskManagement() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  function startAddGoalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endAddGoalHandler() {
+    setModalIsVisible(false);
+  }
+
+  function addGoalHandler(enteredGoalText) {
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      { text: enteredGoalText, id: Math.random().toString() },
+    ]);
+    endAddGoalHandler();
+  }
+
+  function deleteGoalHandler(id) {
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Task Management</Text>
-      <FlatList
-        data={tasks}
-        renderItem={renderTaskItem}
-        keyExtractor={(item) => item.id.toString()}
+    <SafeAreaView style={styles.appContainer}>
+      <ListInput
+        visible={modalIsVisible}
+        onAddGoal={addGoalHandler}
+        onCancel={endAddGoalHandler}
       />
-    </View>
+      {/* <ScrollView> */}
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              return (
+                <ListItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteItem={deleteGoalHandler}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
+      {/* </ScrollView> */}
+      <View style={{ bottom: 90 }}>
+        <SecondaryButton title="Add New Goal" onPress={startAddGoalHandler} />
+      </View>
+    </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    padding: 100,
-    alignContent: 'center',
-    justifyContent: 'center',
-    height: '100%',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fffffffc",
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  taskItem: {
-    padding: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+  goalsContainer: {
+    borderColor: "#000000",
+    borderWidth: 1,
+    flex: 5,
   },
 });
-
-export default TaskManagement;
