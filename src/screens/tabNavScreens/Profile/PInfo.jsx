@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import InputField from "../components/InputField";
-import SecondaryButton from "../components/SecondaryButton";
+import InputField from "../../../components/InputField";
+import SecondaryButton from "../../../components/SecondaryButton";
 import { Iconify } from "react-native-iconify";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
@@ -66,13 +66,12 @@ const PInfo = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-
       <TouchableOpacity
         onPress={handleImageSelection}
         style={styles.imageContainer}
       >
         <Image
-          source={require("../assets/images/profile.jpg")}
+          source={require("../../../assets/images/profile.jpg")}
           style={styles.profileImage}
         />
         <View
@@ -131,7 +130,7 @@ const PInfo = () => {
           type="email"
         />
       </View> */}
-{/* 
+      {/* 
       <View>
         <TouchableOpacity
           style={styles.DatePickerContainer}

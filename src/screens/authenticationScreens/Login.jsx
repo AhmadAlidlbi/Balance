@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { View, Image, StyleSheet, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
-import InputField from "../components/InputField";
+import {
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import PrimaryButton from "../../components/PrimaryButton";
+import InputField from "../../components/InputField";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -28,11 +36,14 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <View>
         <Image
           style={styles.logo}
-          source={require("../assets/images/BalanceLogo.jpg")}
+          source={require("../../assets/images/BalanceLogo.jpg")}
         />
       </View>
       <View>

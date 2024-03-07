@@ -1,14 +1,14 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Main from "../screens/Main";
-import Login from "../screens/Login";
-import Auth from "../screens/Auth";
-import SecondAuth from "../screens/SecondAuth";
-import OnboardingTutorial from "../screens/OnboardingTutorial";
+import Main from "../screens/authenticationScreens/Main";
+import Login from "../screens/authenticationScreens/Login";
+import Auth from "../screens/authenticationScreens/Auth";
+import SecondAuth from "../screens/authenticationScreens/SecondAuth";
+import OnboardingTutorial from "../screens/authenticationScreens/OnboardingTutorial";
 import TabNavigator from "../navigation/TabNavigator";
-import PInfo from "../screens/PInfo";
-import Settings from "../screens/Settings";
-import ChangePassword from "../screens/ChangePassword";
+import PInfo from "../screens/tabNavScreens/Profile/PInfo"
+import Settings from "../screens/tabNavScreens/Profile/settings/Settings";
+import ChangePassword from "../screens/tabNavScreens/Profile/settings/ChangePassword";
 
 const Stack = createStackNavigator();
 

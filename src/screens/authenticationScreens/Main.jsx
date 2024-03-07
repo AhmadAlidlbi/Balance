@@ -1,14 +1,13 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import PrimaryButton from "../components/PrimaryButton";
+import PrimaryButton from "../../components/PrimaryButton";
 
 const Main = ({ navigation }) => {
   return (
     <View style={styles.container}>
-
       {/* Logo */}
       <View style={styles.logo}>
-        <Image source={require("../assets/images/BalanceLogo.jpg")} />
+        <Image source={require("../../assets/images/BalanceLogo.jpg")} />
       </View>
 
       {/* Title */}
@@ -35,7 +34,6 @@ const Main = ({ navigation }) => {
           buttonColor={true}
         />
       </View>
-      
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, Text, Alert } from "react-native";
-import InputField from "../components/InputField";
-import PrimaryButton from "../components/PrimaryButton";
+import InputField from "../../components/InputField";
+import PrimaryButton from "../../components/PrimaryButton";
 
 const SecondAuth = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -46,7 +46,7 @@ const SecondAuth = ({ navigation }) => {
       <View>
         <Image
           style={styles.logo}
-          source={require("../assets/images/BalanceLogo.jpg")}
+          source={require("../../assets/images/BalanceLogo.jpg")}
         />
       </View>
 

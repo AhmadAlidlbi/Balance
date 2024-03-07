@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
-import InputField from "../components/InputField";
-import PrimaryButton from "../components/PrimaryButton";
+import InputField from "../../components/InputField";
+import PrimaryButton from "../../components/PrimaryButton";
 
-const Auth = ({navigation}) => {
-
+const Auth = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -21,7 +20,7 @@ const Auth = ({navigation}) => {
     //   alert("Please fill all fields");
     //   return;
     // }
-    navigation.navigate("SecondAuth")
+    navigation.navigate("SecondAuth");
   };
 
   return (
@@ -29,7 +28,7 @@ const Auth = ({navigation}) => {
       <View>
         <Image
           style={styles.logo}
-          source={require("../assets/images/BalanceLogo.jpg")}
+          source={require("../../assets/images/BalanceLogo.jpg")}
         />
       </View>
       <View>
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
   },
-  buttonContainer:{
+  buttonContainer: {
     marginTop: 10,
-  }
+  },
 });

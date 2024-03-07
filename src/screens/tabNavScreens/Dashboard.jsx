@@ -1,11 +1,18 @@
-import {React , useState} from "react";
-import { View, Text, Image, StyleSheet, SafeAreaView, FlatList, Button } from "react-native";
+import { React, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  Button,
+} from "react-native";
 
-import HabitItem from "../components/HabitItem";
-import HabitInput from "../components/HabitInput";
+import HabitItem from "../../components/HabitItem";
+import HabitInput from "../../components/HabitInput";
 
 const Dashboard = () => {
-
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [habit, setNewHabit] = useState([]);
 
@@ -35,10 +42,10 @@ const Dashboard = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         {/* User's profile picture */}
-          <Image
-            source={require("../assets/images/profile.jpg")}
-            style={styles.profileImage}
-          />
+        <Image
+          source={require("../../assets/images/profile.jpg")}
+          style={styles.profileImage}
+        />
 
         {/* User's name */}
         <Text style={styles.profileName}>Hey, Ahmad!</Text>
@@ -53,10 +60,11 @@ const Dashboard = () => {
 
       {/* List of tasks */}
       <View style={styles.tasksContainer}>
-
         <View style={styles.listHeader}>
           <Text style={styles.listName}>Daily Habit / {habit.length}</Text>
-          <View style={styles.listButton}><Button title="add" onPress={startAddHabitHandler} color="white"/></View>
+          <View style={styles.listButton}>
+            <Button title="add" onPress={startAddHabitHandler} color="white" />
+          </View>
         </View>
 
         <HabitInput
@@ -64,24 +72,24 @@ const Dashboard = () => {
           onAddHabit={addHabitHandler}
           onCancel={endAddHabitHandler}
         />
-          <View style={styles.listContainer}>
-            <FlatList
-              data={habit}
-              renderItem={(itemData) => {
-                return (
-                  <HabitItem
-                    text={itemData.item.text}
-                    id={itemData.item.id}
-                    onDeleteItem={deleteHabitHandler}
-                  />
-                );
-              }}
-              keyExtractor={(item, index) => {
-                return item.id;
-              }}
-              alwaysBounceVertical={false}
-            />
-          </View>
+        <View style={styles.listContainer}>
+          <FlatList
+            data={habit}
+            renderItem={(itemData) => {
+              return (
+                <HabitItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteItem={deleteHabitHandler}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -111,7 +119,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   screenTimeWidgetContainer: {
-    backgroundColor: "#3a3fd3",//3a3fd3
+    backgroundColor: "#3a3fd3", //3a3fd3
     borderRadius: 15,
     height: 170,
     marginHorizontal: 20,

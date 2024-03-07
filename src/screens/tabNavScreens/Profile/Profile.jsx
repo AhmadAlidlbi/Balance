@@ -47,7 +47,7 @@ const Profile = ({ navigation }) => {
 
         <Image
           style={styles.profileImage}
-          source={require("../assets/images/profile.jpg")}
+          source={require("../../../assets/images/profile.jpg")}
         />
 
         <Text style={styles.name}>Ahmad Alidlbi</Text>

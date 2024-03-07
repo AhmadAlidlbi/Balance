@@ -1,9 +1,9 @@
 import { React, useState, useRef } from "react";
 import { View, StyleSheet, FlatList, Animated } from "react-native";
-import Slides from "../screens/Slides";
-import OnboardingItem from "../components/OnboardingItem";
-import Indicator from "../components/Indicator";
-import NextButton from "../components/NextButton";
+import Slides from "../../data/Slides";
+import OnboardingItem from "../../components/OnboardingItem";
+import Indicator from "../../components/Indicator";
+import NextButton from "../../components/NextButton";
 
 const OnboardingTutorial = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

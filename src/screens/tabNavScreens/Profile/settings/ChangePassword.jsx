@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import InputField from "../components/InputField";
-import SecondaryButton from "../components/SecondaryButton";
+import InputField from "../../../../components/InputField";
+import SecondaryButton from "../../../../components/SecondaryButton";
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
