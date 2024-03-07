@@ -8,6 +8,7 @@ import OnboardingTutorial from "../screens/OnboardingTutorial";
 import TabNavigator from "../navigation/TabNavigator";
 import PInfo from "../screens/PInfo";
 import Settings from "../screens/Settings";
+import ChangePassword from "../screens/ChangePassword";
 
 const Stack = createStackNavigator();
 
@@ -100,6 +101,21 @@ const MainStackNavigator = () => {
           },
           headerShadowVisible: false,
           headerBackTitle: "Back",
+        }}
+      />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
+        options={{
+          headerStyle: {
+            backgroundColor: "#ffffffff",
+          },
+          headerTitleStyle: {
+            color: "#000000ff",
+          },
+          headerShadowVisible: false,
+          headerBackTitle: "Back",
+          headerTitle: "Change Your Password",
         }}
       />
     </Stack.Navigator>

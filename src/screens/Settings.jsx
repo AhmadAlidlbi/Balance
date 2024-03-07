@@ -1,71 +1,46 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import InputField from "../components/InputField";
-import SecondaryButton from "../components/SecondaryButton";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Iconify } from "react-native-iconify";
 
-const Settings = () => {
-  const [email, setEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
-
-  const handleEmailChange = (email) => {
-    setEmail(email);
+const Settings = ({ navigation }) => {
+  const handleChangePassword = () => {
+    navigation.navigate("ChangePassword");
   };
 
-  const handleCurrentPasswordChange = (currentPassword) => {
-    setCurrentPassword(currentPassword);
+  const handleAbout = () => {
+    navigation.navigate("About");
   };
 
-  const handlePasswordChange = (newPassword) => {
-    setNewPassword(newPassword);
-  };
-
-  const handleConfirmPasswordChange = (confirmNewPassword) => {
-    setConfirmNewPassword(confirmNewPassword);
-  };
-
-  const handleSave = () => {
-    // Handle save
+  const handleTerms = () => {
+    navigation.navigate("Terms");
   };
 
   return (
     <View style={styles.container}>
-
-      <View style={styles.fieldsContainer}>
-        <Text style={styles.label}>Current Password</Text>
-        <InputField
-          value={currentPassword}
-          onChange={handleCurrentPasswordChange}
-          placeholder="Password"
-          type="password"
-        />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
+          <Iconify icon="majesticons:key-line" size={30} color="#3A3FD3" />
+          <Text style={styles.buttonText}>Change Password</Text>
+        </TouchableOpacity>
       </View>
 
-      <View style={styles.fieldsContainer}>
-        <Text style={styles.label}>New Password</Text>
-        <InputField
-          value={newPassword}
-          onChange={handlePasswordChange}
-          placeholder="Password"
-          type="password"
-        />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleAbout}>
+          <Iconify icon="majesticons:info-circle" size={30} color="#3A3FD3" />
+          <Text style={styles.buttonText}>About</Text>
+        </TouchableOpacity>
       </View>
 
-      <View style={styles.fieldsContainer}>
-        <Text style={styles.label}>Confirm New Password</Text>
-        <InputField
-          value={confirmNewPassword}
-          onChange={handleConfirmPasswordChange}
-          placeholder="Confirm New Password"
-          type="password"
-        />
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleTerms}>
+          <Iconify
+            icon="majesticons:paper-fold-text"
+            size={30}
+            color="#3A3FD3"
+          />
+          <Text style={styles.buttonText}>Terms & Conditions</Text>
+        </TouchableOpacity>
       </View>
-
-      <View style={{ marginTop: 250 }}>
-        <SecondaryButton title="Save" onPress={handleSave} />
-      </View>
-
     </View>
   );
 };
@@ -73,15 +48,24 @@ const Settings = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
+    paddingTop: 30,
   },
-  fieldsContainer: {
-    marginBottom: 15,
+  button: {
+    backgroundColor: "#E9E9E9",
+    height: 55,
+    borderRadius: 7,
+    marginBottom: 20,
+    width: 350,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
+    gap: 10,
   },
-  label: {
-    paddingHorizontal: 13,
+  buttonText: {
+    color: "#000000",
+    fontSize: 16,
   },
 });
 
