@@ -124,7 +124,7 @@ const PInfo = () => {
         />
       </View>
       {/* must be changed to date picker */}
-      <View style={styles.fieldsContainer}>
+      {/* <View style={styles.fieldsContainer}>
         <Text style={styles.label}>Email</Text>
         <InputField
           placeholder={"Email"}
@@ -132,7 +132,7 @@ const PInfo = () => {
           onChange={handleEmailChange}
           type="email"
         />
-      </View>
+      </View> */}
 
       {/* <View>
         <TouchableOpacity

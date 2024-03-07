@@ -1,34 +1,33 @@
 import {React , useState} from "react";
 import { View, Text, Image, StyleSheet, SafeAreaView, FlatList, Button } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 
-import ListItem from "../components/ListItem";
-import ListInput from "../components/ListInput";
+import HabitItem from "../components/HabitItem";
+import HabitInput from "../components/HabitInput";
 
 const Dashboard = () => {
 
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [list, setNewList] = useState([]);
+  const [habit, setNewHabit] = useState([]);
 
-  function startAddListHandler() {
+  function startAddHabitHandler() {
     setModalIsVisible(true);
   }
 
-  function endAddListHandler() {
+  function endAddHabitHandler() {
     setModalIsVisible(false);
   }
 
-  function addListHandler(enteredListText) {
-    setNewList((currentList) => [
-      ...currentList,
-      { text: enteredListText, id: Math.random().toString() },
+  function addHabitHandler(enteredHabitText) {
+    setNewHabit((currentHabit) => [
+      ...currentHabit,
+      { text: enteredHabitText, id: Math.random().toString() },
     ]);
-    endAddListHandler();
+    endAddHabitHandler();
   }
 
-  function deleteListHandler(id) {
-    setNewList((currentList) => {
-      return currentList.filter((list) => list.id !== id);
+  function deleteHabitHandler(id) {
+    setNewHabit((currentHabit) => {
+      return currentHabit.filter((habit) => habit.id !== id);
     });
   }
 
@@ -56,24 +55,24 @@ const Dashboard = () => {
       <View style={styles.tasksContainer}>
 
         <View style={styles.listHeader}>
-          <Text style={styles.listName}>Daily Habit</Text>
-          <View style={styles.listButton}><Button title="add" onPress={startAddListHandler} color="white"/></View>
+          <Text style={styles.listName}>Daily Habit / {habit.length}</Text>
+          <View style={styles.listButton}><Button title="add" onPress={startAddHabitHandler} color="white"/></View>
         </View>
 
-        <ListInput
+        <HabitInput
           visible={modalIsVisible}
-          onAddList={addListHandler}
-          onCancel={endAddListHandler}
+          onAddHabit={addHabitHandler}
+          onCancel={endAddHabitHandler}
         />
           <View style={styles.listContainer}>
             <FlatList
-              data={list}
+              data={habit}
               renderItem={(itemData) => {
                 return (
-                  <ListItem
+                  <HabitItem
                     text={itemData.item.text}
                     id={itemData.item.id}
-                    onDeleteItem={deleteListHandler}
+                    onDeleteItem={deleteHabitHandler}
                   />
                 );
               }}

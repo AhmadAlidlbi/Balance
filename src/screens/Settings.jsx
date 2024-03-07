@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
+      <Text style={styles.title}>Change email and password here</Text>
       {/* Add your settings components here */}
     </View>
   );

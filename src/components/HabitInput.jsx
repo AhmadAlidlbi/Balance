@@ -7,16 +7,16 @@ import {
   Modal,
 } from 'react-native';
 
-function ListInput(props) {
-  const [enteredListText, setEnteredListText] = useState('');
+function HabitInput(props) {
+  const [enteredHabitText, setEnteredHabitText] = useState('');
 
-  function listInputHandler(enteredText) {
-    setEnteredListText(enteredText);
+  function HabitInputHandler(enteredHabitText) {
+    setEnteredHabitText(enteredHabitText);
   }
 
-  function addListHandler() {
-    props.onAddList(enteredListText);
-    setEnteredListText('');
+  function addHabitHandler() {
+    props.onAddHabit(enteredHabitText);
+    setEnteredHabitText('');
   }
 
   return (
@@ -24,17 +24,17 @@ function ListInput(props) {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
-          placeholder="new list name"
+          placeholder="new habit"
           placeholderTextColor="#BEBEBE"
-          onChangeText={listInputHandler}
-          value={enteredListText}
+          onChangeText={HabitInputHandler}
+          value={enteredHabitText}
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
             <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
           </View>
           <View style={styles.button}>
-            <Button title="Add List" onPress={addListHandler} color="#3238FF" />
+            <Button title="Add" onPress={addHabitHandler} color="#3238FF" />
           </View>
         </View>
       </View>
@@ -42,7 +42,7 @@ function ListInput(props) {
   );
 }
 
-export default ListInput;
+export default HabitInput;
 
 const styles = StyleSheet.create({
   inputContainer: {
