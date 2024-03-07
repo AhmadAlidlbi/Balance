@@ -1,8 +1,37 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, SafeAreaView } from "react-native";
+import {React , useState} from "react";
+import { View, Text, Image, StyleSheet, SafeAreaView, FlatList, Button } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
+import ListItem from "../components/ListItem";
+import ListInput from "../components/ListInput";
+
 const Dashboard = () => {
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+  const [list, setNewList] = useState([]);
+
+  function startAddListHandler() {
+    setModalIsVisible(true);
+  }
+
+  function endAddListHandler() {
+    setModalIsVisible(false);
+  }
+
+  function addListHandler(enteredListText) {
+    setNewList((currentList) => [
+      ...currentList,
+      { text: enteredListText, id: Math.random().toString() },
+    ]);
+    endAddListHandler();
+  }
+
+  function deleteListHandler(id) {
+    setNewList((currentList) => {
+      return currentList.filter((list) => list.id !== id);
+    });
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -25,7 +54,35 @@ const Dashboard = () => {
 
       {/* List of tasks */}
       <View style={styles.tasksContainer}>
-        <Text style={styles.listName}>Daily Tasks 2/5</Text>
+
+        <View style={styles.listHeader}>
+          <Text style={styles.listName}>Daily Habit</Text>
+          <View style={styles.listButton}><Button title="add" onPress={startAddListHandler} color="white"/></View>
+        </View>
+
+        <ListInput
+          visible={modalIsVisible}
+          onAddList={addListHandler}
+          onCancel={endAddListHandler}
+        />
+          <View style={styles.listContainer}>
+            <FlatList
+              data={list}
+              renderItem={(itemData) => {
+                return (
+                  <ListItem
+                    text={itemData.item.text}
+                    id={itemData.item.id}
+                    onDeleteItem={deleteListHandler}
+                  />
+                );
+              }}
+              keyExtractor={(item, index) => {
+                return item.id;
+              }}
+              alwaysBounceVertical={false}
+            />
+          </View>
       </View>
     </SafeAreaView>
   );
@@ -83,16 +140,37 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#ffffff",
   },
-  tasksContainer: {
-    marginTop: 25,
-    height: 420,
+  // tasksContainer: {
+  //   marginTop: 25,
+  //   height: 420,
+  //   marginHorizontal: 20,
+  //   backgroundColor: "#e9e9e9",
+  //   borderRadius: 15,
+  // },
+  listHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "90%",
     marginHorizontal: 20,
-    backgroundColor: "#e9e9e9",
-    borderRadius: 15,
+    marginTop: 20,
   },
   listName: {
     fontSize: 18,
-    margin: 15,
+  },
+  listButton: {
+    fontSize: 18,
+    borderRadius: 10,
+    backgroundColor: "#3a3fd3",
+  },
+  tasksContainer: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#fffffffc",
+    marginTop: 10,
+  },
+  listContainer: {
+    height: "70%",
   },
 });
 

@@ -6,14 +6,17 @@ const Main = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
+      {/* Logo */}
       <View style={styles.logo}>
         <Image source={require("../assets/images/BalanceLogo.jpg")} />
       </View>
 
+      {/* Title */}
       <View>
         <Text style={styles.title}>Balance</Text>
       </View>
 
+      {/* Sign Up Button */}
       <View style={{ marginBottom: 10 }}>
         <PrimaryButton
           onPress={() => {
@@ -24,6 +27,7 @@ const Main = ({ navigation }) => {
         />
       </View>
 
+      {/* Login Button */}
       <View>
         <PrimaryButton
           onPress={() => navigation.navigate("Login")}

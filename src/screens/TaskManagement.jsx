@@ -4,7 +4,6 @@ import {
   View,
   FlatList,
   SafeAreaView,
-  ScrollView,
 } from "react-native";
 import SecondaryButton from "../components/SecondaryButton";
 
