@@ -81,10 +81,11 @@ const MainStackNavigator = () => {
             backgroundColor: "#ffffffff",
           },
           headerTitleStyle: {
-            color: "#ffffff00",
+            color: "#000000ff",
           },
           headerShadowVisible: false,
           headerBackTitle: "Back",
+          headerTitle: "Personal Information",
         }}
       />
       <Stack.Screen
@@ -95,7 +96,7 @@ const MainStackNavigator = () => {
             backgroundColor: "#ffffffff",
           },
           headerTitleStyle: {
-            color: "#ffffff00",
+            color: "#000000ff",
           },
           headerShadowVisible: false,
           headerBackTitle: "Back",

@@ -25,7 +25,6 @@ const PInfo = () => {
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
-    setShow(false);
     setDate(currentDate);
   };
 
@@ -67,7 +66,6 @@ const PInfo = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <Text style={styles.heading}>Personal Information</Text>
 
       <TouchableOpacity
         onPress={handleImageSelection}
@@ -133,8 +131,8 @@ const PInfo = () => {
           type="email"
         />
       </View> */}
-
-      {/* <View>
+{/* 
+      <View>
         <TouchableOpacity
           style={styles.DatePickerContainer}
           onPress={showDatepicker}
@@ -152,7 +150,7 @@ const PInfo = () => {
           )}
       </View> */}
 
-      <View style={{bottom: 20,}}>
+      <View>
         <SecondaryButton title="Save" onPress={handleSave} />
       </View>
     </KeyboardAvoidingView>
