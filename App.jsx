@@ -36,7 +36,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
-      <NavigationContainer>
+      <NavigationContainer >
         <MainStackNavigator />
       </NavigationContainer>
     </>

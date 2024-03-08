@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   skip: {
     color: "#625F60",
     fontSize: 14,
+    fontFamily: "poppins-medium",
   },
 });
 

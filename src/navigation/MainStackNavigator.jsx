@@ -14,7 +14,11 @@ const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+    screenOptions={{
+      cardStyle: { backgroundColor: "#ffffffff" },
+    }
+    }>
       <Stack.Screen
         name="Main"
         component={Main}

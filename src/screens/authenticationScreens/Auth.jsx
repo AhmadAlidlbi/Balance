@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import InputField from "../../components/InputField";
 import PrimaryButton from "../../components/PrimaryButton";
 
 const Auth = ({ navigation }) => {
-  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -25,7 +31,10 @@ const Auth = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <View>
         <Image
           style={styles.logo}
@@ -56,7 +65,7 @@ const Auth = ({ navigation }) => {
       <View style={styles.buttonContainer}>
         <PrimaryButton onPress={handleNext} title="Next" buttonColor={true} />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
-    paddingBottom: 100,
+    marginBottom: 100,
   },
   logo: {
     width: 86,

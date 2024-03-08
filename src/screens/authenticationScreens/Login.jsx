@@ -71,7 +71,7 @@ const Login = ({ navigation }) => {
       </View>
       <View>
         <TouchableOpacity onPress={handleForgotPassword}>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
+          <Text style={styles.forgotPassword}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
       <View>
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ffffff",
+    marginBottom: 100,
   },
   logo: {
     width: 86,
@@ -95,11 +96,13 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
+    fontFamily: "poppins-medium",
     fontSize: 18,
     marginBottom: 20,
     marginTop: 10,
   },
   forgotPassword: {
+    fontFamily: "poppins",
     color: "#625F60",
     fontSize: 12,
     margin: 15,
