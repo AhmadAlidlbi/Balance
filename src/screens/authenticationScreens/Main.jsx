@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
-    fontFamily: "poppins",
+    fontFamily: "poppins-medium",
     fontSize: 30,
     marginBottom: 20,
   },

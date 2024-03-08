@@ -96,9 +96,9 @@ const styles = {
     marginTop: 20,
   },
   heading: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 25,
     marginBottom: 30,
+    fontFamily: "poppins-medium",
   },
   profileImage: {
     width: 150,
@@ -108,11 +108,12 @@ const styles = {
   },
   name: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "poppins-medium",
     marginBottom: 10,
   },
   profession: {
     fontSize: 16,
+    fontFamily: "poppins",
     marginBottom: 30,
   },
   buttonContainer: {},
@@ -129,7 +130,8 @@ const styles = {
   },
   buttonText: {
     color: "#000000",
-    fontSize: 16,
+    fontFamily: "poppins",
+    fontSize: 15,
   },
 };
 
