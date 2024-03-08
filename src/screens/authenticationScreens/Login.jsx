@@ -12,11 +12,11 @@ import PrimaryButton from "../../components/PrimaryButton";
 import InputField from "../../components/InputField";
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmailChange = (Email) => {
-    setEmail(Email);
+  const handleUsernameChange = (Username) => {
+    setUsername(Username);
   };
 
   const handlePasswordChange = (Password) => {
@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
   };
 
   const handleLogin = () => {
-    // if (email === "" || password === "") {
+    // if (username === "" || password === "") {
     //   alert("Please fill all fields");
     //   return;
     // }
@@ -52,10 +52,10 @@ const Login = ({ navigation }) => {
       <View>
         <InputField
           iconName={"user"}
-          placeholder={"Email"}
-          value={email}
-          onChange={handleEmailChange}
-          type="email"
+          placeholder={"Username"}
+          value={username}
+          onChange={handleUsernameChange}
+          type="username"
         />
       </View>
       <View>

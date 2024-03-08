@@ -7,17 +7,19 @@ import {
   Platform,
   TouchableOpacity,
   Button,
+  Alert,
 } from "react-native";
 import InputField from "../../../components/InputField";
 import SecondaryButton from "../../../components/SecondaryButton";
 import { Iconify } from "react-native-iconify";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import * as ImagePicker from "expo-image-picker";
 
 const PInfo = () => {
-  const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profession, setProfession] = useState("");
+  const [image, setImage] = useState(null);
 
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState("date");
@@ -37,10 +39,6 @@ const PInfo = () => {
     showMode("date");
   };
 
-  const handleImageSelection = () => {
-    // Handle image selection
-  };
-
   const handleFirstNameChange = (FirstName) => {
     setFirstName(FirstName);
   };
@@ -53,75 +51,89 @@ const PInfo = () => {
     setProfession(Profession);
   };
 
-  const handleEmailChange = (Email) => {
-    setEmail(Email);
-  };
-
   const handleSave = () => {
     // Handle saving the information
   };
 
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <TouchableOpacity
-        onPress={handleImageSelection}
-        style={styles.imageContainer}
+    <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
       >
-        <Image
-          source={require("../../../assets/images/profile.jpg")}
-          style={styles.profileImage}
-        />
-        <View
-          style={{
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            backgroundColor: "#ffffff",
-            padding: 5,
-            borderRadius: 20,
-          }}
-        >
-          <Iconify icon="majesticons:camera" color="#555555" size={24} />
+        <TouchableOpacity onPress={pickImage} style={styles.imageContainer}>
+          {image ? (
+            <Image source={{ uri: image }} style={styles.profileImage} />
+          ) : (
+            <Image
+              source={require("../../../assets/images/profilePlaceholder.png")}
+              style={styles.profileImage}
+            />
+          )}
+          <View
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              backgroundColor: "#ffffff",
+              padding: 5,
+              borderRadius: 20,
+            }}
+          >
+            <Iconify icon="majesticons:camera" color="#555555" size={24} />
+          </View>
+        </TouchableOpacity>
+
+        <View style={styles.fieldsContainer}>
+          <Text style={styles.label}>First Name</Text>
+          <InputField
+            placeholder={"First Name"}
+            value={firstName}
+            onChange={handleFirstNameChange}
+            type="firstName"
+            required={true}
+          />
         </View>
-      </TouchableOpacity>
 
-      <View style={styles.fieldsContainer}>
-        <Text style={styles.label}>First Name</Text>
-        <InputField
-          placeholder={"First Name"}
-          value={firstName}
-          onChange={handleFirstNameChange}
-          type="firstName"
-          required={true}
-        />
-      </View>
+        <View style={styles.fieldsContainer}>
+          <Text style={styles.label}>Last Name</Text>
+          <InputField
+            placeholder={"Last Name"}
+            value={lastName}
+            onChange={handleLastNameChange}
+            type="lastName"
+            required={true}
+          />
+        </View>
 
-      <View style={styles.fieldsContainer}>
-        <Text style={styles.label}>Last Name</Text>
-        <InputField
-          placeholder={"Last Name"}
-          value={lastName}
-          onChange={handleLastNameChange}
-          type="lastName"
-          required={true}
-        />
-      </View>
-
-      <View style={styles.fieldsContainer}>
-        <Text style={styles.label}>Profession</Text>
-        <InputField
-          placeholder={"Profession"}
-          value={profession}
-          onChange={handleProfessionChange}
-          type="Profession"
-          required={true}
-        />
-      </View>
-      {/* must be changed to date picker */}
-      {/* <View style={styles.fieldsContainer}>
+        <View style={styles.fieldsContainer}>
+          <Text style={styles.label}>Profession</Text>
+          <InputField
+            placeholder={"Profession"}
+            value={profession}
+            onChange={handleProfessionChange}
+            type="Profession"
+            required={true}
+          />
+        </View>
+        {/* must be changed to date picker */}
+        {/* <View style={styles.fieldsContainer}>
         <Text style={styles.label}>Email</Text>
         <InputField
           placeholder={"Email"}
@@ -130,7 +142,7 @@ const PInfo = () => {
           type="email"
         />
       </View> */}
-      {/* 
+        {/* 
       <View>
         <TouchableOpacity
           style={styles.DatePickerContainer}
@@ -149,10 +161,11 @@ const PInfo = () => {
           )}
       </View> */}
 
-      <View>
-        <SecondaryButton title="Save" onPress={handleSave} />
-      </View>
-    </KeyboardAvoidingView>
+        <View>
+          <SecondaryButton title="Save" onPress={handleSave} />
+        </View>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 

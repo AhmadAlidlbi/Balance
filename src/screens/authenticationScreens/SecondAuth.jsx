@@ -12,12 +12,12 @@ import InputField from "../../components/InputField";
 import PrimaryButton from "../../components/PrimaryButton";
 
 const SecondAuth = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleEmailChange = (Email) => {
-    setEmail(Email);
+  const handleUsernameChange = (Username) => {
+    setUsername(Username);
   };
 
   const handlePasswordChange = (Password) => {
@@ -29,7 +29,7 @@ const SecondAuth = ({ navigation }) => {
   };
 
   const handleSignUp = () => {
-    // if (email === "" || password === "" || confirmPassword === "") {
+    // if (username === "" || password === "" || confirmPassword === "") {
     //   Alert.alert("Error", "Please fill all fields");
     //   return;
     // }
@@ -68,10 +68,10 @@ const SecondAuth = ({ navigation }) => {
       <View>
         <InputField
           iconName={"user"}
-          placeholder={"Email"}
-          value={email}
-          onChange={handleEmailChange}
-          type="email"
+          placeholder={"Username"}
+          value={username}
+          onChange={handleUsernameChange}
+          type="username"
           required={true}
         />
       </View>

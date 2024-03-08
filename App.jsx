@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./src/navigation/MainStackNavigator";
 import { useFonts } from "expo-font";
 
+
 /**
  * The main component of the application.
  * Renders the navigation container and the main stack navigator.
@@ -12,7 +13,6 @@ import { useFonts } from "expo-font";
  */
 
 export default function App() {
-  
   /**
    * Loads the required fonts using the useFonts hook.
    * @returns {Array} An array containing the status of font loading.
