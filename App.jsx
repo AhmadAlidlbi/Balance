@@ -3,9 +3,21 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./src/navigation/MainStackNavigator";
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
+
+/**
+ * The main component of the application.
+ * Renders the navigation container and the main stack navigator.
+ *
+ * @returns {JSX.Element} The rendered component.
+ */
 
 export default function App() {
+  
+  /**
+   * Loads the required fonts using the useFonts hook.
+   * @returns {Array} An array containing the status of font loading.
+   */
+
   const [fontsLoaded] = useFonts({
     poppins: require("./src/assets/fonts/Poppins-Regular.ttf"),
     "poppins-semibold": require("./src/assets/fonts/Poppins-SemiBold.ttf"),
@@ -18,7 +30,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null;
   }
 
   return (
