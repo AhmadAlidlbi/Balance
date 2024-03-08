@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import PrimaryButton from "../../components/PrimaryButton";
+import PrimaryButton from "../../components/PrimaryButton"; // Add missing import statement
 
 const Main = ({ navigation }) => {
   return (
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
+    fontFamily: "poppins",
     fontSize: 30,
     marginBottom: 20,
   },
