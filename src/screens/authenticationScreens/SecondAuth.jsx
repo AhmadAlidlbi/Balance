@@ -38,7 +38,7 @@ const SecondAuth = ({ navigation }) => {
     setConfirmPassword("");
 
     // Show success message
-    Alert.alert("Success", "Sign up successful");
+    // Alert.alert("Sign up successful");
   };
 
   return (
@@ -51,7 +51,7 @@ const SecondAuth = ({ navigation }) => {
       </View>
 
       <View>
-        <Text style={styles.title}>Create Account</Text>
+        <Text style={styles.title}>Create account</Text>
       </View>
 
       <View>
@@ -94,7 +94,7 @@ const SecondAuth = ({ navigation }) => {
       <View style={styles.buttonContainer}>
         <PrimaryButton
           onPress={handleSignUp}
-          title="Sign Up"
+          title="Sign up"
           buttonColor={true}
         />
       </View>
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
+    fontFamily: "poppins-medium",
     fontSize: 18,
     marginBottom: 10,
     marginTop: 10,

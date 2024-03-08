@@ -1,5 +1,12 @@
 import { React, useState, useRef } from "react";
-import { View, StyleSheet, FlatList, Animated } from "react-native";
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Animated,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import Slides from "../../data/Slides";
 import OnboardingItem from "../../components/OnboardingItem";
 import Indicator from "../../components/Indicator";
@@ -32,6 +39,10 @@ const OnboardingTutorial = ({ navigation }) => {
     }
   };
 
+  const handleSkip = () => {
+    navigation.navigate("InAppStack");
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -59,6 +70,11 @@ const OnboardingTutorial = ({ navigation }) => {
           title={handleTitle()}
         />
       </View>
+      <View style={styles.skipContainer}>
+        <TouchableOpacity onPress={handleSkip}>
+          <Text style={styles.skip}>Skip</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -74,7 +90,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    gap: 20,
+    gap: 10,
+    width: "100%",
+  },
+  skipContainer: {
+    marginBottom: 50,
+    flexDirection: "row",
+    paddingHorizontal: 40,
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "flex-end",
+  },
+  skip: {
+    color: "#625F60",
+    fontSize: 14,
   },
 });
 

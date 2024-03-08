@@ -31,7 +31,7 @@ const Profile = ({ navigation }) => {
           text: "Logout",
           onPress: () => {
             navigation.navigate("Main");
-            Alert.alert("Logout Successful");
+            // Alert.alert("Logout Successful");
           },
         },
       ],

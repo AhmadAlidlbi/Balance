@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import PrimaryButton from "../../components/PrimaryButton"; // Add missing import statement
+import PrimaryButton from "../../components/PrimaryButton";
 
 const Main = ({ navigation }) => {
   return (
@@ -21,7 +21,7 @@ const Main = ({ navigation }) => {
           onPress={() => {
             navigation.navigate("Auth");
           }}
-          title="Sign Up"
+          title="Sign up"
           buttonColor={false}
         />
       </View>
@@ -29,8 +29,8 @@ const Main = ({ navigation }) => {
       {/* Login Button */}
       <View>
         <PrimaryButton
-          onPress={() => navigation.navigate("Login")}
-          title="Login"
+          onPress={() => navigation.navigate("Login")} 
+          title="Login" 
           buttonColor={true}
         />
       </View>
@@ -38,7 +38,7 @@ const Main = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   container: {
     flex: 1,
     justifyContent: "center",
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default Main; 

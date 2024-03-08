@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontWeight: "800",
-    fontSize: 28,
+    fontFamily: "poppins-bold",
+    fontSize: 30,
     marginBottom: 10,
     color: "#3a3fd3",
     textAlign: "center",
   },
   description: {
-    fontWeight: "300",
+    fontFamily: "poppins",
     color: "#62656b",
     textAlign: "center",
     paddingHorizontal: 64,

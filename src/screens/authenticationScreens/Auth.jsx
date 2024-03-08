@@ -4,6 +4,7 @@ import InputField from "../../components/InputField";
 import PrimaryButton from "../../components/PrimaryButton";
 
 const Auth = ({ navigation }) => {
+  
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -32,11 +33,11 @@ const Auth = ({ navigation }) => {
         />
       </View>
       <View>
-        <Text style={styles.title}>Create Account</Text>
+        <Text style={styles.title}>Create account</Text>
       </View>
       <View>
         <InputField
-          placeholder={"First Name"}
+          placeholder={"First name"}
           value={firstName}
           onChange={handleFirstNameChange}
           type="firstName"
@@ -45,7 +46,7 @@ const Auth = ({ navigation }) => {
       </View>
       <View>
         <InputField
-          placeholder={"Last Name"}
+          placeholder={"Last name"}
           value={lastName}
           onChange={handleLastNameChange}
           type="lastName"
@@ -76,6 +77,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   title: {
+    fontFamily: "poppins-medium",
     fontSize: 18,
     marginBottom: 10,
     marginTop: 10,
