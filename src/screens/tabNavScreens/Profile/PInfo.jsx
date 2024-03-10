@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import InputField from "../../../components/InputField";
 import SecondaryButton from "../../../components/SecondaryButton";
-import { Iconify } from "react-native-iconify";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import * as ImagePicker from "expo-image-picker";
 

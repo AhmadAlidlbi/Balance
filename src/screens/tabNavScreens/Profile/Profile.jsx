@@ -8,6 +8,7 @@ import {
   Alert,
 } from "react-native";
 import { Iconify } from "react-native-iconify";
+import UploadImageModal from "../../../components/UploadImageModal";
 
 const Profile = ({ navigation }) => {
   const handlePersonal = () => {
@@ -41,13 +42,14 @@ const Profile = ({ navigation }) => {
 
   return (
       <SafeAreaView style={styles.container}>
+        <UploadImageModal />
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>My Profile</Text>
         </View>
 
         <Image
           style={styles.profileImage}
-          source={require("../../../assets/images/profile.jpg")}
+          source={require("../../../assets/images/profilePlaceholder.png")}
         />
 
         <Text style={styles.name}>Ahmad Alidlbi</Text>
