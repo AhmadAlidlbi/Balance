@@ -21,7 +21,7 @@ const Main = ({ navigation }) => {
           onPress={() => {
             navigation.navigate("Auth");
           }}
-          title="Sign up"
+          title="Sign Up"
           buttonColor={false}
         />
       </View>

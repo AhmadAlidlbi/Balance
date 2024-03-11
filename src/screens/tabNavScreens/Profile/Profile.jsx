@@ -42,7 +42,6 @@ const Profile = ({ navigation }) => {
 
   return (
       <SafeAreaView style={styles.container}>
-        <UploadImageModal />
         <View style={styles.headingContainer}>
           <Text style={styles.heading}>My Profile</Text>
         </View>

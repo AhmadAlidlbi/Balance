@@ -13,6 +13,8 @@ import InputField from "../../../components/InputField";
 import SecondaryButton from "../../../components/SecondaryButton";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import * as ImagePicker from "expo-image-picker";
+import { Iconify } from "react-native-iconify";
+import UploadImageModal from "../../../components/UploadImageModal";
 
 const PInfo = () => {
   const [firstName, setFirstName] = useState("");
@@ -95,7 +97,7 @@ const PInfo = () => {
               borderRadius: 20,
             }}
           >
-            <Iconify icon="majesticons:camera" color="#555555" size={24} />
+            <Iconify icon="majesticons:edit-pen-2" color="#555555" size={24} />
           </View>
         </TouchableOpacity>
 
@@ -163,6 +165,11 @@ const PInfo = () => {
         <View>
           <SecondaryButton title="Save" onPress={handleSave} />
         </View>
+        <UploadImageModal 
+        modalVisible={modalVisible}
+        onBackPress={() => {setModalVisible(false)}}
+        onCameraPress={() => pickImage()}
+        />
       </KeyboardAvoidingView>
     </>
   );
