@@ -4,7 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./src/navigation/MainStackNavigator";
 import { useFonts } from "expo-font";
 
-
 /**
  * The main component of the application.
  * Renders the navigation container and the main stack navigator.
@@ -36,7 +35,7 @@ export default function App() {
   return (
     <>
       <StatusBar style="auto" />
-      <NavigationContainer >
+      <NavigationContainer>
         <MainStackNavigator />
       </NavigationContainer>
     </>
