@@ -5,7 +5,7 @@ import TaskManagement from "../screens/tabNavScreens/TaskManagement";
 import NoteManagement from "../screens/tabNavScreens/NoteManagement";
 import Profile from "../screens/tabNavScreens/Profile/Profile";
 import { Iconify } from "react-native-iconify";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
 

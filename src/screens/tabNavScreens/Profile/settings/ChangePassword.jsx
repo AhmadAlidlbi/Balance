@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import InputField from "../../../../components/InputField";
 import SecondaryButton from "../../../../components/SecondaryButton";
 
-const ChangePassword = () => {
+const ChangePassword = ({ navigation }) => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -25,48 +32,60 @@ const ChangePassword = () => {
   };
 
   const handleSave = () => {
-    // Handle save
+    // Save all the fields
+    const data = {
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+      confirmNewPassword: confirmNewPassword
+    };
+  
+    console.log("Saved Data:", data);
+    // Or you can send it to your backend or perform any other action here
+
+    navigation.navigate("Settings");
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.fieldsContainer}>
-        <InputField
-          value={currentPassword}
-          onChange={handleCurrentPasswordChange}
-          placeholder="Current password"
-          type="password"
-        />
-      </View>
-
-      <View style={styles.fieldsContainer}>
-        <InputField
-          value={newPassword}
-          onChange={handlePasswordChange}
-          placeholder="New password"
-          type="password"
-        />
-      </View>
-
-      <View style={styles.fieldsContainer}>
-        <InputField
-          value={confirmNewPassword}
-          onChange={handleConfirmPasswordChange}
-          placeholder="Confirm new password"
-          type="password"
-        />
-      </View>
-
-      <View>
-        <TouchableOpacity onPress={handleForgotPassword}>
-          <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={{ marginTop: 440 }}>
-        <SecondaryButton title="Save" onPress={handleSave} />
-      </View>
-    </View>
+    <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <View style={styles.fieldsContainer}>
+          <InputField
+            value={currentPassword}
+            onChange={handleCurrentPasswordChange}
+            placeholder="Current password"
+            type="password"
+          />
+        </View>
+        <View style={styles.fieldsContainer}>
+          <InputField
+            value={newPassword}
+            onChange={handlePasswordChange}
+            placeholder="New password"
+            type="password"
+          />
+        </View>
+        <View style={styles.fieldsContainer}>
+          <InputField
+            value={confirmNewPassword}
+            onChange={handleConfirmPasswordChange}
+            placeholder="Confirm new password"
+            type="password"
+          />
+        </View>
+        <View>
+          <TouchableOpacity onPress={handleForgotPassword}>
+            <Text style={styles.forgotPassword}>Forgot Password?</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{marginTop: 450
+        }}>
+          <SecondaryButton title="Save" onPress={handleSave} />
+        </View>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 
@@ -77,9 +96,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#ffffff",
-    paddingTop: 30,
+    justifyContent: "center",
+    marginBottom: 20,
   },
-  fieldsContainer: {},
   label: {
     paddingHorizontal: 13,
   },

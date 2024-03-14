@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Dimensions,
   Pressable,
   Image,
 } from "react-native";
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   imageContainer: {
-    marginBottom: 40,
+    marginBottom: 20,
   },
   profileImage: {
     width: 140,

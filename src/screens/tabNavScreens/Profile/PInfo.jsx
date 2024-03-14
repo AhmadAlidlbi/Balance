@@ -9,7 +9,7 @@ import InputField from "../../../components/InputField";
 import SecondaryButton from "../../../components/SecondaryButton";
 import Avatar from "../../../components/Avatar";
 
-const PInfo = () => {
+const PInfo = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profession, setProfession] = useState("");
@@ -27,8 +27,19 @@ const PInfo = () => {
   };
 
   const handleSave = () => {
-    // Handle saving the information
+    // Save all the fields
+    const data = {
+      firstName: firstName,
+      lastName: lastName,
+      profession: profession
+    };
+  
+    console.log("Saved Data:", data);
+    // Or you can send it to your backend or perform any other action here
+
+    navigation.navigate("Profile");
   };
+  
 
   return (
     <>
@@ -45,7 +56,7 @@ const PInfo = () => {
             value={firstName}
             onChange={handleFirstNameChange}
             type="firstName"
-            required={true}
+            required={true} // Added required prop
           />
         </View>
 
@@ -56,7 +67,7 @@ const PInfo = () => {
             value={lastName}
             onChange={handleLastNameChange}
             type="lastName"
-            required={true}
+            required={true} // Added required prop
           />
         </View>
 
@@ -67,7 +78,7 @@ const PInfo = () => {
             value={profession}
             onChange={handleProfessionChange}
             type="Profession"
-            required={true}
+            required={true} // Added required prop
           />
         </View>
 
@@ -91,7 +102,7 @@ const styles = {
     paddingHorizontal: 13,
   },
   saveButtonContainer: {
-    marginTop: 230,
+    marginTop: 250,
   },
 };
 
