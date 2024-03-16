@@ -14,17 +14,43 @@ import * as ImagePicker from "expo-image-picker";
 const Avatar = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [image, setImage] = useState(null);
+  const [imageModalVisible, setImageModalVisible] = useState(false);
 
-  const handleCameraPress = () => {
-    // Handle camera button press
+  const uploadImage = async () => {
+    try {
+      await ImagePicker.requestCameraPermissionsAsync();
+      let result = await ImagePicker.launchCameraAsync({
+        cameraType: ImagePicker.CameraType.front,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+      if (!result.canceled) {
+        await saveImage(result.assets[0].uri);
+      }
+    } catch (error) {
+      alert("Error uploading image" + error.message);
+      setModalVisible(false);
+    }
   };
 
-  const handleGalleryPress = () => {
-    // Handle gallery button press
+  const saveImage = async (image) => {
+    try {
+      setImage(image);
+      setModalVisible(false);
+    } catch (error) {
+      throw error;
+    }
   };
 
   const handleRemovePress = () => {
-    // Handle remove button press
+    try {
+      setImage(null);
+      setModalVisible(false);
+    } catch (error) {
+      alert("Error removing image" + error.message);
+      setModalVisible(false);
+    }
   };
 
   const handleCancelPress = () => {
@@ -43,13 +69,24 @@ const Avatar = () => {
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
+      setModalVisible(false);
     }
+  };
+
+  const handleOpenImage = () => {
+    if (image) {
+      setImageModalVisible(true);
+    }
+  };
+
+  const handleImageModalClose = () => {
+    setImageModalVisible(false);
   };
 
   return (
     <View>
       <View style={styles.imageContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleOpenImage}>
           {image ? (
             <Image source={{ uri: image }} style={styles.profileImage} />
           ) : (
@@ -76,12 +113,12 @@ const Avatar = () => {
       <Modal
         visible={modalVisible}
         animationType="fade"
-        onRequestClose={() => setModalVisible(false)}
+        onRequestClose={() => setImageModalVisible(false)}
         transparent={true} // Set modal to transparent
       >
         <Pressable onPress={handleCancelPress} style={styles.background}>
           <View style={styles.modalContainer}>
-            <TouchableOpacity onPress={handleCameraPress} style={styles.icons}>
+            <TouchableOpacity onPress={uploadImage} style={styles.icons}>
               <Iconify icon="majesticons:camera" color="#000000" size={30} />
               <Text>Camera</Text>
             </TouchableOpacity>
@@ -102,6 +139,17 @@ const Avatar = () => {
               <Text>Remove</Text>
             </TouchableOpacity>
           </View>
+        </Pressable>
+      </Modal>
+
+      <Modal
+        visible={imageModalVisible}
+        animationType="fade"
+        onRequestClose={() => setModalVisible(false)}
+        transparent={true}
+      >
+        <Pressable onPress={handleImageModalClose} style={styles.background}>
+          <Image source={{ uri: image }} style={styles.fullProfileImage} />
         </Pressable>
       </Modal>
     </View>
@@ -135,13 +183,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "relative",
   },
-  // profileImage: {
-  //   width: 150,
-  //   height: 150,
-  //   borderRadius: 100,
-  //   borderColor: "#BCBCBC",
-  //   borderWidth: 4,
-  // },
   imageIcon: {
     position: "absolute",
     bottom: 0,
@@ -158,23 +199,11 @@ const styles = StyleSheet.create({
     height: 140,
     borderRadius: 70,
   },
+  fullProfileImage: {
+    width: "90%",
+    height: 400,
+    borderRadius: 10,
+  },
 });
 
 export default Avatar;
-
-{
-  /* <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <Text>Open Modal</Text>
-      </TouchableOpacity> */
-}
-{
-  /* <View style={styles.container}>
-        <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <Image source={require("../assets/images/profilePlaceholder.png")} style={styles.profileImage} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.imageIcon}>
-          <Iconify icon="majesticons:camera" color="#555555" size={24} />
-        </TouchableOpacity>
-      </View> */
-}
