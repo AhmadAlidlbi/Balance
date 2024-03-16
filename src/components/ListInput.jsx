@@ -58,6 +58,9 @@ function ListInput(props) {
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <View>
+          <Text style={styles.heading}>Add New Task</Text>
+        </View>
+        <View>
           <Text style={styles.label}>Title</Text>
           <TextInput
             style={styles.textInput}
@@ -323,5 +326,10 @@ const styles = StyleSheet.create({
     color: "#ffffffff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  heading: {
+    fontSize: 22,
+    bottom: 90,
+    fontFamily: "poppins-medium",
   },
 });

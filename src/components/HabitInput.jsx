@@ -24,7 +24,7 @@ function HabitInput(props) {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
-          placeholder="new habit"
+          placeholder="New habit"
           placeholderTextColor="#BEBEBE"
           onChangeText={HabitInputHandler}
           value={enteredHabitText}
