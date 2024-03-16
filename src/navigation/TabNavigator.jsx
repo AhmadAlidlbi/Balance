@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Dashboard from "../screens/tabNavScreens/Dashboard";
 import TaskManagement from "../screens/tabNavScreens/TaskManagement";
+import CalendarScreen from "../screens/tabNavScreens/CalendarScreen";
 import NoteManagement from "../screens/tabNavScreens/NoteManagement";
 import Profile from "../screens/tabNavScreens/Profile/Profile";
 import { Iconify } from "react-native-iconify";
@@ -43,6 +44,21 @@ const TabNavigator = () => {
         name="Tasks"
         component={TaskManagement}
       />
+      <Tab.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Iconify
+              icon="majesticons:calendar-line"
+              size={30}
+              color={color}
+            />
+          ),
+        }}
+        name="Calendar"
+        component={CalendarScreen}
+      />
+
       <Tab.Screen
         options={{
           tabBarIcon: ({ color }) => (

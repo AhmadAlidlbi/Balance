@@ -79,7 +79,7 @@ function ListInput(props) {
           >
             <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
             <Text style={styles.dateButtonText}>
-              {startDate || "2024/06/09"}
+              {startDate}
             </Text>
           </TouchableOpacity>
         </View>
@@ -91,7 +91,7 @@ function ListInput(props) {
             onPress={handleOpenEndDate}
           >
             <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
-            <Text style={styles.dateButtonText}>{EndDate || "2024/06/10"}</Text>
+            <Text style={styles.dateButtonText}>{EndDate}</Text>
           </TouchableOpacity>
         </View>
 

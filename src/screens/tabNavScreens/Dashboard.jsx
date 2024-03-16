@@ -63,7 +63,7 @@ const Dashboard = () => {
         <View style={styles.listHeader}>
           <Text style={styles.listName}>Daily Habit / {habit.length}</Text>
           <View style={styles.listButton}>
-            <Button title="add" onPress={startAddHabitHandler} color="white" />
+            <Button title="Add" onPress={startAddHabitHandler} color="white" />
           </View>
         </View>
 
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderRadius: 10,
     backgroundColor: "#3a3fd3",
+    width: 60,
   },
   tasksContainer: {
     flex: 1,

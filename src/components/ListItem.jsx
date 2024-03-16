@@ -76,7 +76,8 @@ function ListItem(props) {
         />
       </TouchableOpacity>
       <View android_ripple={{ color: "#210644" }}>
-        <Text style={styles.listText}>{props.text}</Text>
+      <Text style={[styles.listText, isPressed && { textDecorationLine: 'line-through' }]}>{props.text}</Text>
+
       </View>
       <TouchableOpacity
         onPress={() => setDeleteModalVisible(true)}
@@ -111,7 +112,7 @@ function ListItem(props) {
             >
               <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
               <Text style={styles.dateButtonText}>
-                {startDate || "2024/06/09"}
+                {startDate}
               </Text>
             </TouchableOpacity>
           </View>
@@ -124,7 +125,7 @@ function ListItem(props) {
             >
               <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
               <Text style={styles.dateButtonText}>
-                {EndDate || "2024/06/10"}
+                {EndDate}
               </Text>
             </TouchableOpacity>
           </View>

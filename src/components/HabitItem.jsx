@@ -22,9 +22,8 @@ function HabitItem(props) {
       </TouchableOpacity>
       <View
         android_ripple={{ color: "#210644" }}
-        onPress={props.onDeleteItem.bind(this, props.id)}
       >
-        <Text style={styles.habitText}>{props.text}</Text>
+      <Text style={[styles.listText, isPressed && { textDecorationLine: 'line-through' }]}>{props.text}</Text>
       </View>
       <TouchableOpacity
         onPress={() => setDeleteModalVisible(true)}
