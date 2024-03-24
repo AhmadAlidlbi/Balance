@@ -2,8 +2,10 @@ import { React, useState } from "react";
 import { TextInput, StyleSheet, View, Pressable } from "react-native";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
+// The InputField component is a reusable component that renders an input field
 const InputField = ({ placeholder, value, onChange, type, iconName }) => {
   const [secureText, setSecureText] = useState(true);
+  // The secureText state variable is used to determine if the input field is a password field
 
   return (
     <View style={styles.container}>
@@ -16,6 +18,7 @@ const InputField = ({ placeholder, value, onChange, type, iconName }) => {
         style={styles.input}
       />
       {type === "password" && (
+        // The eye icon is only displayed if the input field is a password field
         <Pressable onPress={() => setSecureText((prev) => !prev)}>
           <MaterialCommunityIcons
             style={styles.eyeIcon}
@@ -28,6 +31,10 @@ const InputField = ({ placeholder, value, onChange, type, iconName }) => {
     </View>
   );
 };
+
+export default InputField;
+
+// Styles
 
 const styles = StyleSheet.create({
   container: {
@@ -49,4 +56,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InputField;

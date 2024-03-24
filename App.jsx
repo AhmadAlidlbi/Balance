@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar"; 
 import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./src/navigation/MainStackNavigator";
 import { useFonts } from "expo-font";
@@ -7,7 +7,7 @@ import { useFonts } from "expo-font";
 /**
  * The main component of the application.
  * Renders the navigation container and the main stack navigator.
- *
+*
  * @returns {JSX.Element} The rendered component.
  */
 
@@ -34,8 +34,13 @@ export default function App() {
 
   return (
     <>
+      {/* Renders the status bar */}
       <StatusBar style="auto" />
+
+      {/* Renders the navigation container component */}
       <NavigationContainer>
+
+        {/* Renders the main stack navigator component */}
         <MainStackNavigator />
       </NavigationContainer>
     </>

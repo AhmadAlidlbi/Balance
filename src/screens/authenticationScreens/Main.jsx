@@ -1,6 +1,8 @@
-import React from "react";
+import React from "react"; 
 import { View, Text, Image, StyleSheet } from "react-native";
 import PrimaryButton from "../../components/PrimaryButton";
+
+// Main screen component for the authentication screens
 
 const Main = ({ navigation }) => {
   return (
@@ -15,9 +17,10 @@ const Main = ({ navigation }) => {
         <Text style={styles.title}>Balance</Text>
       </View>
 
-      {/* Sign Up Button */}
+      {/* Primary button component */}
       <View style={{ marginBottom: 10 }}>
         <PrimaryButton
+        // Navigates to the Auth screen
           onPress={() => {
             navigation.navigate("Auth");
           }}
@@ -26,9 +29,10 @@ const Main = ({ navigation }) => {
         />
       </View>
 
-      {/* Login Button */}
+      {/* Primary button component */}
       <View>
         <PrimaryButton
+        // Navigates to the Login screen
           onPress={() => navigation.navigate("Login")} 
           title="Login" 
           buttonColor={true}
@@ -37,6 +41,10 @@ const Main = ({ navigation }) => {
     </View>
   );
 };
+
+export default Main;
+
+// Styles
 
 const styles = StyleSheet.create({ 
   container: {
@@ -48,7 +56,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 20,
-    resizeMode: "contain",
   },
   title: {
     fontFamily: "poppins-medium",
@@ -57,4 +64,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main; 

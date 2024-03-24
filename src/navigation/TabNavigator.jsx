@@ -9,6 +9,7 @@ import { Iconify } from "react-native-iconify";
 import { StyleSheet } from "react-native";
 
 const Tab = createBottomTabNavigator();
+// The Tab Navigator for the main screens of the application
 
 const TabNavigator = () => {
   return (
@@ -21,6 +22,9 @@ const TabNavigator = () => {
       }}
       safeAreaInsets={{ bottom: 0 }}
     >
+      {/* The Tab.Screen components are used to define the screens of the application */}
+
+      {/* Dashboard screen */}
       <Tab.Screen
         options={{
           headerShown: false,
@@ -31,6 +35,8 @@ const TabNavigator = () => {
         name="Dashboard"
         component={Dashboard}
       />
+
+      {/* TaskManagement screen */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ color }) => (
@@ -44,21 +50,20 @@ const TabNavigator = () => {
         name="Tasks"
         component={TaskManagement}
       />
+
+      {/* CalendarScreen screen */}
       <Tab.Screen
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Iconify
-              icon="majesticons:calendar-line"
-              size={30}
-              color={color}
-            />
+            <Iconify icon="majesticons:calendar-line" size={30} color={color} />
           ),
         }}
         name="Calendar"
         component={CalendarScreen}
       />
 
+      {/* NoteManagement screen */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ color }) => (
@@ -72,6 +77,8 @@ const TabNavigator = () => {
         name="Notes"
         component={NoteManagement}
       />
+
+      {/* Profile screen */}
       <Tab.Screen
         options={{
           headerShown: false,
@@ -88,6 +95,8 @@ const TabNavigator = () => {
 
 export default TabNavigator;
 
+// Styles
+
 const styles = StyleSheet.create({
   container: {
     borderRadius: 50,
@@ -95,7 +104,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "90%",
     left: "5%",
-    backgroundColor: "#292929", //292929 //3a3fd3
+    backgroundColor: "#292929",
     marginBottom: 30,
     shadowColor: "#000",
     shadowOffset: {

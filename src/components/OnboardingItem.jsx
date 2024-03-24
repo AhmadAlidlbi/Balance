@@ -10,6 +10,9 @@ import {
 const OnboardingItem = ({ item }) => {
   const { width } = useWindowDimensions();
 
+  // The item prop is an object that contains the image, title, and description of the onboarding item
+  // The width of the onboarding item is determined by the useWindowDimensions hook
+
   return (
     <View style={[styles.container, { width }]}>
       <Image
@@ -23,6 +26,10 @@ const OnboardingItem = ({ item }) => {
     </View>
   );
 };
+
+export default OnboardingItem;
+
+//Styles
 
 const styles = StyleSheet.create({
   container: {
@@ -50,4 +57,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OnboardingItem;

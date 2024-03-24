@@ -1,3 +1,4 @@
+// Contains the data for the onboarding slides.
 const Slides = [
   {
     id: "1",

@@ -6,19 +6,23 @@ import Auth from "../screens/authenticationScreens/Auth";
 import SecondAuth from "../screens/authenticationScreens/SecondAuth";
 import OnboardingTutorial from "../screens/authenticationScreens/OnboardingTutorial";
 import TabNavigator from "../navigation/TabNavigator";
-import PInfo from "../screens/tabNavScreens/Profile/PInfo"
+import PInfo from "../screens/tabNavScreens/Profile/PInfo";
 import Settings from "../screens/tabNavScreens/Profile/settings/Settings";
 import ChangePassword from "../screens/tabNavScreens/Profile/settings/ChangePassword";
 
 const Stack = createStackNavigator();
+// The Stack Navigator for the main screens of the application
 
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator
-    screenOptions={{
-      cardStyle: { backgroundColor: "#ffffffff" },
-    }
-    }>
+      screenOptions={{
+        cardStyle: { backgroundColor: "#ffffffff" },
+      }}
+    >
+      {/* The Stack.Screen components are used to define the screens of the application */}
+
+      {/* Main screen */}
       <Stack.Screen
         name="Main"
         component={Main}
@@ -28,6 +32,8 @@ const MainStackNavigator = () => {
           headerShadowVisible: false,
         }}
       />
+
+      {/* Auth screen */}
       <Stack.Screen
         name="Auth"
         component={Auth}
@@ -38,6 +44,8 @@ const MainStackNavigator = () => {
           headerBackTitle: "Back",
         }}
       />
+
+      {/* SecondAuth screen */}
       <Stack.Screen
         name="SecondAuth"
         component={SecondAuth}
@@ -48,6 +56,8 @@ const MainStackNavigator = () => {
           headerBackTitle: "Back",
         }}
       />
+
+      {/* OnboardingTutorial screen */}
       <Stack.Screen
         name="OnboardingTutorial"
         component={OnboardingTutorial}
@@ -56,6 +66,8 @@ const MainStackNavigator = () => {
           headerShown: false,
         }}
       />
+
+      {/* Login screen */}
       <Stack.Screen
         name="Login"
         component={Login}
@@ -70,6 +82,8 @@ const MainStackNavigator = () => {
           headerBackTitle: "Back",
         }}
       />
+
+      {/* Goes to TabNavigator component */}
       <Stack.Screen
         options={{
           gestureEnabled: false,
@@ -78,6 +92,8 @@ const MainStackNavigator = () => {
         name="InAppStack"
         component={TabNavigator}
       />
+
+      {/* Personal info screen */}
       <Stack.Screen
         name="PInfo"
         component={PInfo}
@@ -93,6 +109,8 @@ const MainStackNavigator = () => {
           headerTitle: "Personal Information",
         }}
       />
+
+      {/* Settings screen */}
       <Stack.Screen
         name="Settings"
         component={Settings}
@@ -107,6 +125,8 @@ const MainStackNavigator = () => {
           headerBackTitle: "Profile",
         }}
       />
+        
+        {/* ChangePassword screen */}
       <Stack.Screen
         name="ChangePassword"
         component={ChangePassword}

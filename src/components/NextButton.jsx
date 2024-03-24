@@ -1,7 +1,12 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 
+  // Returns the next button component
+
 const NextButton = ({ buttonColor, title ,scrollTo }) => {
+  // The button color is determined by the buttonColor prop
+  // The scrollTo prop is a function that is called when the button is pressed
+  // The title prop is the text displayed on the button
   return (
     <TouchableOpacity
       style={[
@@ -14,6 +19,10 @@ const NextButton = ({ buttonColor, title ,scrollTo }) => {
     </TouchableOpacity>
   );
 };
+
+export default NextButton;
+
+// Styles
 
 const styles = StyleSheet.create({
   button: {
@@ -29,5 +38,3 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-medium",
   },
 });
-
-export default NextButton;

@@ -11,16 +11,24 @@ import InputField from "../../components/InputField";
 import PrimaryButton from "../../components/PrimaryButton";
 
 const Auth = ({ navigation }) => {
+  // State variables to store the first and last names
+  // The setFirstName and setLastName functions are used to update the state variables
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
   const handleFirstNameChange = (FirstName) => {
     setFirstName(FirstName);
+    //test
+    // console.log(FirstName);
   };
+  // The handleFirstNameChange function updates the firstName state variable with the value of the input field
 
   const handleLastNameChange = (LastName) => {
+    //test
+    // console.log(LastName);
     setLastName(LastName);
   };
+  // The handleLastNameChange function updates the lastName state variable with the value of the input field
 
   const handleNext = () => {
     // if (firstName === "" || lastName === "") {
@@ -28,22 +36,30 @@ const Auth = ({ navigation }) => {
     //   return;
     // }
     navigation.navigate("SecondAuth");
+    // The navigation prop is used to navigate to the SecondAuth screen
   };
 
   return (
+    // The KeyboardAvoidingView component is used to ensure that the input fields are not hidden by the keyboard
+    // The behavior prop is set to "padding" for iOS and "height" for Android
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
+      {/* logo */}
       <View>
         <Image
           style={styles.logo}
           source={require("../../assets/images/BalanceLogo.jpg")}
         />
       </View>
+
+      {/* Title */}
       <View>
         <Text style={styles.title}>Create account</Text>
       </View>
+
+      {/* Input field component */}
       <View>
         <InputField
           placeholder={"First name"}
@@ -53,6 +69,8 @@ const Auth = ({ navigation }) => {
           required={true}
         />
       </View>
+
+      {/* Input field component */}
       <View>
         <InputField
           placeholder={"Last name"}
@@ -62,6 +80,8 @@ const Auth = ({ navigation }) => {
           required={true}
         />
       </View>
+
+      {/* Primary button component */}
       <View style={styles.buttonContainer}>
         <PrimaryButton onPress={handleNext} title="Next" buttonColor={true} />
       </View>
@@ -70,6 +90,8 @@ const Auth = ({ navigation }) => {
 };
 
 export default Auth;
+
+// Styles
 
 const styles = StyleSheet.create({
   container: {
@@ -83,7 +105,6 @@ const styles = StyleSheet.create({
     width: 86,
     height: 92,
     marginBottom: 20,
-    resizeMode: "contain",
   },
   title: {
     fontFamily: "poppins-medium",
