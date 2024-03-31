@@ -1,50 +1,25 @@
-const { log } = require("console");
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
 require("dotenv").config();
 app.use(express.json());
-mongoose
-  .connect(process.env.MONGOURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected to the database!");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
 
-require("./models/User");
+require("./models/db");
+const User = require("./models/User");
 
-const User = mongoose.model("User");
+app.post("/api/register", async (req, res) => {
+  //api endpoint
+  const user = await User({name: 'John Doe', email: 'ahmedidlbi@hotmail.com', password: '123456'})
+  res.json(user);
+});
+
+app.post("/api/login", async (req, res) => {
+  //api endpoint
+  res.send("User logged in successfully!");
+});
 
 app.get("/", (req, res) => {
   //api endpoint
   res.send("Welcome to the Balance App!");
-});
-
-app.post("/api/register", async (req, res) => {
-  const { name, email, mobile, password } = req.body; // take data from body (destructuring)
-
-  try {
-    const oldUser = await User.findOne({ email: email });
-
-    if (oldUser) {
-      return res.send({ data: "User already exists!" });
-    }
-
-    await User.create({
-      name: name,
-      email: email,
-      mobile,
-      password,
-    });
-    res.send({ status: "ok", data: "User created" });
-  } catch (error) {
-    res.send({ status: "error", data: error });
-  }
 });
 
 app.listen(3000, () => {

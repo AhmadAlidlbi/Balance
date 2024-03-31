@@ -1,17 +1,23 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const User = new mongoose.Schema(
-  {
-    name: String,
-    email: { type: String, unique: true },
-    password: String,
-    mobile: String,
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
   },
-  {
-    timestamps: true,
-  }
-);
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  avatar: {
+    type: String,
+  },
+});
 
-mongoose.model("User", User);
-// request to endpoint , endpoint responsible to deal with schema and database
+module.exports = mongoose.model('User', UserSchema);
 
+// Path: backend/routes/auth.js

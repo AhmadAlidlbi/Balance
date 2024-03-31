@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,12 +7,77 @@ import {
   SafeAreaView,
   FlatList,
   Button,
+  AppState,
 } from "react-native";
 
 import HabitItem from "../../components/HabitItem";
 import HabitInput from "../../components/HabitInput";
 
 const Dashboard = () => {
+  const [screenTime, setScreenTime] = useState('0h 0m 0s');
+  const [seconds, setSeconds] = useState(0);
+  const [appState, setAppState] = useState(AppState.currentState);
+  const [focusScore, setFocusScore] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds(seconds => seconds + 1);
+    }, 1000);
+
+    const subscription = AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      clearInterval(interval);
+      subscription.remove();
+    };
+  }, []);
+
+  const handleAppStateChange = (nextAppState) => {
+    setAppState(nextAppState);
+  };
+
+  useEffect(() => {
+    // Update screenTime format
+    const calculateScreenTime = () => {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+      setScreenTime(`${hours}h ${minutes}m ${secs}s`);
+    };
+
+    calculateScreenTime();
+  }, [seconds]);
+
+  useEffect(() => {
+    const calculateFocusScore = () => {
+      setFocusScore(calculateFocusScoreHelper(seconds, appState));
+    };
+
+    calculateFocusScore(); // Calculate initially
+  }, [appState, seconds]);
+
+  const calculateFocusScoreHelper = (screenTime, appState) => {
+    // Define weights for different app states
+    const foreground_weight = 0.8;
+    const background_weight = 0.2;
+    const inactive_weight = 0.1;
+
+    const normalized_time = screenTime / 3600; // Normalize to hours
+
+    let focusScore = 1.0; // Start at 100%
+
+    if (appState === "foreground") {
+      focusScore -= foreground_weight * normalized_time;
+    } else if (appState === "background") {
+      focusScore -= background_weight * normalized_time;
+    } else {
+      focusScore -= inactive_weight * normalized_time;
+    }
+
+    // Ensure focus score stays between 0 and 1
+    return Math.max(0, Math.min(1, focusScore)); 
+  }
+
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [habit, setNewHabit] = useState([]);
 
@@ -53,9 +118,9 @@ const Dashboard = () => {
 
       {/* Screen time calculation widget */}
       <View style={styles.screenTimeWidgetContainer}>
-        <Text style={styles.time}>04h 47m</Text>
+        <Text style={styles.time}>{screenTime}</Text>
         <Text style={styles.screenTimeText}>Screen time today</Text>
-        <Text style={styles.focusScore}>Focus score 42%</Text>
+        <Text style={styles.focusScore}>Focus Score: {(focusScore * 100).toFixed(0)}%</Text>
       </View>
 
       {/* List of tasks */}
