@@ -3,7 +3,7 @@ const app = express();
 require("dotenv").config();
 app.use(express.json());
 
-require("./models/db");
+require("./config/db");
 const User = require("./models/User");
 
 app.post("/api/register", async (req, res) => {
