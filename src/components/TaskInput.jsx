@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { Iconify } from "react-native-iconify";
 import DatePicker from "react-native-modern-datepicker";
-import SmallButton from "../components/SmallButton";
+import SmallButton from "./SmallButton";
 
-function ListInput(props) {
-  const [enteredListText, setEnteredListText] = useState("");
+function TaskInput(props) {
+  const [enteredTaskText, setEnteredTaskText] = useState("");
 
   const [openStartDate, setOpeStartDate] = useState(false);
   const [startDate, setStartDate] = useState("");
@@ -28,13 +28,13 @@ function ListInput(props) {
     console.log(descriptionText);
   }
 
-  function listInputHandler(enteredText) {
-    setEnteredListText(enteredText);
+  function taskInputHandler(enteredText) {
+    setEnteredTaskText(enteredText);
   }
 
-  function addListHandler() {
-    props.onAddList(enteredListText);
-    setEnteredListText("");
+  function addTaskHandler() {
+    props.onAddTask(enteredTaskText);
+    setEnteredTaskText("");
   }
   // Start Date
   function handleOpenStartDate() {
@@ -66,8 +66,8 @@ function ListInput(props) {
             style={styles.textInput}
             placeholder="Enter your task..."
             placeholderTextColor="#BEBEBE"
-            onChangeText={listInputHandler}
-            value={enteredListText}
+            onChangeText={taskInputHandler}
+            value={enteredTaskText}
           />
         </View>
 
@@ -78,9 +78,7 @@ function ListInput(props) {
             onPress={handleOpenStartDate}
           >
             <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
-            <Text style={styles.dateButtonText}>
-              {startDate}
-            </Text>
+            <Text style={styles.dateButtonText}>{startDate}</Text>
           </TouchableOpacity>
         </View>
 
@@ -117,7 +115,7 @@ function ListInput(props) {
             buttonColor={false}
           />
           <SmallButton
-            onPress={addListHandler}
+            onPress={addTaskHandler}
             title="Add"
             buttonColor={true}
           />
@@ -201,7 +199,7 @@ function ListInput(props) {
   );
 }
 
-export default ListInput;
+export default TaskInput;
 
 const styles = StyleSheet.create({
   inputContainer: {

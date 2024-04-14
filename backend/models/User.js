@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -18,6 +19,17 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('User', UserSchema);
+UserSchema.statics.isThisEmailInUse = async function (email) {
+  try {
+    const user = await this.findOne({ email });
+    if (user) return true;
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+module.exports = mongoose.model("User", UserSchema);
 
 // Path: backend/routes/auth.js

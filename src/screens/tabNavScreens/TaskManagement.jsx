@@ -2,51 +2,51 @@ import { useState } from "react";
 import { StyleSheet, View, FlatList, SafeAreaView } from "react-native";
 import SecondaryButton from "../../components/SecondaryButton";
 
-import ListItem from "../../components/ListItem";
-import ListInput from "../../components/ListInput";
+import TaskItem from "../../components/TaskItem";
+import TaskInput from "../../components/TaskInput";
 
 export default function TaskManagement() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [list, setNewList] = useState([]);
+  const [task, setNewTask] = useState([]);
 
-  function startAddListHandler() {
+  function startAddTaskHandler() {
     setModalIsVisible(true);
   }
 
-  function endAddListHandler() {
+  function endAddTaskHandler() {
     setModalIsVisible(false);
   }
 
-  function addListHandler(enteredListText) {
-    setNewList((currentList) => [
-      ...currentList,
-      { text: enteredListText, id: Math.random().toString() },
+  function addTaskHandler(enteredTaskText) {
+    setNewTask((currentTask) => [
+      ...currentTask,
+      { text: enteredTaskText, id: Math.random().toString() },
     ]);
-    endAddListHandler();
+    endAddTaskHandler();
   }
 
-  function deleteListHandler(id) {
-    setNewList((currentList) => {
-      return currentList.filter((list) => list.id !== id);
+  function deleteTaskHandler(id) {
+    setNewTask((currentTask) => {
+      return currentTask.filter((task) => task.id !== id);
     });
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <ListInput
+      <TaskInput
         visible={modalIsVisible}
-        onAddList={addListHandler}
-        onCancel={endAddListHandler}
+        onAddTask={addTaskHandler}
+        onCancel={endAddTaskHandler}
       />
       <View style={styles.listContainer}>
         <FlatList
-          data={list}
+          data={task}
           renderItem={(itemData) => {
             return (
-              <ListItem
+              <TaskItem
                 text={itemData.item.text}
                 id={itemData.item.id}
-                onDeleteItem={deleteListHandler}
+                onDeleteItem={deleteTaskHandler}
               />
             );
           }}
@@ -57,7 +57,7 @@ export default function TaskManagement() {
         />
       </View>
       <View style={{ marginTop: 20 }}>
-        <SecondaryButton title="New List" onPress={startAddListHandler} />
+        <SecondaryButton title="New Task" onPress={startAddTaskHandler} />
       </View>
     </SafeAreaView>
   );

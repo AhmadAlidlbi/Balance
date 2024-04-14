@@ -8,7 +8,12 @@ const User = require("./models/User");
 
 app.post("/api/register", async (req, res) => {
   //api endpoint
-  const user = await User({name: 'John Doe', email: 'ahmedidlbi@hotmail.com', password: '123456'})
+  const user = await User({
+    name: "Johns Doe",
+    email: "ahsmedidlbi11@hotmail.com",
+    password: "1223456",
+  });
+  await user.save();
   res.json(user);
 });
 

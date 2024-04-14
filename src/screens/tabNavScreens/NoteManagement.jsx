@@ -8,51 +8,51 @@ import {
 } from "react-native";
 import SecondaryButton from "../../components/SecondaryButton";
 
-import ListItem from "../../components/ListItem";
-import ListInput from "../../components/ListInput";
+import NoteItem from "../../components/NoteItem";
+import NoteInput from "../../components/NoteInput";
 
-export default function TaskManagement() {
+export default function NoteManagement() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [list, setNewList] = useState([]);
+  const [note, setNewNote] = useState([]);
 
-  function startAddListHandler() {
+  function startAddNoteHandler() {
     setModalIsVisible(true);
   }
 
-  function endAddListHandler() {
+  function endAddNoteHandler() {
     setModalIsVisible(false);
   }
 
-  function addListHandler(enteredListText) {
-    setNewList((currentList) => [
-      ...currentList,
-      { text: enteredListText, id: Math.random().toString() },
+  function addNoteHandler(enteredNoteText) {
+    setNewNote((currentNote) => [
+      ...currentNote,
+      { text: enteredNoteText, id: Math.random().toString() },
     ]);
-    endAddListHandler();
+    endAddNoteHandler();
   }
 
-  function deleteListHandler(id) {
-    setNewList((currentList) => {
-      return currentList.filter((list) => list.id !== id);
+  function deleteNoteHandler(id) {
+    setNewNote((currentNote) => {
+      return currentNote.filter((note) => note.id !== id);
     });
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <ListInput
+      <NoteInput
         visible={modalIsVisible}
-        onAddList={addListHandler}
-        onCancel={endAddListHandler}
+        onAddNote={addNoteHandler}
+        onCancel={endAddNoteHandler}
       />
       <View style={styles.listContainer}>
         <FlatList
-          data={list}
+          data={note}
           renderItem={(itemData) => {
             return (
-              <ListItem
+              <NoteItem
                 text={itemData.item.text}
                 id={itemData.item.id}
-                onDeleteItem={deleteListHandler}
+                onDeleteItem={deleteNoteHandler}
               />
             );
           }}
@@ -63,7 +63,7 @@ export default function TaskManagement() {
         />
       </View>
       <View style={{ marginTop: 20 }}>
-        <SecondaryButton title="New List" onPress={startAddListHandler} />
+        <SecondaryButton title="New Note" onPress={startAddNoteHandler} />
       </View>
     </SafeAreaView>
   );

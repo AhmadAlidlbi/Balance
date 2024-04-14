@@ -10,9 +10,9 @@ import {
 import { Iconify } from "react-native-iconify";
 import { useState } from "react";
 import DatePicker from "react-native-modern-datepicker";
-import SmallButton from "../components/SmallButton";
+import SmallButton from "./SmallButton";
 
-function ListItem(props) {
+function TaskItem(props) {
   const [isPressed, setIsPressed] = useState(false);
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -22,7 +22,7 @@ function ListItem(props) {
     setIsPressed(!isPressed);
   };
 
-  const [enteredListText, setEnteredListText] = useState("");
+  const [enteredTaskText, setEnteredTaskText] = useState("");
 
   const [openStartDate, setOpeStartDate] = useState(false);
   const [startDate, setStartDate] = useState("");
@@ -37,13 +37,13 @@ function ListItem(props) {
     console.log(descriptionText);
   }
 
-  function listInputHandler(enteredText) {
-    setEnteredListText(enteredText);
+  function taskInputHandler(enteredText) {
+    setEnteredTaskText(enteredText);
   }
 
-  function addListHandler() {
-    props.onAddList(enteredListText);
-    setEnteredListText("");
+  function addTaskHandler() {
+    props.onAddTask(enteredTaskText);
+    setEnteredTaskText("");
   }
   // Start Date
   function handleOpenStartDate() {
@@ -65,7 +65,7 @@ function ListItem(props) {
 
   return (
     <TouchableOpacity
-      style={styles.listItem}
+      style={styles.taskItem}
       onPress={() => setEditModalVisible(true)}
     >
       <TouchableOpacity onPress={handleCheckPress} style={styles.checkIcon}>
@@ -76,8 +76,14 @@ function ListItem(props) {
         />
       </TouchableOpacity>
       <View android_ripple={{ color: "#210644" }}>
-      <Text style={[styles.listText, isPressed && { textDecorationLine: 'line-through' }]}>{props.text}</Text>
-
+        <Text
+          style={[
+            styles.taskText,
+            isPressed && { textDecorationLine: "line-through" },
+          ]}
+        >
+          {props.text}
+        </Text>
       </View>
       <TouchableOpacity
         onPress={() => setDeleteModalVisible(true)}
@@ -99,8 +105,8 @@ function ListItem(props) {
               style={styles.textInput}
               placeholder="Enter your task..."
               placeholderTextColor="#BEBEBE"
-              onChangeText={listInputHandler}
-              value={enteredListText}
+              onChangeText={taskInputHandler}
+              value={enteredTaskText}
             />
           </View>
 
@@ -111,9 +117,7 @@ function ListItem(props) {
               onPress={handleOpenStartDate}
             >
               <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
-              <Text style={styles.dateButtonText}>
-                {startDate}
-              </Text>
+              <Text style={styles.dateButtonText}>{startDate}</Text>
             </TouchableOpacity>
           </View>
 
@@ -124,9 +128,7 @@ function ListItem(props) {
               onPress={handleOpenEndDate}
             >
               <Iconify icon="majesticons:calendar" size={25} color="#BEBEBE" />
-              <Text style={styles.dateButtonText}>
-                {EndDate}
-              </Text>
+              <Text style={styles.dateButtonText}>{EndDate}</Text>
             </TouchableOpacity>
           </View>
 
@@ -272,10 +274,10 @@ function ListItem(props) {
   );
 }
 
-export default ListItem;
+export default TaskItem;
 
 const styles = StyleSheet.create({
-  listItem: {
+  taskItem: {
     margin: 7,
     borderRadius: 7,
     width: 350,
@@ -286,7 +288,7 @@ const styles = StyleSheet.create({
     gap: 10,
     justifyContent: "space-between",
   },
-  listText: {
+  taskText: {
     color: "#000000",
   },
   checkIcon: {
@@ -309,22 +311,6 @@ const styles = StyleSheet.create({
     height: "20.6%",
   },
   deleteButton: {
-    backgroundColor: "#ffffff",
-    borderRadius: 5,
-    marginBottom: 10,
-    height: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.75,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  cancelButton: {
     backgroundColor: "#BE0000",
     borderRadius: 5,
     marginBottom: 10,
@@ -340,13 +326,29 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  cancelButton: {
+    backgroundColor: "#ffffff",
+    borderRadius: 5,
+    marginBottom: 10,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.75,
+    shadowRadius: 4,
+    elevation: 5,
+  },
   deleteButtonText: {
-    color: "#BE0000",
+    color: "#ffffff",
     fontSize: 18,
     textAlign: "center",
   },
   cancelButtonText: {
-    color: "white",
+    color: "#BE0000",
     fontSize: 18,
     textAlign: "center",
   },
