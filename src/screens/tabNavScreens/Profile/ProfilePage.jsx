@@ -8,10 +8,13 @@ import {
   Alert,
 } from "react-native";
 import { Iconify } from "react-native-iconify";
+import { useLogin } from "../../../context/LoginProvider";
 
-const Profile = ({ navigation }) => {
+const ProfilePage = ({ navigation }) => {
+  const { setIsLoggedIn, profile } = useLogin();
+
   const handlePersonal = () => {
-    navigation.navigate("PInfo");
+    navigation.navigate("PersonalInfo");
   };
 
   const handleSettings = () => {
@@ -30,8 +33,7 @@ const Profile = ({ navigation }) => {
         {
           text: "Logout",
           onPress: () => {
-            navigation.navigate("Main");
-            // Alert.alert("Logout Successful");
+            setIsLoggedIn(false);
           },
         },
       ],
@@ -47,10 +49,10 @@ const Profile = ({ navigation }) => {
 
       <Image
         style={styles.profileImage}
-        source={require("../../../assets/images/profilePlaceholder.png")}
+        source={profile.avatar ? { uri: profile.avatar } : require("../../../assets/images/profilePlaceholder.png")}
       />
 
-      <Text style={styles.name}>Ahmad Alidlbi</Text>
+      <Text style={styles.name}>{profile.fullName}</Text>
 
       <Text style={styles.profession}>Software Engineering Student</Text>
 
@@ -131,4 +133,4 @@ const styles = {
   },
 };
 
-export default Profile;
+export default ProfilePage;

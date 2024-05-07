@@ -10,11 +10,17 @@ import {
 } from "react-native";
 import { Iconify } from "react-native-iconify";
 import * as ImagePicker from "expo-image-picker";
+import client from "../../api/client";
+import { useLogin } from "../context/LoginProvider";
+import UploadProgress from "./UploadProgress";
 
-const Avatar = () => {
+const Avatar = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [imageModalVisible, setImageModalVisible] = useState(false);
+  const { profile } = useLogin();
+  const [progress, setProgress] = useState(0);
+  // const {token} = props.route.params;
 
   const uploadImage = async () => {
     try {
@@ -58,18 +64,48 @@ const Avatar = () => {
   };
 
   const HandlePickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (status !== "granted") {
+      alert("Sorry, we need camera roll permissions to make this work!");
+    }
+
+    if (status === "granted") {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+        setModalVisible(false);
+      }
+    }
+  };
+
+  const uploadProfileImage = async () => {
+    const formData = new FormData();
+    formData.append("profile", {
+      name: new Date() + "_profile",
+      uri: image,
+      type: "image/jpg",
     });
 
-    console.log(result);
+    try {
+      const res = await client.post("/upload-profile", formData, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+          Authorization: `JWT ${data.token}`,
+        },
+        onUploadProgress: ({ loaded, total }) => setProgress(loaded / total),
+      });
 
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-      setModalVisible(false);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -84,75 +120,93 @@ const Avatar = () => {
   };
 
   return (
-    <View>
-      <View style={styles.imageContainer}>
-        <TouchableOpacity onPress={handleOpenImage}>
-          {image ? (
-            <Image source={{ uri: image }} style={styles.profileImage} />
-          ) : (
-            <Image
-              source={require("../assets/images/profilePlaceholder.png")}
-              style={styles.profileImage}
-            />
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setModalVisible(true)}
-          style={{
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            backgroundColor: "#ffffff",
-            padding: 5,
-            borderRadius: 20,
-          }}
+    <>
+      <View>
+        <View style={styles.imageContainer}>
+          <TouchableOpacity onPress={handleOpenImage}>
+            {image ? (
+              <Image source={{ uri: image }} style={styles.profileImage} />
+            ) : (
+              <Image
+                source={
+                  profile.avatar
+                    ? { uri: profile.avatar }
+                    : require("../assets/images/profilePlaceholder.png")
+                }
+                style={styles.profileImage}
+              />
+            )}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setModalVisible(true)}
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              backgroundColor: "#ffffff",
+              padding: 5,
+              borderRadius: 20,
+            }}
+          >
+            <Iconify icon="majesticons:edit-pen-2" color="#555555" size={24} />
+          </TouchableOpacity>
+        </View>
+        {image ? (
+          <TouchableOpacity
+            style={styles.uploadButton}
+            onPress={uploadProfileImage}
+          >
+            <Text style={styles.uploadText}>Upload</Text>
+          </TouchableOpacity>
+        ) : null}
+        <Modal
+          visible={modalVisible}
+          animationType="fade"
+          onRequestClose={() => setImageModalVisible(false)}
+          transparent={true} // Set modal to transparent
         >
-          <Iconify icon="majesticons:edit-pen-2" color="#555555" size={24} />
-        </TouchableOpacity>
-      </View>
-      <Modal
-        visible={modalVisible}
-        animationType="fade"
-        onRequestClose={() => setImageModalVisible(false)}
-        transparent={true} // Set modal to transparent
-      >
-        <Pressable onPress={handleCancelPress} style={styles.background}>
-          <View style={styles.modalContainer}>
-            <TouchableOpacity onPress={uploadImage} style={styles.icons}>
-              <Iconify icon="majesticons:camera" color="#000000" size={30} />
-              <Text>Camera</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={HandlePickImage} style={styles.icons}>
-              <Iconify
-                icon="majesticons:image-plus"
-                color="#000000"
-                size={30}
-              />
-              <Text>Gallery</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleRemovePress} style={styles.icons}>
-              <Iconify
-                icon="majesticons:delete-bin"
-                color="#000000"
-                size={30}
-              />
-              <Text>Remove</Text>
-            </TouchableOpacity>
-          </View>
-        </Pressable>
-      </Modal>
+          <Pressable onPress={handleCancelPress} style={styles.background}>
+            <View style={styles.modalContainer}>
+              <TouchableOpacity onPress={uploadImage} style={styles.icons}>
+                <Iconify icon="majesticons:camera" color="#000000" size={30} />
+                <Text>Camera</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={HandlePickImage} style={styles.icons}>
+                <Iconify
+                  icon="majesticons:image-plus"
+                  color="#000000"
+                  size={30}
+                />
+                <Text>Gallery</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleRemovePress}
+                style={styles.icons}
+              >
+                <Iconify
+                  icon="majesticons:delete-bin"
+                  color="#000000"
+                  size={30}
+                />
+                <Text>Remove</Text>
+              </TouchableOpacity>
+            </View>
+          </Pressable>
+        </Modal>
 
-      <Modal
-        visible={imageModalVisible}
-        animationType="fade"
-        onRequestClose={() => setModalVisible(false)}
-        transparent={true}
-      >
-        <Pressable onPress={handleImageModalClose} style={styles.background}>
-          <Image source={{ uri: image }} style={styles.fullProfileImage} />
-        </Pressable>
-      </Modal>
-    </View>
+        <Modal
+          visible={imageModalVisible}
+          animationType="fade"
+          onRequestClose={() => setModalVisible(false)}
+          transparent={true}
+        >
+          <Pressable onPress={handleImageModalClose} style={styles.background}>
+            <Image source={{ uri: image }} style={styles.fullProfileImage} />
+          </Pressable>
+        </Modal>
+      </View>
+      {progress ? <UploadProgress process={progress} /> : null}
+    </>
   );
 };
 
@@ -203,6 +257,26 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 400,
     borderRadius: 10,
+  },
+  uploadButton: {
+    backgroundColor: "#22922b",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    width: 140,
+    height: 40,
+  },
+  uploadText: {
+    color: "#ffffff",
+    padding: 10,
+    fontSize: 18,
+  },
+  progressBarContainer: {
+    alignSelf: "center",
+    marginTop: 10,
+    width: "80%",
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

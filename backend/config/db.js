@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
-module.exports = mongoose
+mongoose
   .connect(process.env.MONGOURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
   })
   .then(() => {
     console.log("Connected to the database!");

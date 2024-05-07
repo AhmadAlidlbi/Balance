@@ -1,32 +1,44 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
+const port = process.env.PORT || 3000;
 require("dotenv").config();
+require("./config/db");
+const authRoutes = require("./routes/authRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+const noteRoutes = require("./routes/noteRoutes");
+const habitRoutes = require("./routes/habitRoutes");
+
+const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-require("./config/db");
-const User = require("./models/User");
+// Use authentication routes
+app.use(authRoutes);
 
-app.post("/api/register", async (req, res) => {
-  //api endpoint
-  const user = await User({
-    name: "Johns Doe",
-    email: "ahsmedidlbi11@hotmail.com",
-    password: "1223456",
-  });
-  await user.save();
-  res.json(user);
+// Use task routes
+app.use("/tasks", taskRoutes);
+
+// Use note routes
+app.use("/notes", noteRoutes);
+
+// Use habit routes
+app.use("/habits", habitRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-app.post("/api/login", async (req, res) => {
-  //api endpoint
-  res.send("User logged in successfully!");
+// Test route
+app.get("/test", (req, res) => {
+  res.send("Test route");
 });
 
 app.get("/", (req, res) => {
-  //api endpoint
-  res.send("Welcome to the Balance App!");
+  res.json({ success: true, message: "Hello from the server!" });
 });
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

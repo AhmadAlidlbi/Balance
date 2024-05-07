@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Iconify } from "react-native-iconify";
 
-const Settings = ({ navigation }) => {
+const SettingsPage = ({ navigation }) => {
   const handleChangePassword = () => {
     navigation.navigate("ChangePassword");
   };
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Settings;
+export default SettingsPage;

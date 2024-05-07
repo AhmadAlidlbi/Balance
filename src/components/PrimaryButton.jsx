@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-const PrimaryButton = ({ title, buttonColor, onPress }) => {
+const PrimaryButton = ({ title, buttonColor, onPress, submitting }) => {
   // Returns the primary button component
   // The button color is determined by the buttonColor prop
   // The onPress prop is a function that is called when the button is pressed
@@ -13,7 +13,7 @@ const PrimaryButton = ({ title, buttonColor, onPress }) => {
         { backgroundColor: buttonColor ? "#3a3fd3" : "#000000" },
         // If the buttonColor prop is true, the button color is set to #3a3fd3 otherwise it is set to #000000
       ]}
-      onPress={onPress}
+      onPress={!submitting ? onPress : null}
       // Calls the onPress function when the button is pressed
     >
       <Text style={styles.buttonText}>{title}</Text>
@@ -37,4 +37,3 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-medium",
   },
 });
-

@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import DatePicker from "react-native-modern-datepicker";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const CalendarScreen = () => {
+const CalendarPage = () => {
 
     const [startDate, setStartDate] = useState("");
 
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CalendarScreen;
+export default CalendarPage;

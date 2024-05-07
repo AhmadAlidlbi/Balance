@@ -9,7 +9,7 @@ import InputField from "../../../components/InputField";
 import SecondaryButton from "../../../components/SecondaryButton";
 import Avatar from "../../../components/Avatar";
 
-const PInfo = ({ navigation }) => {
+const PersonalInfoPage = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [profession, setProfession] = useState("");
@@ -106,4 +106,4 @@ const styles = {
   },
 };
 
-export default PInfo;
+export default PersonalInfoPage;

@@ -1,52 +1,58 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
 import SecondaryButton from "../../components/SecondaryButton";
 
-import TaskItem from "../../components/TaskItem";
-import TaskInput from "../../components/TaskInput";
+import NoteItem from "../../components/NoteItem";
+import NoteInput from "../../components/NoteInput";
 
-export default function TaskManagement() {
+const NotesPage = () => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [task, setNewTask] = useState([]);
+  const [note, setNewNote] = useState([]);
 
-  function startAddTaskHandler() {
+  function startAddNoteHandler() {
     setModalIsVisible(true);
   }
 
-  function endAddTaskHandler() {
+  function endAddNoteHandler() {
     setModalIsVisible(false);
   }
 
-  function addTaskHandler(enteredTaskText) {
-    setNewTask((currentTask) => [
-      ...currentTask,
-      { text: enteredTaskText, id: Math.random().toString() },
+  function addNoteHandler(enteredNoteText) {
+    setNewNote((currentNote) => [
+      ...currentNote,
+      { text: enteredNoteText, id: Math.random().toString() },
     ]);
-    endAddTaskHandler();
+    endAddNoteHandler();
   }
 
-  function deleteTaskHandler(id) {
-    setNewTask((currentTask) => {
-      return currentTask.filter((task) => task.id !== id);
+  function deleteNoteHandler(id) {
+    setNewNote((currentNote) => {
+      return currentNote.filter((note) => note.id !== id);
     });
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <TaskInput
+      <NoteInput
         visible={modalIsVisible}
-        onAddTask={addTaskHandler}
-        onCancel={endAddTaskHandler}
+        onAddNote={addNoteHandler}
+        onCancel={endAddNoteHandler}
       />
       <View style={styles.listContainer}>
         <FlatList
-          data={task}
+          data={note}
           renderItem={(itemData) => {
             return (
-              <TaskItem
+              <NoteItem
                 text={itemData.item.text}
                 id={itemData.item.id}
-                onDeleteItem={deleteTaskHandler}
+                onDeleteItem={deleteNoteHandler}
               />
             );
           }}
@@ -57,11 +63,13 @@ export default function TaskManagement() {
         />
       </View>
       <View style={{ marginTop: 20 }}>
-        <SecondaryButton title="New Task" onPress={startAddTaskHandler} />
+        <SecondaryButton title="New Note" onPress={startAddNoteHandler} />
       </View>
     </SafeAreaView>
   );
 }
+
+export default NotesPage;
 
 const styles = StyleSheet.create({
   container: {

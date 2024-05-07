@@ -12,12 +12,14 @@ import {
 
 import HabitItem from "../../components/HabitItem";
 import HabitInput from "../../components/HabitInput";
+import { useLogin } from "../../context/LoginProvider";
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const [screenTime, setScreenTime] = useState('0h 0m 0s');
   const [seconds, setSeconds] = useState(0);
   const [appState, setAppState] = useState(AppState.currentState);
   const [focusScore, setFocusScore] = useState(0);
+  const {  profile } = useLogin();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -108,12 +110,12 @@ const Dashboard = () => {
       <View style={styles.headerContainer}>
         {/* User's profile picture */}
         <Image
-          source={require("../../assets/images/profile.jpg")}
+        source={profile.avatar ? { uri: profile.avatar } : require("../../assets/images/profilePlaceholder.png")}
           style={styles.profileImage}
         />
 
         {/* User's name */}
-        <Text style={styles.profileName}>Hey, Ahmad!</Text>
+        <Text style={styles.profileName}>Hey, {profile.fullName}</Text>
       </View>
 
       {/* Screen time calculation widget */}
@@ -247,4 +249,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Dashboard;
+export default DashboardPage;

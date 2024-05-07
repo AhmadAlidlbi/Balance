@@ -1,21 +1,29 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar"; 
-import { NavigationContainer } from "@react-navigation/native";
-import MainStackNavigator from "./src/navigation/MainStackNavigator";
+import React, { useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-
-/**
- * The main component of the application.
- * Renders the navigation container and the main stack navigator.
-*
- * @returns {JSX.Element} The rendered component.
- */
+import axios from "axios";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { NavigationContainer } from "@react-navigation/native";
+import AppNavigator from "./src/navigation/AppNavigator";
+import LoginProvider from "./src/context/LoginProvider";
 
 export default function App() {
-  /**
-   * Loads the required fonts using the useFonts hook.
-   * @returns {Array} An array containing the status of font loading.
-   */
+  const fetchApi = async () => {
+    try {
+      const res = await axios.get("http://192.168.1.34:3000/");
+      console.log(res.data);
+    } catch (error) {
+      console.log("Axios Error:", error.message);
+      console.log("Status Code:", error.response.status);
+      console.log("Response Data:", error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchApi();
+  }, []);
+
+  const cld = new Cloudinary({ cloud: { cloudName: "dwwvw37yy" } });
 
   const [fontsLoaded] = useFonts({
     poppins: require("./src/assets/fonts/Poppins-Regular.ttf"),
@@ -33,16 +41,11 @@ export default function App() {
   }
 
   return (
-    <>
-      {/* Renders the status bar */}
+    <NavigationContainer>
       <StatusBar style="auto" />
-
-      {/* Renders the navigation container component */}
-      <NavigationContainer>
-
-        {/* Renders the main stack navigator component */}
-        <MainStackNavigator />
-      </NavigationContainer>
-    </>
+      <LoginProvider>
+        <AppNavigator />
+      </LoginProvider>
+    </NavigationContainer>
   );
 }
