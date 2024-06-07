@@ -98,11 +98,11 @@ const TasksListItem = (props) => {
               <Text style={styles.deleteButtonText}>{language === "English" ? "Delete": "Sil"}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.cancelButton}
+              style={[styles.cancelButton, { backgroundColor: theme === "dark" ? "#292929" : "#E9E9E9" }]}
               onPress={() => setDeleteModalVisible(false)}
             >
-              <Text style={styles.cancelButtonText}>{language === "English" ? "Cancel": "Vazgeç"}</Text>
-            </TouchableOpacity>
+              <Text style={[styles.cancelButtonText, {color: theme === "dark" ? "#ff0000" : "#9B0000"}]}>{language === "English" ? "Cancel": "Vazgeç"}</Text>
+              </TouchableOpacity>
           </View>
         </View>
       </Modal>

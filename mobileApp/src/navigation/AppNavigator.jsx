@@ -390,7 +390,7 @@ function DrawerNavigator() {
         headerTintColor: theme === "dark" ? "#ffffff" : "#3a3fd3",
         headerShadowVisible: false,
         headerTitleStyle: {
-          color: theme === "dark" ? "#ffffff00" : "#00000000", // Set the title color here
+          color: theme === "dark" ? "#ffffff00" : "#00000000",
         },
         drawerLabelStyle: (focused) => getDrawerLabelStyle(focused),
       })}
