@@ -8,13 +8,15 @@ const { isAuth } = require("../middleware/Auth");
 router.post("/", isAuth, habitController.createHabit);
 
 // Get all habits for a user
-router.get("/:userId", isAuth, habitController.getHabitsByUserId);
+router.get("/user/:userId", isAuth, habitController.getHabitsByUserId);
 
 // Get a single habit by ID
 router.get("/:habitId", isAuth, habitController.getHabitById);
 
 // Update a habit
 router.put("/:habitId", isAuth, habitController.updateHabit);
+
+router.patch("/:habitId", isAuth, habitController.editHabit);
 
 // Delete a habit
 router.delete("/:habitId", isAuth, habitController.deleteHabit);

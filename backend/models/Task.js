@@ -9,6 +9,10 @@ const taskSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  startDate: {
+    type: Date,
+    required: true,
+  },
   endDate: {
     type: Date,
     required: true,
@@ -25,3 +29,7 @@ const taskSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model("Task", taskSchema);
+
+// TaskList model contains an array of tasks and a title and user ID
+
+

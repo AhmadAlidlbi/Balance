@@ -13,7 +13,14 @@ router.get("/:userId", isAuth, taskController.getTasksByUserId);
 router.get("/:taskId", isAuth, taskController.getTaskById);
 
 // Update a task
+
 router.put("/:taskId", isAuth, taskController.updateTask);
+
+router.patch("/changeStatus/:taskId", isAuth, taskController.changeStatus);
+
+router.put("/edit/:taskId", isAuth, taskController.editTask);
+
+router.patch('/byDate', isAuth, taskController.getTasksByStartDate);
 
 // Delete a task
 router.delete("/:taskId", isAuth, taskController.deleteTask);

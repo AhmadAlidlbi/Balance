@@ -8,7 +8,7 @@ const { isAuth } = require("../middleware/Auth");
 router.post("/", isAuth, noteController.createNote);
 
 // Get all notes for a user
-router.get("/:userId", isAuth, noteController.getNotesByUserId);
+router.get("/user/:userId", isAuth, noteController.getNotesByUserId);
 
 // Get a single note by ID
 router.get("/:noteId", isAuth, noteController.getNoteById);
