@@ -1,13 +1,7 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getToken } from "../../utils/storage";
 import { getProfile } from "../../api/user";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginContext = createContext();
 
@@ -33,8 +27,28 @@ const LoginProvider = ({ children }) => {
     loadLanguage();
   }, []);
 
+  useEffect(() => {
+    // Load theme from storage when component mounts
+    const loadTheme = async () => {
+      try {
+        const savedTheme = await AsyncStorage.getItem('theme');
+        if (savedTheme !== null) {
+          setTheme(savedTheme);
+        }
+      } catch (error) {
+        console.log("Error loading theme from storage:", error);
+      }
+    };
+    loadTheme();
+  }, []);
+
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    // Save the selected theme to storage
+    AsyncStorage.setItem('theme', newTheme)
+      .then(() => console.log("Theme saved:", newTheme))
+      .catch((error) => console.log("Error saving theme:", error));
   };
 
   const toggleLanguage = () => {
@@ -65,6 +79,7 @@ const LoginProvider = ({ children }) => {
       console.log("Profile Error:", error.response.data);
     }
   };
+
   useEffect(() => {
     checkLogin();
   }, []);

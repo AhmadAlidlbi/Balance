@@ -120,14 +120,15 @@ const AuthStackNavigator = () => {
 const TaskStack = createStackNavigator();
 
 const TaskStackNavigator = () => {
-  const { theme, language  } = useLogin();
+  const { theme, language } = useLogin();
 
   return (
     <TaskStack.Navigator>
       <TaskStack.Screen
         options={{
           headerShown: true,
-          headerTitle: language === "English" ? "Task Lists": "Görev Listeleri",
+          headerTitle:
+            language === "English" ? "Task Lists" : "Görev Listeleri",
           headerShadowVisible: false,
           headerTitleStyle: {
             color: theme === "dark" ? "#ffffff" : "#000000",
@@ -166,7 +167,7 @@ const TaskStackNavigator = () => {
         options={({ route }) => ({
           headerShown: true,
           headerShadowVisible: false,
-          headerTitle:"",
+          headerTitle: "",
           headerTitleStyle: {
             color: theme === "dark" ? "#ffffff" : "#000000",
             fontFamily: "Poppins_600SemiBold",
@@ -218,7 +219,7 @@ function NotesStackNavigator() {
 }
 
 function TabNavigator() {
-  const { theme, language  } = useLogin();
+  const { theme, language } = useLogin();
 
   return (
     <Tab.Navigator
@@ -262,7 +263,7 @@ function TabNavigator() {
         options={{
           headerShown: true,
           headerShadowVisible: false,
-          headerTitle: language === "English" ? "Calendar": "Takvim",
+          headerTitle: language === "English" ? "Calendar" : "Takvim",
           headerTitleStyle: {
             color: theme === "dark" ? "#ffffff" : "#000000",
             fontFamily: "Poppins_600SemiBold",
@@ -312,7 +313,9 @@ function CustomDrawerContent(props) {
   const handleLogout = () => {
     Alert.alert(
       language === "English" ? "Log out" : "Çıkış Yap",
-      language === "English" ? "Are you sure you want to logout?" : "Oturumu kapatmak istediğinizden emin misiniz?",
+      language === "English"
+        ? "Are you sure you want to logout?"
+        : "Oturumu kapatmak istediğinizden emin misiniz?",
       [
         {
           text: language === "English" ? "Cancel" : "Vazgeç",
@@ -369,39 +372,63 @@ const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
   const { theme, language } = useLogin();
+
+  const getDrawerLabelStyle = (focused) => {
+    if (theme === "dark") {
+      return { color: focused ? "#ffffff" : "#787878" }; // white if focused, grey if not
+    } else {
+      return { color: focused ? "#000000" : "#787878" }; // black if focused, grey if not
+    }
+  };
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
-      screenOptions={{
+      screenOptions={({ route, navigation }) => ({
         headerStyle: {
           backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
         },
         headerTintColor: theme === "dark" ? "#ffffff" : "#3a3fd3",
         headerShadowVisible: false,
         headerTitleStyle: {
-          color: "#00000000",
+          color: theme === "dark" ? "#ffffff00" : "#00000000", // Set the title color here
         },
-      }}
+        drawerLabelStyle: (focused) => getDrawerLabelStyle(focused),
+      })}
     >
       <Drawer.Screen
-        name={language === "English" ? "Home" : "Gösterge Paneli"}
+        name={language === "English" ? "Homes" : "Gösterge Paneli"}
         component={DashboardPage}
+        options={({ route, navigation }) => ({
+          drawerLabelStyle: getDrawerLabelStyle(navigation.isFocused()),
+        })}
       />
       <Drawer.Screen
         name={language === "English" ? "Tasks Page" : "Görevler Sayfası"}
         component={TaskStackNavigator}
+        options={({ route, navigation }) => ({
+          drawerLabelStyle: getDrawerLabelStyle(navigation.isFocused()),
+        })}
       />
       <Drawer.Screen
         name={language === "English" ? "Calendar Page" : "Takvim Sayfası"}
         component={CalendarPage}
+        options={({ route, navigation }) => ({
+          drawerLabelStyle: getDrawerLabelStyle(navigation.isFocused()),
+        })}
       />
       <Drawer.Screen
         name={language === "English" ? "Notes Page" : "Notlar Sayfası"}
         component={NotesStackNavigator}
+        options={({ route, navigation }) => ({
+          drawerLabelStyle: getDrawerLabelStyle(navigation.isFocused()),
+        })}
       />
-            <Drawer.Screen
+      <Drawer.Screen
         name={language === "English" ? "Profile Page" : "Profil Sayfası"}
         component={ProfilePage}
+        options={({ route, navigation }) => ({
+          drawerLabelStyle: getDrawerLabelStyle(navigation.isFocused()),
+        })}
       />
     </Drawer.Navigator>
   );
@@ -410,7 +437,7 @@ function DrawerNavigator() {
 const MainStack = createStackNavigator();
 
 function MainStackNavigator() {
-  const { theme, language} = useLogin();
+  const { theme, language } = useLogin();
   return (
     <MainStack.Navigator
       screenOptions={{
@@ -449,9 +476,10 @@ function MainStackNavigator() {
           headerStyle: {
             backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
           },
-          headerTitle: language === "English" ? "Personal Information": "Kişisel bilgi",
+          headerTitle:
+            language === "English" ? "Personal Information" : "Kişisel bilgi",
           headerShadowVisible: false,
-          headerBackTitle: language === "English" ? "Profile": "Profilim",
+          headerBackTitle: language === "English" ? "Profile" : "Profilim",
         }}
       />
       <MainStack.Screen
@@ -467,9 +495,9 @@ function MainStackNavigator() {
           headerStyle: {
             backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
           },
-          headerTitle: language === "English" ? "Settings": "Ayarlar",
+          headerTitle: language === "English" ? "Settings" : "Ayarlar",
           headerShadowVisible: false,
-          headerBackTitle: language === "English" ? "Profile": "Profilim",
+          headerBackTitle: language === "English" ? "Profile" : "Profilim",
         }}
       />
       <MainStack.Screen
@@ -486,8 +514,9 @@ function MainStackNavigator() {
             backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
           },
           headerShadowVisible: false,
-          headerBackTitle: language === "English" ? "Settings": "Ayarlar",
-          headerTitle: language === "English" ? "Change Password": "Şifre değiştir",
+          headerBackTitle: language === "English" ? "Settings" : "Ayarlar",
+          headerTitle:
+            language === "English" ? "Change Password" : "Şifre değiştir",
         }}
       />
       <MainStack.Screen
@@ -504,8 +533,8 @@ function MainStackNavigator() {
             backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
           },
           headerShadowVisible: false,
-          headerBackTitle: language === "English" ? "Settings": "Ayarlar",
-          headerTitle: language === "English" ? "About": "Uygulama hakkında",
+          headerBackTitle: language === "English" ? "Settings" : "Ayarlar",
+          headerTitle: language === "English" ? "About" : "Uygulama hakkında",
         }}
       />
       <MainStack.Screen
@@ -522,8 +551,11 @@ function MainStackNavigator() {
             backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
           },
           headerShadowVisible: false,
-          headerBackTitle: language === "English" ? "Settings": "Ayarlar",
-          headerTitle: language === "English" ? "Terms & Conditions": "Şartlar ve Koşullar",
+          headerBackTitle: language === "English" ? "Settings" : "Ayarlar",
+          headerTitle:
+            language === "English"
+              ? "Terms & Conditions"
+              : "Şartlar ve Koşullar",
         }}
       />
       <MainStack.Screen
@@ -540,8 +572,8 @@ function MainStackNavigator() {
             backgroundColor: theme === "dark" ? "#000000" : "#ffffff",
           },
           headerShadowVisible: false,
-          headerBackTitle: language === "English" ? "Settings": "Ayarlar",
-          headerTitle: language === "English" ? "Language": "Dil",
+          headerBackTitle: language === "English" ? "Settings" : "Ayarlar",
+          headerTitle: language === "English" ? "Language" : "Dil",
         }}
       />
       <MainStack.Screen
