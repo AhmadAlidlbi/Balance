@@ -123,7 +123,6 @@ const SettingsPage = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-
       <View
         style={[
           styles.switchContainer,
@@ -141,7 +140,13 @@ const SettingsPage = ({ navigation }) => {
             { color: theme === "dark" ? "#ffffff" : "#000000" },
           ]}
         >
-          {language === "English" ? "Dark Mode" : "Karanlık Mod"}
+          {language === "English"
+            ? theme === "dark"
+              ? "Light Mode"
+              : "Dark Mode"
+            : theme === "dark"
+            ? "Işık Modu"
+            : "Karanlık Modu"}
         </Text>
         <TouchableOpacity
           style={[
