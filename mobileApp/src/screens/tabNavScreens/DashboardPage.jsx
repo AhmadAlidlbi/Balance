@@ -232,15 +232,17 @@ const DashboardPage = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>
-          <Text
-            style={[
-              styles.profileName,
-              { color: theme === "dark" ? "#ffffff" : "#000000" },
-            ]}
-          >
-            {language === "English" ? "Hey, " : "Merhaba, "}
-            {profile.fullName}
-          </Text>
+          <TouchableOpacity>
+            <Text
+              style={[
+                styles.profileName,
+                { color: theme === "dark" ? "#ffffff" : "#000000" },
+              ]}
+            >
+              {language === "English" ? "Hey, " : "Merhaba, "}
+              {profile.fullName}
+            </Text>
+          </TouchableOpacity>
           <Text
             style={[
               styles.quote,
@@ -272,7 +274,7 @@ const DashboardPage = ({ navigation }) => {
       </View>
 
       <View style={styles.widgets}>
-        <View
+        <TouchableOpacity
           style={[
             styles.screenTimeWidgetContainer,
             { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3" },
@@ -299,8 +301,8 @@ const DashboardPage = ({ navigation }) => {
                   "/" +
                   allHabits?.length}
             </Text>
-        </View>
-        <View
+        </TouchableOpacity>
+        <TouchableOpacity
           style={[
             styles.screenTimeWidgetContainer,
             { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3" },
@@ -317,7 +319,7 @@ const DashboardPage = ({ navigation }) => {
           <Text style={styles.screenTimeText}>
             {language === "English" ? "Analytics" : "Analitik"}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View
         style={[
@@ -402,7 +404,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 18,
     fontWeight: "500",
-    marginTop: 25,
+    marginTop: 15,
     textTransform: "capitalize",
     fontFamily: "poppins",
   },
