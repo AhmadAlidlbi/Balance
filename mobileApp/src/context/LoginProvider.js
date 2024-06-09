@@ -11,6 +11,7 @@ const LoginProvider = ({ children }) => {
   const [loadingPending, setLoadingPending] = useState(false);
   const [theme, setTheme] = useState("light");
   const [language, setLanguage] = useState("English");
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
   useEffect(() => {
     // Load language from storage when component mounts
@@ -42,6 +43,21 @@ const LoginProvider = ({ children }) => {
     loadTheme();
   }, []);
 
+  useEffect(() => {
+    // Load sound state from storage when component mounts
+    const loadSoundState = async () => {
+      try {
+        const savedSoundState = await AsyncStorage.getItem('soundEnabled');
+        if (savedSoundState !== null) {
+          setSoundEnabled(savedSoundState === "true");
+        }
+      } catch (error) {
+        console.log("Error loading sound state from storage:", error);
+      }
+    };
+    loadSoundState();
+  }, []);
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -58,6 +74,15 @@ const LoginProvider = ({ children }) => {
     AsyncStorage.setItem('language', newLanguage)
       .then(() => console.log("Language saved:", newLanguage))
       .catch((error) => console.log("Error saving language:", error));
+  };
+
+  const toggleSound = () => { // Step 2: Create function to toggle sound state
+    const newSoundState = !soundEnabled;
+    setSoundEnabled(newSoundState);
+    // Save the sound state to storage
+    AsyncStorage.setItem('soundEnabled', newSoundState.toString())
+      .then(() => console.log("Sound state saved:", newSoundState))
+      .catch((error) => console.log("Error saving sound state:", error));
   };
 
   const checkLogin = async () => {
@@ -97,6 +122,8 @@ const LoginProvider = ({ children }) => {
         toggleTheme,
         language,
         toggleLanguage,
+        soundEnabled, 
+        toggleSound,
       }}
     >
       {children}

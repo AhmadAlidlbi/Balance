@@ -1,14 +1,36 @@
 import { StyleSheet, View, Text, Modal, TouchableOpacity } from "react-native";
 import { Iconify } from "react-native-iconify";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HabitEdit from "./HabitEdit";
 import { editHabit } from "../../api/habitApi";
 import { useLogin } from "../context/LoginProvider";
+import { Audio } from "expo-av";
 
 function HabitItem(props) {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [editModalIsVisible, setEditModalIsVisible] = useState(false);
-  const { theme, language  } = useLogin();
+  const { theme, language, soundEnabled } = useLogin();
+  const [sound, setSound] = useState();
+
+  async function playSound() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/sounds/complete.mp3")
+    );
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   const editHabitHandler = async (habitText) => {
     await editHabit(props.id, habitText);
@@ -20,6 +42,13 @@ function HabitItem(props) {
     setEditModalIsVisible(false);
   };
 
+  const handleCheckIconPress = async () => {
+    if (!props.completed && soundEnabled) {
+      await playSound();
+    }
+    props.onUpdate(props.id, props.completed);
+  };
+
   return (
     <TouchableOpacity
       onLongPress={() => setEditModalIsVisible(true)}
@@ -29,7 +58,7 @@ function HabitItem(props) {
       ]}
     >
       <TouchableOpacity
-        onPress={() => props.onUpdate(props.id, props.completed)}
+        onPress={handleCheckIconPress}
         style={styles.checkIcon}
       >
         <Iconify
@@ -76,13 +105,25 @@ function HabitItem(props) {
               style={styles.deleteButton}
               onPress={props.onDeleteItem.bind(this, props.id)}
             >
-              <Text style={styles.deleteButtonText}>{language === "English" ? "Delete": "Sil"}</Text>
+              <Text style={styles.deleteButtonText}>
+                {language === "English" ? "Delete" : "Sil"}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.cancelButton, { backgroundColor: theme === "dark" ? "#292929" : "#E9E9E9" }]}
+              style={[
+                styles.cancelButton,
+                { backgroundColor: theme === "dark" ? "#292929" : "#E9E9E9" },
+              ]}
               onPress={() => setDeleteModalVisible(false)}
             >
-              <Text style={[styles.cancelButtonText, {color: theme === "dark" ? "#ff0000" : "#9B0000"}]}>{language === "English" ? "Cancel": "Vazgeç"}</Text>
+              <Text
+                style={[
+                  styles.cancelButtonText,
+                  { color: theme === "dark" ? "#ff0000" : "#9B0000" },
+                ]}
+              >
+                {language === "English" ? "Cancel" : "Vazgeç"}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

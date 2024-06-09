@@ -23,16 +23,77 @@ import { BASE_URL } from "../../../utils/config";
 import { useIsFocused } from "@react-navigation/native";
 import { getProfile } from "../../../api/user";
 import * as Progress from "react-native-progress";
-import { Font } from 'expo-font';
+import { Font } from "expo-font";
+import { Audio } from "expo-av";
+import { PieChart } from "react-native-gifted-charts";
+const successSound = require("../../assets/sounds/success.mp3");
+import { getCompletedTasks } from "../../../api/task";
+
+const EnglishMotivationalSentences = [
+  "Have a productive day! 🌟",
+  "Stay focused and motivated! 💪",
+  "You've got this! 👍",
+  "Make today amazing! ✨",
+  "Keep pushing forward! 🚀",
+  "Believe in yourself! 💫",
+  "Today is your day! 🎉",
+];
+
+const TurkishMotivationalSentences = [
+  "Verimli bir gün geçir! 🌟",
+  "Odaklanmış ve motive olmuş kal! 💪",
+  "Bunu başarabilirsin! 👍",
+  "Bugün harika yap! ✨",
+  "Devam et! 🚀",
+  "Kendine inan! 💫",
+  "Bugün senin günün! 🎉",
+];
 
 const DashboardPage = ({ navigation }) => {
-  const { profile, setProfile, theme, language } = useLogin();
+  const { profile, setProfile, theme, language, soundEnabled } = useLogin();
   const isFocused = useIsFocused();
   const [progress, setProgress] = useState(0);
   const [completedHabits, setCompletedHabits] = useState(0);
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [allHabits, setAllHabits] = useState([]);
+  const [playSuccessSound, setPlaySuccessSound] = useState(false);
+  const [showGoodJob, setShowGoodJob] = useState(false);
+  const [englishMotivationalSentence, setEnglishMotivationalSentence] =
+    useState("");
+  const [turkishMotivationalSentence, setTurkishMotivationalSentence] =
+    useState("");
+  const [completedTasks, setCompletedTasks] = useState([]);
 
+  useEffect(() => {
+    const fetchCompletedTasks = async (userId) => {
+      try {
+        const response = await getCompletedTasks(userId);
+        if (response.success) {
+          setCompletedTasks(response.tasks);
+        } else {
+          console.error("Error fetching completed tasks:", response.message);
+        }
+      } catch (error) {
+        console.error("Error fetching completed tasks:", error);
+      }
+    };
+
+    if (profile.id) {
+      fetchCompletedTasks(profile.id);
+    }
+  }, [profile.id]);
+
+  const completedHabitsCount = completedHabits;
+  const pendingHabitsCount = allHabits.length - completedHabitsCount;
+  const completedTasksCount = completedTasks.length;
+  const pendingTasksCount = completedTasksCount;
+
+  const pieChartData = [
+    { value: completedHabitsCount, color: "green", text: "Completed Habits" },
+    { value: pendingHabitsCount, color: "#ff9100", text: "Pending Habits" },
+    { value: completedTasksCount, color: "blue", text: "Completed Tasks" },
+    { value: pendingTasksCount, color: "red", text: "Pending Tasks" },
+  ];
 
   const fetchHabits = useCallback(async () => {
     try {
@@ -56,6 +117,52 @@ const DashboardPage = ({ navigation }) => {
       fetchHabits();
     }
   }, [isFocused, fetchHabits]);
+
+  useEffect(() => {
+    if (progress === 1) {
+      setPlaySuccessSound(true);
+      setShowGoodJob(true);
+
+      // Set a timeout to hide the "Good Job!" text after 2 seconds
+      setTimeout(() => {
+        setShowGoodJob(false);
+      }, 3000);
+    }
+  }, [progress]);
+
+  useEffect(() => {
+    // Play the success sound
+    const playSound = async () => {
+      try {
+        if (soundEnabled && playSuccessSound) {
+          const { sound } = await Audio.Sound.createAsync(successSound);
+          await sound.playAsync();
+        }
+      } catch (error) {
+        console.log("Error playing sound:", error);
+      }
+    };
+
+    playSound();
+    // Reset the state to prevent continuous playback
+    setPlaySuccessSound(false);
+  }, [soundEnabled, playSuccessSound]);
+
+  useEffect(() => {
+    // Select a random motivational sentence
+    const randomIndex = Math.floor(
+      Math.random() * EnglishMotivationalSentences.length
+    );
+    setEnglishMotivationalSentence(EnglishMotivationalSentences[randomIndex]);
+  }, []);
+
+  useEffect(() => {
+    // Select a random motivational sentence
+    const randomIndex = Math.floor(
+      Math.random() * TurkishMotivationalSentences.length
+    );
+    setTurkishMotivationalSentence(TurkishMotivationalSentences[randomIndex]);
+  }, []);
 
   const getProfileHandler = async () => {
     try {
@@ -131,7 +238,8 @@ const DashboardPage = ({ navigation }) => {
               { color: theme === "dark" ? "#ffffff" : "#000000" },
             ]}
           >
-            {language === "English" ? "Hey, ": "Merhaba, "}{profile.fullName}
+            {language === "English" ? "Hey, " : "Merhaba, "}
+            {profile.fullName}
           </Text>
           <Text
             style={[
@@ -139,7 +247,9 @@ const DashboardPage = ({ navigation }) => {
               { color: theme === "dark" ? "#ffffff" : "#777" },
             ]}
           >
-            {language === "English" ? "Have a productive day!": "Verimli bir gün geçirin!"}
+            {language === "English"
+              ? englishMotivationalSentence
+              : turkishMotivationalSentence}
           </Text>
         </View>
 
@@ -161,24 +271,53 @@ const DashboardPage = ({ navigation }) => {
         </View>
       </View>
 
-      <View
-        style={[
-          styles.screenTimeWidgetContainer,
-          { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3" },
-        ]}
-      >
-        <Progress.Circle
-          color="white"
-          textStyle={{
-            fontSize: 16,
-          }}
-          showsText
-          progress={progress}
-          size={70}
-        />
-        <Text style={styles.time}>
-          {language === "English" ? "Completed Habits ": "Tamamlanan Alışkanlıklar "+ completedHabits + "/" + allHabits?.length}
-        </Text>
+      <View style={styles.widgets}>
+        <View
+          style={[
+            styles.screenTimeWidgetContainer,
+            { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3" },
+          ]}
+        >
+          <Progress.Circle
+            color="white"
+            textStyle={{
+              fontSize: 16,
+            }}
+            showsText
+            progress={progress}
+            size={70}
+          />
+            <Text style={styles.time}>
+              {showGoodJob
+                ? language === "English"
+                  ? "Good Job 🎉!"
+                  : "Harika İş Çıkardınız 🎉!"
+                : language === "English"
+                ? "Completed Habits " + completedHabits + "/" + allHabits?.length
+                : "Tamamlanan Alışkanlıklar " +
+                  completedHabits +
+                  "/" +
+                  allHabits?.length}
+            </Text>
+        </View>
+        <View
+          style={[
+            styles.screenTimeWidgetContainer,
+            { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3" },
+          ]}
+        >
+          <PieChart
+            data={pieChartData}
+            radius={50}
+            valueAccessor={({ item }) => item.value} 
+            innerRadius={30} 
+            padAngle={0.02} 
+            cornerRadius={5} 
+          />
+          <Text style={styles.screenTimeText}>
+            {language === "English" ? "Analytics" : "Analitik"}
+          </Text>
+        </View>
       </View>
       <View
         style={[
@@ -193,15 +332,22 @@ const DashboardPage = ({ navigation }) => {
               { color: theme === "dark" ? "#ffffff" : "#000000" },
             ]}
           >
-            {language === "English" ? " Daily Habit": "Günlük Alışkanlık"} / {allHabits.length}
+            {language === "English" ? " Daily Habit" : "Günlük Alışkanlık"} /{" "}
+            {allHabits.length}
           </Text>
 
-          <View style={[styles.listButton, 
-            { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3"}
-          ]}>
-
+          <View
+            style={[
+              styles.listButton,
+              { backgroundColor: theme === "dark" ? "#292929" : "#3a3fd3" },
+            ]}
+          >
             <TouchableOpacity onPress={startAddHabitHandler}>
-            {theme === "dark" ?(<Iconify icon="ep:circle-plus" size={26} color="white" />):(<Iconify icon="ep:circle-plus-filled" size={26} color="white" />)}
+              {theme === "dark" ? (
+                <Iconify icon="ep:circle-plus" size={26} color="white" />
+              ) : (
+                <Iconify icon="ep:circle-plus-filled" size={26} color="white" />
+              )}
             </TouchableOpacity>
           </View>
         </View>
@@ -264,7 +410,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#3a3fd3",
     borderRadius: 15,
     height: 170,
-    marginHorizontal: 20,
+    width: "45%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
@@ -274,15 +420,25 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.5,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  widgets: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    justifyContent: "center",
   },
   time: {
     top: 10,
-    fontSize: 18,
+    fontSize: 16,
     color: "#ffffff",
+    textAlign: "center",
   },
   screenTimeText: {
-    fontSize: 20,
+    fontSize: 16,
     color: "#ffffff",
+    marginTop: 10,
   },
   focusScore: {
     fontSize: 15,

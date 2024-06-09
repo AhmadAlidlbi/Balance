@@ -16,18 +16,44 @@ import { editHabit } from "../../api/habitApi";
 import { editTask } from "../../api/task";
 import { useLogin } from "../context/LoginProvider";
 import { useNavigation } from "@react-navigation/native";
+import { Audio } from "expo-av";
 
 function TaskItem(props) {
   const navigation = useNavigation();
-  const { theme, language } = useLogin();
+  const { theme, language, soundEnabled } = useLogin();
   const task = props.task;
 
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [timerModalVisible, setTimerModalVisible] = useState(false);
   const [isTimerPressed, setIsTimerPressed] = useState(false);
+  const [sound, setSound] = useState();
 
-  const handleCheckPress = () => {
+  async function playSound() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/sounds/complete.mp3")
+    );
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+
+  const handleCheckPress = async () => {
+    if (!task.completed && soundEnabled) {
+      await playSound();
+    }
     props.changeTaskStatusHanker(task._id, !task.completed);
   };
 

@@ -22,12 +22,14 @@ const TasksPage = (props) => {
 
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [taskListLength, setTaskListLength] = useState(0);
   const fetchTasks = async () => {
     try {
       if (id) {
         const res = await getTaskListById(id);
         console.log("Tasks:", res.taskList.tasks?.length);
         setTasks(res.taskList.tasks || []);
+        setTaskListLength(res.taskList.tasks?.length || 0)
       }
     } catch (error) {
       console.log("Error:", error.message);

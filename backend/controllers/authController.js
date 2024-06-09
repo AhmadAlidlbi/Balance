@@ -169,7 +169,6 @@ exports.deleteProfileImage = async (req, res) => {
     return res.status(401).json({ success: false, message: "Unauthorized access!" });
 
   try {
-    // Remove the avatar field from the user's profile
     await User.findByIdAndUpdate(user._id, { avatar: "" });
     res.status(200).json({ success: true, message: "Profile image deleted successfully!" });
   } catch (error) {

@@ -4,7 +4,7 @@ import PrimaryButton from "../../components/PrimaryButton";
 import { useLogin } from "../../context/LoginProvider";
 
 const LauncherPage = ({ navigation }) => {
-  const { theme } = useLogin();
+  const { theme, language } = useLogin();
 
   return (
     <View style={[styles.container, {backgroundColor: theme === "dark" ? "#000000" : "#ffffff"}]}>
@@ -29,7 +29,7 @@ const LauncherPage = ({ navigation }) => {
           onPress={() => {
             navigation.navigate("Register");
           }}
-          title="Sign Up"
+          title={language === "English" ? "Sign up": "Üye ol"}
           buttonColor={false}
         />
       </View>
@@ -39,7 +39,7 @@ const LauncherPage = ({ navigation }) => {
         <PrimaryButton
           // Navigates to the Login screen
           onPress={() => navigation.navigate("Login")}
-          title="Login"
+          title={language === "English" ? "Login": "Giriş Yap"}
           buttonColor={true}
         />
       </View>

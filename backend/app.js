@@ -40,7 +40,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-// Test route
+
 app.get("/test", (req, res) => {
   res.send("Test route");
 });
@@ -53,4 +53,3 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-// mongod --config /opt/homebrew/etc/mongod.conf --fork

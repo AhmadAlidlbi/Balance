@@ -25,4 +25,6 @@ router.patch('/byDate', isAuth, taskController.getTasksByStartDate);
 // Delete a task
 router.delete("/:taskId", isAuth, taskController.deleteTask);
 
+router.get("/completed/:userId", isAuth, taskController.getCompletedTasksByUserId);
+
 module.exports = router;

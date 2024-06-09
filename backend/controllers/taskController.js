@@ -163,3 +163,14 @@ exports.getTasksByStartDate = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
+exports.getCompletedTasksByUserId = async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const completedTasks = await Task.find({ userId, completed: true });
+    res.json({ success: true, tasks: completedTasks });
+  } catch (error) {
+    console.error("Error getting completed tasks:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};

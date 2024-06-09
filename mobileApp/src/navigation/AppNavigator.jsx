@@ -375,9 +375,9 @@ function DrawerNavigator() {
 
   const getDrawerLabelStyle = (focused) => {
     if (theme === "dark") {
-      return { color: focused ? "#ffffff" : "#787878" }; // white if focused, grey if not
+      return { color: focused ? "#ffffff" : "#787878" };
     } else {
-      return { color: focused ? "#000000" : "#787878" }; // black if focused, grey if not
+      return { color: focused ? "#000000" : "#787878" };
     }
   };
   return (
@@ -396,7 +396,7 @@ function DrawerNavigator() {
       })}
     >
       <Drawer.Screen
-        name={language === "English" ? "Homes" : "Gösterge Paneli"}
+        name={language === "English" ? "Home" : "Gösterge Paneli"}
         component={DashboardPage}
         options={({ route, navigation }) => ({
           drawerLabelStyle: getDrawerLabelStyle(navigation.isFocused()),

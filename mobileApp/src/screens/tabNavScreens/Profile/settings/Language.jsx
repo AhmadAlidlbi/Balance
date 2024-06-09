@@ -18,6 +18,24 @@ const Language = () => {
       <Text style={[styles.title, { color: theme === "dark" ? "#ffffff" : "#000000" }]}>
         {language === "English" ? "Select a language:" : "Bir dil seç:"}
       </Text>
+
+      {language !== "Turkish" ? (
+        <TouchableOpacity onPress={() => handleLanguageSelection("Turkish")}>
+          <View style={styles.row}>
+            <Image source={require("../../../../assets/images/turkey.png")} style={{ width: 35, height: 35 }} />
+            <Text style={[styles.language, language === "Turkish" && styles.selectedLanguage, { color: theme === "dark" ? "#ffffff" : "#000000" }]}>
+            {language === "English" ? "Turkish": "Türkçe"}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <View style={styles.row}>
+          <Image source={require("../../../../assets/images/turkey.png")} style={{ width: 35, height: 35 }} />
+          <Text style={[styles.language, language === "Turkish" && styles.selectedLanguage, { color: theme === "dark" ? "#ffffff" : "#000000" }]}>
+          {language === "English" ? "Turkish": "Türkçe"}
+          </Text>
+        </View>
+      )}
       
       {language !== "English" ? (
         <TouchableOpacity onPress={() => handleLanguageSelection("English")}>
@@ -33,24 +51,6 @@ const Language = () => {
           <Image source={require("../../../../assets/images/usa.png")} style={{ width: 30, height: 30 }} />
           <Text style={[styles.language, language === "English" && styles.selectedLanguage, { color: theme === "dark" ? "#ffffff" : "#000000" }]}>
           {language === "English" ? "English": "İngilizce"}
-          </Text>
-        </View>
-      )}
-
-      {language !== "Turkish" ? (
-        <TouchableOpacity onPress={() => handleLanguageSelection("Turkish")}>
-          <View style={styles.row}>
-            <Image source={require("../../../../assets/images/turkey.png")} style={{ width: 30, height: 30 }} />
-            <Text style={[styles.language, language === "Turkish" && styles.selectedLanguage, { color: theme === "dark" ? "#ffffff" : "#000000" }]}>
-            {language === "English" ? "Turkish": "Türkçe"}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ) : (
-        <View style={styles.row}>
-          <Image source={require("../../../../assets/images/turkey.png")} style={{ width: 30, height: 30 }} />
-          <Text style={[styles.language, language === "Turkish" && styles.selectedLanguage, { color: theme === "dark" ? "#ffffff" : "#000000" }]}>
-          {language === "English" ? "Turkish": "Türkçe"}
           </Text>
         </View>
       )}
