@@ -240,8 +240,7 @@ const DashboardPage = ({ navigation }) => {
               ]}
             >
               {language === "English" ? "Hey, " : "Merhaba, "}
-              {profile.fullName}
-            </Text>
+              {profile?.fullName}            </Text>
           </TouchableOpacity>
           <Text
             style={[
