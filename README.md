@@ -8,9 +8,12 @@ A mobile application built using **React Native** that allows users to manage th
 
 ### App Logo
 
-
+![App Logo](screenshots/lightLogo.png "App Logo")
+![App Logo](screenshots/darkLogo.png "App Logo")
 
 ### Panorama Mockup
+
+![Panorama Mockup](screenshots/PanoramaMockup.png "Panorama Mockup")
 
 ---
 
