@@ -114,5 +114,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 - **Author**: Ahmad Alidlbi
-- **Email**: [ahmed@hotmail.com](mailto:ahmed@hotmail.com)
+- **Email**: [ahmed@hotmail.com](mailto:ahmedidlbi@hotmail.com)
 
