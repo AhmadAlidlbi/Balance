@@ -1,3 +1,9 @@
+# Notes & Task Management App
+
+A mobile application built using **React Native** that allows users to manage their notes, tasks, and habits efficiently. The app features secure user authentication, real-time synchronization, and a sleek, user-friendly interface.
+
+---
+
 # Logo & Mockup
 
 App Logo
@@ -5,12 +11,6 @@ App Logo
 
 
 Panorama Mockup
-
----
-
-# Notes & Task Management App
-
-A mobile application built using **React Native** that allows users to manage their notes, tasks, and habits efficiently. The app features secure user authentication, real-time synchronization, and a sleek, user-friendly interface.
 
 ---
 
