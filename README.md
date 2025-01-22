@@ -111,9 +111,41 @@ This app relies on a custom-built backend for handling authentication and data s
 
 ## Screenshots
 
+### Main Landing Page
+![Main Screen](screenshots/mainLight.png "Main Screen")
+![Main Screen](screenshots/mainBlack.png "Main Screen")
+
 ### Login Screen 
+![Login Screen](screenshots/loginLight.png "Login Screen")
 ![Login Screen](screenshots/loginBlack.png "Login Screen")
 
+### Dashboard Screen
+
+![Dashboard Screen](screenshots/dashboardLight.png "Dashboard Screen")
+![Dashboard Screen](screenshots/DashboardBlack.png "Dashboard Screen")
+
+### Tasks Page
+![Tasks Screen](screenshots/taskListLight.png "Tasks Screen")
+![Tasks Screen](screenshots/tasksLight.png "Tasks Screen")
+
+### Calendar Page
+
+![Calendar Screen](screenshots/calendarLight.png "Calendar Screen")
+![Calendar Screen](screenshots/dateLight.png "Calendar Screen")
+
+### Notes Page
+
+![Notes Screen](screenshots/notesLight.png "Notes Screen")
+
+# Profile Page
+
+![Profile Screen](screenshots/profileLight.png "Profile Screen")
+![Profile Screen](screenshots/profileBlack.png "Profile Screen")
+
+### Settings Page
+
+![Settings Screen](screenshots/settingsDark.png "Settings Screen")
+![Settings Screen](screenshots/langLight.png "Settings Screen")
 
 
 ---
