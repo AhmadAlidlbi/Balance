@@ -6,11 +6,11 @@ A mobile application built using **React Native** that allows users to manage th
 
 # Logo & Mockup
 
-App Logo
+### App Logo
 
 
 
-Panorama Mockup
+### Panorama Mockup
 
 ---
 
