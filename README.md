@@ -58,7 +58,7 @@ A mobile application built using **React Native** that allows users to manage th
 2. Navigate to the project directory:
 
    ```bash
-   cd notes-task-app
+   cd mobileApp
    ```
 
 3. Install dependencies:
@@ -115,8 +115,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - **Author**: Ahmad Alidlbi
 - **Email**: [ahmed@hotmail.com](mailto:ahmed@hotmail.com)
-
----
-
-Happy coding!
 
