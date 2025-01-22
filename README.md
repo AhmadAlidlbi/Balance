@@ -111,8 +111,8 @@ This app relies on a custom-built backend for handling authentication and data s
 
 ## Screenshots
 
-### Login Screen ![Login Screen]
-(screenshots/loginBlack.png "Login Screen")
+### Login Screen 
+![Login Screen](screenshots/loginBlack.png "Login Screen")
 
 
 
