@@ -23,31 +23,10 @@ import { storeToken } from "../../../utils/storage";
 
 const LoginPage = ({ navigation }) => {
   const { loadingPending, setLoadingPending, theme, language  } = useLogin();
-  // State variables to store the username and password
-  // The setUsername and setPassword functions are used to update the state variables
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const handleUsernameChange = (Username) => {
-  //   setUsername(Username);
-  // };
-
-  // const handlePasswordChange = (Password) => {
-  //   setPassword(Password);
-  // };
-  // // The handlePasswordChange function updates the password state variable with the value of the input field
 
   const handleForgotPassword = () => {
     navigation.navigate("ForgetPassword");
   };
-
-  // const handleLogin = () => {
-  //   // if (username === "" || password === "") {
-  //   //   alert("Please fill all fields");
-  //   //   return;
-  //   // }
-  //   navigation.navigate("InAppStack");
-  // };
 
   const { setIsLoggedIn, setProfile } = useLogin();
   const [userInfo, setUserInfo] = useState({
