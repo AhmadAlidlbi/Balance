@@ -79,8 +79,8 @@ const LoginPage = ({ navigation }) => {
         const res = await client.post("/login", { ...userInfo });
         console.log("Response:", res.data);
         if (res.data.success && res.data.token) {
-          await storeToken(res.data.token);  // Store token
-          setProfile(res.data.userInfo);  // Store user info
+          await storeToken(res.data.token); 
+          setProfile(res.data.userInfo); 
           await setIsLoggedIn(true);
         } else {
           setError(res.data.message);
@@ -104,7 +104,6 @@ const LoginPage = ({ navigation }) => {
         { backgroundColor: theme === "dark" ? "#000000" : "#ffffff" },
       ]}
     >
-      {/* Logo */}
       <View>
         <Image
           style={styles.logo}
@@ -116,12 +115,10 @@ const LoginPage = ({ navigation }) => {
         />
       </View>
 
-      {/* Title */}
       <View>
         <Text style={[styles.title, {color: theme === "dark" ? "#ffffff" : "#000000" }]}>{language === "English" ? "Login to your account": "Hesabınıza Giriş Yapın"}</Text>
       </View>
 
-      {/* Input field component */}
       <View>
         <InputField
           iconName={"user"}
@@ -133,7 +130,6 @@ const LoginPage = ({ navigation }) => {
         />
       </View>
 
-      {/* Input field component */}
       <View>
         <InputField
           iconName={"lock"}
@@ -147,14 +143,12 @@ const LoginPage = ({ navigation }) => {
         />
       </View>
 
-      {/* Forgot password */}
       <View>
         <TouchableOpacity onPress={handleForgotPassword}>
           <Text style={[styles.forgotPassword, {color: theme === "dark" ? "#ffffff" : "#625F60" }]}>{language === "English" ? "Forgot password?": "Parolanızı mı unuttunuz?"}</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Primary button component */}
       <View
         style={{
           marginTop: 20,
@@ -178,7 +172,6 @@ const LoginPage = ({ navigation }) => {
 
 export default LoginPage;
 
-// Styles
 
 const styles = StyleSheet.create({
   container: {

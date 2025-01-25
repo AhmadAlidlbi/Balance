@@ -50,70 +50,6 @@ const RegisterPage = ({ navigation }) => {
 
   const { fullName, email, password, confirmPassword } = userInfo;
 
-  // const handleOnchangeText = (value, filedName) => {
-  //   setUserInfo({ ...userInfo, [filedName]: value });
-  // };
-
-  // const isValidForm = () => {
-  //   if (!isValidObjField(userInfo))
-  //     return updateError("All fields are required", setError);
-  //   if (!fullName.trim() || fullName.length < 3)
-  //     return updateError("Full name must be at least 3 characters", setError);
-  //   if (!isValidEmail(email)) return updateError("Email is invalid", setError);
-  //   if (!password.trim() || password.length < 8)
-  //     return updateError("Password must be at least 8 characters", setError);
-  //   if (password !== confirmPassword)
-  //     return updateError("Passwords do not match", setError);
-
-  //   return true;
-  // };
-
-  // const handleSignUp = () => {
-  //   if (isValidForm()) {
-  //     console.log(userInfo);
-  //   }
-  // };
-
-  // const handleFullNameChange = (fullname) => {
-  //   setFullName(fullname);
-  // };
-
-  // const handleEmailChange = (email) => {
-  //   setEmail(email);
-  // };
-
-  // const handlePasswordChange = (password) => {
-  //   setPassword(password);
-  // };
-
-  // const handleConfirmPasswordChange = (confirmPassword) => {
-  //   setConfirmPassword(confirmPassword);
-  // };
-
-  // const handleSignUp = async () => {
-  //   if (fullname === "" || email === "" || password === "" || confirmPassword === "") {
-  //     Alert.alert("Error", "Please fill all fields");
-  //     return;
-  //   }
-  //   if (password !== confirmPassword) {
-  //     Alert.alert("Error", "Passwords do not match");
-  //     return;
-  //   }
-
-  //   try {
-  //     await register({ fullname, email, password });
-  //     Alert.alert("Sign up successful");
-  //     navigation.navigate("Login");
-  //   } catch (error) {
-  //     console.log("Error:", error); // Log the error object to see its structure and properties
-  //     if (error.response && error.response.data) {
-  //       Alert.alert("Error", error.response.data.message); // Assuming your API returns an error message in the response data
-  //     } else {
-  //       Alert.alert("Error", "Registration failed. Please try again.");
-  //     }
-  //   }
-  // };
-
   const signUp = async (values, formikActions) => {
     setLoadingPending(true);
     try {
@@ -127,19 +63,6 @@ const RegisterPage = ({ navigation }) => {
       setError(error.message);
     }
 
-    // if (res.data.success) {
-    //   const signInRes = await client.post("/login", {
-    //     email: values.email,
-    //     password: values.password,
-    //   });
-    //   if (signInRes.data.success) {
-    //     navigation.navigate("Login", {
-    //       token: signInRes.data.token,
-    //     });
-    //   }else {
-    //     console.log("Sign-in unsuccessful:", signInRes.data.error);
-    //   }
-    // }
     console.log(res.data);
     formikActions.resetForm();
     formikActions.setSubmitting(false);

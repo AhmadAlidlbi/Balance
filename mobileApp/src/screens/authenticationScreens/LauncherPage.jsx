@@ -8,7 +8,6 @@ const LauncherPage = ({ navigation }) => {
 
   return (
     <View style={[styles.container, {backgroundColor: theme === "dark" ? "#000000" : "#ffffff"}]}>
-      {/* Logo */}
       <View style={styles.logo}>
         <Image source={
                 theme === "dark"
@@ -17,15 +16,12 @@ const LauncherPage = ({ navigation }) => {
               } />
       </View>
 
-      {/* Title */}
       <View>
         <Text style={[styles.title, {color: theme === "dark" ? "#ffffff" : "#000000" }]}>Balance</Text>
       </View>
       
-      {/* Primary button component */}
       <View style={{ marginBottom: 10 }}>
         <PrimaryButton
-          // Navigates to the Auth screen
           onPress={() => {
             navigation.navigate("Register");
           }}
@@ -34,10 +30,8 @@ const LauncherPage = ({ navigation }) => {
         />
       </View>
 
-      {/* Primary button component */}
       <View>
         <PrimaryButton
-          // Navigates to the Login screen
           onPress={() => navigation.navigate("Login")}
           title={language === "English" ? "Login": "Giriş Yap"}
           buttonColor={true}
@@ -48,8 +42,6 @@ const LauncherPage = ({ navigation }) => {
 };
 
 export default LauncherPage;
-
-// Styles
 
 const styles = StyleSheet.create({
   container: {
