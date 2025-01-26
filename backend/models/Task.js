@@ -30,6 +30,3 @@ const taskSchema = new mongoose.Schema({
 
 module.exports = mongoose.model("Task", taskSchema);
 
-// TaskList model contains an array of tasks and a title and user ID
-
-

@@ -1,7 +1,5 @@
-// Note controller
 const Note = require("../models/Note");
 
-// Create a new note
 exports.createNote = async (req, res) => {
   const { title, description, userId } = req.body;
   try {
@@ -17,7 +15,6 @@ exports.createNote = async (req, res) => {
   }
 };
 
-// Get all notes for a user
 exports.getNotesByUserId = async (req, res) => {
   const userId = req.params.userId;
   try {
@@ -29,7 +26,6 @@ exports.getNotesByUserId = async (req, res) => {
   }
 };
 
-// Get a single note by ID
 exports.getNoteById = async (req, res) => {
   const noteId = req.params.noteId;
   try {
@@ -44,7 +40,6 @@ exports.getNoteById = async (req, res) => {
   }
 };
 
-// Update a note
 exports.updateNote = async (req, res) => {
   const noteId = req.params.noteId;
   const { title, description } = req.body;
@@ -69,7 +64,6 @@ exports.updateNote = async (req, res) => {
   }
 };
 
-// Delete a note
 exports.deleteNote = async (req, res) => {
   const noteId = req.params.noteId;
   try {

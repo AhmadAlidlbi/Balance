@@ -1,9 +1,7 @@
-// Task controller
 const Task = require("../models/Task");
 const TaskList = require("../models/TaskList");
 const User = require("../models/User");
 
-// Create a new task
 exports.createTask = async (req, res) => {
   const { title, description, startDate, endDate, userId, taskListId } =
     req.body;
@@ -37,7 +35,6 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// Get all tasks for a user
 exports.getTasksByUserId = async (req, res) => {
   const userId = req.params.userId;
   try {
@@ -49,7 +46,6 @@ exports.getTasksByUserId = async (req, res) => {
   }
 };
 
-// Get a single task by ID
 exports.getTaskById = async (req, res) => {
   const taskId = req.params.taskId;
   try {
@@ -66,7 +62,6 @@ exports.getTaskById = async (req, res) => {
   }
 };
 
-// Update a task
 exports.updateTask = async (req, res) => {
   const taskId = req.params.taskId;
   const { title, description, endDate, completed } = req.body;
@@ -129,7 +124,6 @@ exports.editTask = async (req, res) => {
   }
 };
 
-// Delete a task
 exports.deleteTask = async (req, res) => {
   console.log(req.params);
   const taskId = req.params.taskId;

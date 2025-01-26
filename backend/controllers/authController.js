@@ -110,7 +110,6 @@ exports.logOut = async (req, res) => {
 
 exports.getProfile = async (req, res) => {
   const { user } = req;
-  // console.log("User", user);
   if (!user)
     return res
       .status(401)

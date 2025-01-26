@@ -1,7 +1,5 @@
-// Habit controller
 const Habit = require("../models/Habit");
 
-// Create a new habit
 exports.createHabit = async (req, res) => {
   const { title, userId } = req.body;
   try {
@@ -16,7 +14,6 @@ exports.createHabit = async (req, res) => {
   }
 };
 
-// Get all habits for a user
 exports.getHabitsByUserId = async (req, res) => {
   const userId = req.params.userId;
   try {
@@ -28,7 +25,6 @@ exports.getHabitsByUserId = async (req, res) => {
   }
 };
 
-// Get a single habit by ID
 exports.getHabitById = async (req, res) => {
   const habitId = req.params.habitId;
   try {
@@ -45,7 +41,6 @@ exports.getHabitById = async (req, res) => {
   }
 };
 
-// Update a habit
 exports.updateHabit = async (req, res) => {
   const habitId = req.params.habitId;
   const { completed } = req.body;
@@ -88,7 +83,7 @@ exports.editHabit = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
-// Delete a habit
+
 exports.deleteHabit = async (req, res) => {
   const habitId = req.params.habitId;
   try {
