@@ -123,7 +123,6 @@ const DashboardPage = ({ navigation }) => {
       setPlaySuccessSound(true);
       setShowGoodJob(true);
 
-      // Set a timeout to hide the "Good Job!" text after 2 seconds
       setTimeout(() => {
         setShowGoodJob(false);
       }, 3000);
@@ -131,7 +130,6 @@ const DashboardPage = ({ navigation }) => {
   }, [progress]);
 
   useEffect(() => {
-    // Play the success sound
     const playSound = async () => {
       try {
         if (soundEnabled && playSuccessSound) {
@@ -144,12 +142,10 @@ const DashboardPage = ({ navigation }) => {
     };
 
     playSound();
-    // Reset the state to prevent continuous playback
     setPlaySuccessSound(false);
   }, [soundEnabled, playSuccessSound]);
 
   useEffect(() => {
-    // Select a random motivational sentence
     const randomIndex = Math.floor(
       Math.random() * EnglishMotivationalSentences.length
     );
@@ -157,7 +153,6 @@ const DashboardPage = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    // Select a random motivational sentence
     const randomIndex = Math.floor(
       Math.random() * TurkishMotivationalSentences.length
     );

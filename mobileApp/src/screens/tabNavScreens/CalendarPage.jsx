@@ -45,11 +45,9 @@ const CalendarPage = () => {
   };
 
   const renderHabit = ({ item }) => (
-    // <TaskItem task={item} changeTaskStatusHanker={() => {}} />
     <UpcomingTask task={item} changeTaskStatusHanker={() => {}} />
   );
 
-  //   default should ve default date
   useEffect(() => {
     const date = new Date();
     const year = date.getFullYear();

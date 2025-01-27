@@ -33,9 +33,7 @@ const ChangePassword = ({ navigation }) => {
   };
 
   const handleResetPassword = () => {
-    // Implement your password reset logic here
-    // You can use the 'email' state variable to get the user's email
-    // Display a success message or show an error if the email is invalid
+
     Alert.alert(
       language === "English" ? "Password Reset": "Parola sıfırlama",
       language === "English" ? "An email has been sent to your email address with instructions to reset your password.": "E-posta adresinize şifrenizi sıfırlama talimatlarını içeren bir e-posta gönderildi."

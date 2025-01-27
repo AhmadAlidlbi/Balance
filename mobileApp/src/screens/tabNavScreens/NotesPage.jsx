@@ -20,9 +20,7 @@ import {
   updateNote,
 } from "../../../api/notes";
 import { useLogin } from "../../context/LoginProvider";
-// import Search from "react-native-search-box";
 
-// import expo icons
 import { Ionicons } from "@expo/vector-icons";
 
 const NotesPage = () => {
