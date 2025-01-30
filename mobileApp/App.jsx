@@ -26,13 +26,11 @@ export default function App() {
     /GraphQL error: .*/,
   ]);
 
-  // Ignore all log notifications
   LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <StatusBar style={theme === "dark" ? "light" : "dark"} />
       <LoginProvider>
-        {/* {fontsLoaded ? <AppNavigator /> : null} */}
         <AppNavigator theme={theme} setTheme={setTheme} />
       </LoginProvider>
     </NavigationContainer>

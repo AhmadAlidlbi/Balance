@@ -50,27 +50,6 @@ const LoginPage = ({ navigation }) => {
       return updateError("Password must be at least 8 characters", setError);
     return true;
   };
-  // const handleLogin = async () => {
-  //   setLoadingPending(true);
-  //   if (isValidForm()) {
-  //     try {
-  //       const res = await client.post("/login", { ...userInfo });
-  //       console.log("Response:", res.data);
-  //       if (res.data.success && res.data.token) {
-  //         await storeToken(res.data.token);
-  //         await setIsLoggedIn(true);
-  //       } else {
-  //         setError(res.data.message);
-  //       }
-  //     } catch (error) {
-  //       setError(error.message);
-  //       alert(error.message);
-  //       console.log(error.message);
-  //     } finally {
-  //       setLoadingPending(false);
-  //     }
-  //   }
-  // };
 
   const handleLogin = async () => {
     setLoadingPending(true);
